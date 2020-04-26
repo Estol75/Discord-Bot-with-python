@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 
 
-Bot = commands.Bot(command_prefix= "!")
+Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
@@ -28,6 +28,9 @@ async def корды(ctx):
 async def rjhls(ctx):
     await ctx.send(text)
     
+async def status_task():
+    while True:
+        await client.change_presence(activity=discord.Game('--Help'),status=discord.Status.online)
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
