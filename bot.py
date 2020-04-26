@@ -7,7 +7,7 @@ Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--Help | ФАШИСТЫ'))
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--SOS | ФАШИСТЫ'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
@@ -32,6 +32,10 @@ async def rjhls(ctx):
 @Bot.command(pass_context=True)
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
+    
+@Bot.command(pass_context=True)
+async def SOS(ctx):
+    await ctx.send('>>>**Все команды бота Технограда:**')
 
 
 
