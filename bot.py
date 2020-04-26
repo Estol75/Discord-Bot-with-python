@@ -29,5 +29,14 @@ async def корды(ctx):
 async def rjhls(ctx):
     await ctx.send(text)
 
+@Bot.command(pass_context=True)
+async def help(ctx):
+    await ctx.send('>>>Вот все команты бота Техноград
+                       ```fix
+                          > --help
+                       ```                             ')
+                                                  
+
+
 token = os.environ.get('TOKEN')
 Bot.run(token)
