@@ -24,6 +24,10 @@ text = ('**Вот тебе полезные координаты:**\r\n'
 async def корды(ctx):
     await ctx.send(text)
     
+@Bot.command(pass_context=True)
+async def rjhls(ctx):
+    await ctx.send(text)
+    
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
