@@ -7,6 +7,7 @@ Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--Help'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
@@ -27,10 +28,6 @@ async def корды(ctx):
 @Bot.command(pass_context=True)
 async def rjhls(ctx):
     await ctx.send(text)
-    
-async def status_task():
-    while True:
-        await client.change_presence(activity=discord.Game('--Help'),status=discord.Status.online)
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
