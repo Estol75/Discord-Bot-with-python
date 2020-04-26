@@ -35,7 +35,7 @@ async def ФАШИСТЫ(ctx):
     
 @Bot.command(pass_context=True)
 async def SOS(ctx):
-    await ctx.send('>>>**Все команды бота Технограда:**')
+    await ctx.send('>>> **Все команды бота Технограда:**')
 
 
 
