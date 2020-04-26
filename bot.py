@@ -7,7 +7,7 @@ Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--Help'))
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--Help | ФАШИСТЫ'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
@@ -28,6 +28,11 @@ async def корды(ctx):
 @Bot.command(pass_context=True)
 async def rjhls(ctx):
     await ctx.send(text)
+    
+@Bot.command(pass_context=True)
+async def ФАШИСТЫ(ctx):
+    await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
+
 
 
 
