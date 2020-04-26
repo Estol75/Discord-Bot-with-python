@@ -21,7 +21,7 @@ text = ('**Вот тебе полезные координаты:**\r\n'
                   '```Склад: -7470 -6015```')
 
 @Bot.command(pass_context=True)
-async def kordi(ctx):
+async def корды(ctx):
     await ctx.send(text)
     
 
