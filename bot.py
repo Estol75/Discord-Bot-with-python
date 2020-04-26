@@ -7,7 +7,7 @@ Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--SOS | ФАШИСТЫ'))
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--COM | Все команды'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
