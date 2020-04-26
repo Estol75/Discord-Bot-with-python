@@ -21,7 +21,7 @@ text = '**Вот тебе полезные координаты:**\r\n'
                   '```Склад: -7470 -6015```'
 
 @Bot.command(pass_context=True) #разрешаем передавать агрументы
-async def test(ctx): #создаем асинхронную фунцию бота
+async def корды(ctx): #создаем асинхронную фунцию бота
     await ctx.send(text) #отправляем обратно аргумент
 
 token = os.environ.get('TOKEN')
