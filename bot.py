@@ -44,7 +44,11 @@ async def com(ctx):
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--com", inline=False)
     embed.add_field(name="Author", value="Estol", inline=False)
-    await ctx.send(embed=embed)
+    mess = await ctx.send(embed=embed)
+    await mess.add_reaction('👍🏻')
+    await mess.add_reaction('👎🏻')
+
+    
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
