@@ -41,7 +41,12 @@ async def COM(ctx):
 async def бог(ctx):
     await ctx.send(file=discord.File('putin.jpg'))
 
-
+@Bot.command(pass_context= True)
+async def COM(ctx):
+    embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
+    embed.add_field(name="Команда что бы посмотреть все координаты:", value="--корды", inline=False)
+    embed.add_field(name="Если нужны команды бота:", value="--COM", inline=False)
+    await ctx.send(embed=embed)
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
