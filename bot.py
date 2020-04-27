@@ -38,7 +38,7 @@ async def COM(ctx):
     await ctx.send('>>> **Все команды бота Технограда:**')
 
 @Bot.command(pass_context=True)
-async def putin(ctx):
+async def бог(ctx):
     await ctx.send(file=discord.File('putin.jpg'))
 
 
