@@ -37,7 +37,9 @@ async def ФАШИСТЫ(ctx):
 async def COM(ctx):
     await ctx.send('>>> **Все команды бота Технограда:**')
 
-
+@Bot.command(pass_context=True)
+async def putin(ctx):
+    await ctx.send(file=discord.File('putin.jpg'))
 
 
 
