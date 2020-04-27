@@ -7,7 +7,7 @@ Bot = commands.Bot(command_prefix= "--")
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--COM | Все команды'))
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--com | Все команды'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
@@ -33,16 +33,13 @@ async def rjhls(ctx):
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
     
-@Bot.command(pass_context=True)
-async def COM(ctx):
-    await ctx.send('>>> **Все команды бота Технограда:**')
 
 @Bot.command(pass_context=True)
 async def бог(ctx):
     await ctx.send(file=discord.File('putin.jpg'))
 
 @Bot.command(pass_context= True)
-async def COM(ctx):
+async def com(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="Команда что бы посмотреть все координаты:", value="--корды", inline=False)
     embed.add_field(name="Если нужны команды бота:", value="--COM", inline=False)
