@@ -40,7 +40,7 @@ async def бог(ctx):
     
 @Bot.command(pass_context=True)
 async def дааашка(ctx):
-    await ctx.send(file=discord.File('daska.png'))
+    await ctx.send(file=discord.File('Dashka.png'))
 
 @Bot.command(pass_context= True)
 async def com(ctx):
