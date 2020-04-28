@@ -47,6 +47,10 @@ async def com(ctx):
     mess = await ctx.send(embed=embed)
     await mess.add_reaction('👍🏻')
     await mess.add_reaction('👎🏻')
+    
+@Bot.command()
+async def ава(ctx, member: discord.Member):
+    await ctx.send('{}'.format(member.avatar_url))
 
     
 
