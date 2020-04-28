@@ -37,6 +37,10 @@ async def ФАШИСТЫ(ctx):
 @Bot.command(pass_context=True)
 async def бог(ctx):
     await ctx.send(file=discord.File('putin.jpg'))
+    
+@Bot.command(pass_context=True)
+async def дааашка(ctx):
+    await ctx.send(file=discord.File('daska.jpg'))
 
 @Bot.command(pass_context= True)
 async def com(ctx):
