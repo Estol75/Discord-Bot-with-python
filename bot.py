@@ -34,6 +34,23 @@ async def rjhls(ctx):
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
     
+@Bot.command()
+async def status(ctx, member: discord.Member):
+    roles = [role for role in member.roles]
+
+    embe = discord.Embed(colour=member.color, timestamp=ctx.message.created_at)
+
+    embe.set_author(name=f"Информация о пользователи - {member}")
+    embe.set_thumbnail(url=member.avatar_url)
+    embe.set_footer(text=f"Requstion by {ctx.author}", icon_url=ctx.author.avatar_url)
+
+    embe.add_field(name="айди", value=member.id, inline=False)
+    embe.add_field(name="Никнейм", value=member.display_name)
+    embe.add_field(name="аккаунт был создан", value=member.created_at.strftime("%a, %#d %B %Y"))
+    embe.add_field(name="Присоединился к Дискорд серверу", value=member.joined_at.strftime("%a, %#d %B %Y"), inline=False)
+    embe.add_field(name=f"Роли игрока({len(roles)})", value=" ".join({role.mention for role in roles}))
+    await ctx.send(embed=embe)
+    
 
 @Bot.command(pass_context=True)
 async def япутин(ctx):
@@ -48,6 +65,7 @@ async def help(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--com", inline=False)
+    embed.add_field(name="**Узнать информацию о пользователе**", value="--status @ник", inline=False)
     embed.add_field(name="**Посмотреть аватарку игрока в дискорде:**", value="--ава @ник", inline=False)
     embed.add_field(name="Author", value="Estol", inline=False)
     mess = await ctx.send(embed=embed)
