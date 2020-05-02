@@ -51,6 +51,10 @@ async def status(ctx, member: discord.Member):
     embe.add_field(name=f"Роли игрока({len(roles)})", value=" ".join({role.mention for role in roles}))
     await ctx.send(embed=embe)
     
+@Bot.command(pass_context = True)
+async def clear(ctx, amount = 100):
+    await ctx.channel.purge(limit = amount)
+    
 
 @Bot.command(pass_context=True)
 async def япутин(ctx):
