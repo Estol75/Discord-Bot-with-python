@@ -42,7 +42,7 @@ async def status(ctx, member: discord.Member):
 
     embe.set_author(name=f"Информация о пользователи - {member}")
     embe.set_thumbnail(url=member.avatar_url)
-    embe.set_footer(text=f"Requstion by {ctx.author}", icon_url=ctx.author.avatar_url)
+    embe.set_footer(text=f"Запрос был сделан {ctx.author}", icon_url=ctx.author.avatar_url)
 
     embe.add_field(name="айди", value=member.id, inline=False)
     embe.add_field(name="Никнейм", value=member.display_name)
