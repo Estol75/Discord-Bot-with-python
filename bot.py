@@ -4,10 +4,11 @@ import os
 
 
 Bot = commands.Bot(command_prefix= "--")
+Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--com | Все команды'))
+    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--help | Все команды'))
     print("The Bot is ready")
 
 text = ('**Вот тебе полезные координаты:**\r\n'
@@ -43,7 +44,7 @@ async def дааашка(ctx):
     await ctx.send(file=discord.File('Dashka.png'))
 
 @Bot.command(pass_context= True)
-async def com(ctx):
+async def help(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--com", inline=False)
