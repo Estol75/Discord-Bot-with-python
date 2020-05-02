@@ -31,6 +31,10 @@ async def rjhls(ctx):
     await ctx.send(text)
     
 @Bot.command(pass_context=True)
+async def Revolycioner_Rab(ctx):
+    await ctx.send(file=discord.File('revo.jpg'))
+    
+@Bot.command(pass_context=True)
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
     
