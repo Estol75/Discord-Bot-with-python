@@ -69,6 +69,7 @@ async def help(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--com", inline=False)
+    embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений", inline=False)
     embed.add_field(name="**Узнать информацию о пользователе**", value="--status @ник", inline=False)
     embed.add_field(name="**Посмотреть аватарку игрока в дискорде:**", value="--ава @ник", inline=False)
     embed.add_field(name="Author", value="Estol", inline=False)
