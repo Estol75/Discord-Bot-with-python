@@ -288,8 +288,8 @@ shema = 649217280617480202,
 @commands.has_role(642285642348494848)
 async def схематика(ctx):
     await ctx.channel.purge(limit = 1)
-    shema = get(ctx.guild.roles, id=shema)
-    await ctx.author.add_roles(shema)
+    shfdsema = get(ctx.guild.roles, id=shema)
+    await ctx.author.add_roles(shfdsema)
 
 shema = 649217280617480202
 @Bot.command()
@@ -312,8 +312,8 @@ rep = 642315518644060161
 @commands.has_role(642285642348494848)
 async def рпшер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    repg = get(ctx.guild.roles, id=rep)
-    await ctx.author.remove_roles(repg)
+    repfdg = get(ctx.guild.roles, id=rep)
+    await ctx.author.remove_roles(repfdg)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
