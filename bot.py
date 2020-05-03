@@ -239,39 +239,49 @@ async def декоратор_удалить(ctx):
     üplöüp = get(ctx.guild.roles, id=dekor_3)
     await ctx.author.remove_roles(dekofsdr, dekorzzztr, dekoroikoi, üplöüp)
 #------------------------------------------------------------------------------
+item = 642315552890814464
+item_1 = 668156985920716830
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def ресурсер_1(ctx):
     await ctx.channel.purge(limit = 1)
-    item = get(ctx.guild.roles, id=item)
-    item_1 = get(ctx.guild.roles, id=item_1)
-    await ctx.author.add_roles(item, item_1)
+    itefdstd = get(ctx.guild.roles, id=item)
+    itemgdfg = get(ctx.guild.roles, id=item_1)
+    await ctx.author.add_roles(itefdstd, itemgdfg)
 
+item = 642315552890814464
+item_2 = 668166015464505344
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def ресурсер_2(ctx):
     await ctx.channel.purge(limit = 1)
-    item = get(ctx.guild.roles, id=item)
-    item_2 = get(ctx.guild.roles, id=item_2)
-    await ctx.author.add_roles(item, item_2)
+    itefdsm = get(ctx.guild.roles, id=item)
+    itefdsfsdf = get(ctx.guild.roles, id=item_2)
+    await ctx.author.add_roles(itefdsm, itefdsfsdf)
 
+item = 642315552890814464
+item_3 = 668166087963312161
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def ресурсер_3(ctx):
     await ctx.channel.purge(limit = 1)
-    item = get(ctx.guild.roles, id=item)
-    item_3 = get(ctx.guild.roles, id=item_3)
-    await ctx.author.add_roles(item, item_3)
+    itefdsfdsm = get(ctx.guild.roles, id=item)
+    itfdsfsdf = get(ctx.guild.roles, id=item_3)
+    await ctx.author.add_roles(itefdsfdsm, itfdsfsdf)
 
+item = 642315552890814464
+item_1 = 668156985920716830
+item_2 = 668166015464505344
+item_3 = 668166087963312161    
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def ресурсер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    item = get(ctx.guild.roles, id=item)
-    item_1 = get(ctx.guild.roles, id=item_1)
-    item_2 = get(ctx.guild.roles, id=item_2)
-    item_3 = get(ctx.guild.roles, id=item_3)
-    await ctx.author.remove_roles(item, item_1, item_2, item_3)
+    itefdsfm = get(ctx.guild.roles, id=item)
+    itemggggfff = get(ctx.guild.roles, id=item_1)
+    igdfgdfgdfgdfttt = get(ctx.guild.roles, id=item_2)
+    hhhhhhhgffffd = get(ctx.guild.roles, id=item_3)
+    await ctx.author.remove_roles(itefdsfm, itemggggfff, igdfgdfgdfgdfttt, hhhhhhhgffffd)
 #-------------------------------------------------------------------
 @Bot.command()
 @commands.has_role(642285642348494848)
