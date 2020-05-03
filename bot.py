@@ -8,7 +8,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--help | Все команды'))
+    await Bot.change_presence(status=discord.Status.online, activity=discord.Game('--help | Все команды'))
     print("The Bot is ready")
 
 @Bot.command(pass_context= True)
