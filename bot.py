@@ -44,12 +44,14 @@ role_id = 642285249136689152
 @Bot.command(pass_context=True)
 @commands.has_role(642306802461048833)
 async def remove(ctx):
+    await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.remove_roles(role)
     
 @Bot.command(pass_context=True)
 @commands.has_role(642306802461048833)
 async def test(ctx):
+    await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
 
@@ -74,9 +76,9 @@ redstone_2 = 668168891880439848
 @commands.has_role(642285642348494848)
 async def редстоунер_2(ctx):
     await ctx.channel.purge(limit = 1)
-    redstone = get(ctx.guild.roles, id=redstone)
-    redstone_2 = get(ctx.guild.roles, id=redstone_2)
-    await ctx.author.add_roles(redstone, redstone_2)
+    redston = get(ctx.guild.roles, id=redstone)
+    redstone = get(ctx.guild.roles, id=redstone_2)
+    await ctx.author.add_roles(redston, redstone)
     
 redstone_3 = 668168889619709952
 @Bot.command()
