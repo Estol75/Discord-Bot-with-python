@@ -45,7 +45,7 @@ role_id = 652932815389720596
 async def test(ctx):
 
     role = get(ctx.guild.roles, id=role_id)
-    await ctx.author.add_roles(role)
+    await ctx.author.remove_roles(role)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
