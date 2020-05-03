@@ -299,6 +299,13 @@ async def схематика_удалить(ctx):
     shefdma = get(ctx.guild.roles, id=shema)
     await ctx.author.remove_roles(shefdma)
 
+pod = 706574774075260948
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def схематика_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    podfs = get(ctx.guild.roles, id=pod)
+    await ctx.author.remove_roles(podfs)    
 #---------------------------------------
 rep = 642315518644060161
 @Bot.command()
