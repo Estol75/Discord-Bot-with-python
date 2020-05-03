@@ -293,7 +293,12 @@ async def status(ctx, member: discord.Member):
     
 @Bot.command(pass_context = True)
 @commands.has_role(642306802461048833)
-async def clear(ctx, amount = 50):
+async def clear(ctx, amount = 10):
+    await ctx.channel.purge(limit = amount)
+
+@Bot.command(pass_context = True)
+@commands.has_role(642306802461048833)
+async def moreclear(ctx, amount = 50):
     await ctx.channel.purge(limit = amount)
     
 
@@ -310,7 +315,8 @@ async def help(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--help", inline=False)
-    embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений", inline=False)
+    embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений лимит 10 команда тока для Велоцераптор", inline=False)
+    embed.add_field(name="**Oчистить многа текста:**", value="--moreclear число сообщений лимит 50 команда тока для Велоцераптор", inline=False)
     embed.add_field(name="**Узнать болше информацией о городе:**", value="--info", inline=False)
     embed.add_field(name="**Забирать и добавлять себе роли:**", value="--role_help", inline=False)
     embed.add_field(name="**Узнать информацию о пользователе:**", value="--status @ник", inline=False)
