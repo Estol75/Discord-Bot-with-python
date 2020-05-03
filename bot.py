@@ -85,9 +85,9 @@ redstone_3 = 668168889619709952
 @commands.has_role(642285642348494848)
 async def редстоунер_3(ctx):
     await ctx.channel.purge(limit = 1)
-    redstone = get(ctx.guild.roles, id=redstone)
-    redstone_3 = get(ctx.guild.roles, id=redstone_3)
-    await ctx.author.add_roles(redstone, redstone_3)
+    redstonelay = get(ctx.guild.roles, id=redstone)
+    redstonela = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.add_roles(redstonelay, redstonela)
   
 redstone = 642315599237742612
 redstone_1 = 668166643633094656
@@ -97,11 +97,11 @@ redstone_3 = 668168889619709952
 @commands.has_role(642285642348494848)
 async def редстоунер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    redstone = get(ctx.guild.roles, id=redstone)
-    redstone_1 = get(ctx.guild.roles, id=redstone_1)
-    redstone_2 = get(ctx.guild.roles, id=redstone_2)
-    redstone_3 = get(ctx.guild.roles, id=redstone_3)
-    await ctx.author.remove_roles(redstone, redstone_1, redstone_2, redstone_3)
+    lay = get(ctx.guild.roles, id=redstone)
+    lay3 = get(ctx.guild.roles, id=redstone_1)
+    lay2 = get(ctx.guild.roles, id=redstone_2)
+    lay1 = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.remove_roles(lay, lay3, lay2, lay1)
 
 
 #-----------------------------------------------------------------------
