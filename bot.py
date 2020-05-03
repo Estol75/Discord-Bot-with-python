@@ -253,6 +253,18 @@ async def рпшер_удалить(ctx):
     rep = get(ctx.guild.roles, id=rep)
     await ctx.author.remove_roles(rep)
 
+@Bot.command()
+async def role_help(ctx):
+    embed = discord.Embed(title="Выдача роли по выбору", description="При помоще команд ниже вы можете выдавать себе роли или забирать​⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xff19d1)
+    embed.add_field(name="**Выдать себе роль редстоунера:**", value="--редстоунер_уровень", inline=False)
+    embed.add_field(name="**Выдать себе роль фермер:**", value="--фермер_уровень", inline=False)
+    embed.add_field(name="**Выдать себе роль строитель:**", value="--строитель_уровень", inline=False)
+    embed.add_field(name="**Выдать себе роль декоратор:**", value="--декоратор_уровень", inline=False)
+    embed.add_field(name="**Выдать себе роль ресурсер:**", value="--ресурсер_уровень", inline=False)
+    embed.add_field(name="**Выдать себе роль схематика:**", value="--схематика", inline=False)
+    embed.add_field(name="**Выдать себе роль рпшер:**", value="--рпшер", inline=False)
+    mess = await ctx.send(embed=embed)
+    
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
     await ctx.send(file=discord.File('revo.jpg'))
@@ -299,6 +311,7 @@ async def help(ctx):
     embed.add_field(name="**Если нужны команды бота:**", value="--help", inline=False)
     embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений", inline=False)
     embed.add_field(name="**Узнать болше информацией о городе:**", value="--info", inline=False)
+    embed.add_field(name="**Забирать и добавлять себе роли:**", value="--role_help", inline=False)
     embed.add_field(name="**Узнать информацию о пользователе:**", value="--status @ник", inline=False)
     embed.add_field(name="**Посмотреть аватарку игрока в дискорде:**", value="--ава @ник", inline=False)
     embed.add_field(name="Author", value="Estol", inline=False)
