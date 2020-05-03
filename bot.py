@@ -39,10 +39,10 @@ async def role_help(ctx):
     embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
     mess = await ctx.send(embed=embed)
     
-role_id = 668166643633094656
+role_id = 706446502385549343
 
 @Bot.command()
-@commands.has_role(642285642348494848)
+@commands.has_role(700390334810685480)
 async def redstone_1(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
