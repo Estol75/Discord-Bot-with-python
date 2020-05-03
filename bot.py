@@ -39,12 +39,12 @@ async def role_help(ctx):
     embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
     mess = await ctx.send(embed=embed)
     
-role_id = 652932815389720596
+role_id = 642285249136689152
 
 @Bot.command(pass_context=True)
 async def test(ctx):
     role = get(ctx.guild.roles, id=role_id)
-    await ctx.author.remove_roles(role)
+    await ctx.author.add_roles(role)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
