@@ -11,24 +11,19 @@ async def on_ready():
     await Bot.change_presence(status=discord.Status.idle, activity=discord.Game('--help | Все команды'))
     print("The Bot is ready")
 
-text = ('**Вот тебе полезные координаты:**\r\n'
-                  '```Ферма скелетов (По метро): -7844 -5753```'
-                  '```Ферма гвардов (по метро): -8000 -6435```'
-                  '```Ферма золота и яма: -7777 -6460```'
-                  '```Ферма зомби и пауков (По метро): -7430 -5895```'
-                  '```Городская ферма ифритов (В аду): -1200 -630```'
-                  '```Портал в энд (В аду): -1100 -950```'
-                  '```Портал в Техноград (В аду): -918 -750```'
-                  '```Портал в хаб Технограда: -7400 -6085```'
-                  '```Склад: -7470 -6015```')
-
-@Bot.command(pass_context=True)
+@Bot.command(pass_context= True)
 async def корды(ctx):
-    await ctx.send(text)
-    
-@Bot.command(pass_context=True)
-async def rjhls(ctx):
-    await ctx.send(text)
+    embed = discord.Embed(title="Все координаты", description="Tут вы найдёте все координаты ферм​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x0384fc)
+    embed.add_field(name="**Ферма скелетов:**", value="(По метро): -7844 -5753", inline=False)
+    embed.add_field(name="**Ферма гвардов:**", value="(по метро): -8000 -6435", inline=False)
+    embed.add_field(name="**Ферма золота и яма:**", value="-7777 -6460", inline=False)
+    embed.add_field(name="**Ферма зомби и пауков :**", value="(По метро): -7430 -5895", inline=False)
+    embed.add_field(name="**Городская ферма ифритов (В аду):**", value="(В аду): -1200 -630", inline=False)
+    embed.add_field(name="**Портал в энд (В аду):**", value="-1100 -950", inline=False)
+    embed.add_field(name="Портал в Техноград (В аду)", value="-918 -750", inline=False)
+    embed.add_field(name="Портал в хаб Технограда:", value="-7400 -6085", inline=False)
+    embed.add_field(name="Склад:", value="-7470 -6015", inline=False)
+    await ctx.send(embed=embed)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
