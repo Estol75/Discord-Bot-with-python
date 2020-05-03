@@ -24,6 +24,67 @@ async def корды(ctx):
     embed.add_field(name="Портал в хаб Технограда:", value="-7400 -6085", inline=False)
     embed.add_field(name="Склад:", value="-7470 -6015", inline=False)
     await ctx.send(embed=embed)
+#add role command   
+redstone = 642315599237742612,
+redstone_1 = 668166643633094656,
+redstone_2 = 668168891880439848,
+redstone_3 = 668168889619709952,
+
+#farmer ids
+farmer = 642315689151037441,
+farmer_1 = 668156282003521536,
+farmer_2 = 668156648535097344,
+farmer_3 = 668156467488227388,
+#build ids
+build = 642315657102229504,
+build_1 = 668166512426876946,
+build_2 = 668166688985972767,
+build_3 = 668166943533957120,
+#decoration ids
+dekor =642315763398737931,
+dekor_1 = 668152257560313896,
+dekor_2 = 668152395020238857,
+dekor_3 = 668155885305987112,
+# items farmer
+item = 642315552890814464,
+item_1 = 668156985920716830,
+item_2 = 668166015464505344,
+item_3 = 668166087963312161
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def редстоунер_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_1 = get(ctx.guild.roles, id=redstone_1)
+    await ctx.author.add_roles(redstone, redstone_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def редстоунер_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_2 = get(ctx.guild.roles, id=redstone_2)
+    await ctx.author.add_roles(redstone, redstone_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def редстоунер_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_3 = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.add_roles(redstone, redstone_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def редстоунер_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_1 = get(ctx.guild.roles, id=redstone_1)
+    redstone_2 = get(ctx.guild.roles, id=redstone_2)
+    redstone_3 = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.remove_roles(redstone, redstone_1, redstone_2, redstone_3)
+
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
