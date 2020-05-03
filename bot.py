@@ -77,9 +77,9 @@ redstone_2 = 668168891880439848
 @commands.has_role(642285642348494848)
 async def редстоунер_2(ctx):
     await ctx.channel.purge(limit = 1)
-    redston = get(ctx.guild.roles, id=redstone)
-    redstone = get(ctx.guild.roles, id=redstone_2)
-    await ctx.author.add_roles(redston, redstone)
+    redstonplay = get(ctx.guild.roles, id=redstone)
+    redstonepla = get(ctx.guild.roles, id=redstone_2)
+    await ctx.author.add_roles(redstonplay, redstonepla)
     
 redstone = 642315599237742612    
 redstone_3 = 668168889619709952
