@@ -38,10 +38,11 @@ async def role_help(ctx):
     embed.add_field(name="**Выдать себе роль рпшер:**", value="--рпшер", inline=False)
     embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
     mess = await ctx.send(embed=embed)
+    
 redstone = 642315599237742612
 @Bot.command()
 @commands.has_role(642285642348494848)
-async def редстоунер_1(ctx):
+async def редстоунер(ctx):
     await ctx.channel.purge(limit = 1)
     redstone = get(ctx.guild.roles, id=redstone)
     await ctx.author.add_roles(redstone)
