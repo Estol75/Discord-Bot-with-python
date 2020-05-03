@@ -71,6 +71,7 @@ async def редстоунер_1(ctx):
     redst = get(ctx.guild.roles, id=redstone_1)
     await ctx.author.add_roles(reds, redst)
     
+redstone = 642315599237742612    
 redstone_2 = 668168891880439848
 @Bot.command()
 @commands.has_role(642285642348494848)
