@@ -82,7 +82,7 @@ async def help(ctx):
 async def info(ctx):
     embed = discord.Embed(title="Полезная информация о городе", description="В этом списке вы найдёте всю необходимую информацию о городе​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
     embed.add_field(name="**Айпи тест сервера**", value="213.32.6.2:25000", inline=False)
-    embed.add_field(name="**Собрание**", value="Собрание каждое воскресение через неделю", inline=False)
+    embed.add_field(name="**Собрание**", value="Собрание каждую cоботу через неделю", inline=False)
     embed.add_field(name="**Мэр города на данный момент**", value="Revolycioner_Rab", inline=False)
     await ctx.send(embed=embed)
     
