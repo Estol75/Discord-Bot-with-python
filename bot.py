@@ -151,39 +151,49 @@ async def фермер_удалить(ctx):
     farmerlayli = get(ctx.guild.roles, id=farmer_3)
     await ctx.author.remove_roles(farmerrel, farmerlil, farmirt, farmerlayli)
 #----------------------------------------------------------------------
+build = 642315657102229504
+build_1 = 668166512426876946
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def строитель_1(ctx):
     await ctx.channel.purge(limit = 1)
-    build = get(ctx.guild.roles, id=build)
-    build_1 = get(ctx.guild.roles, id=build_1)
-    await ctx.author.add_roles(redstone, build_1)
-
+    buildlay = get(ctx.guild.roles, id=build)
+    buildtr = get(ctx.guild.roles, id=build_1)
+    await ctx.author.add_roles(buildlay, buildtr)
+    
+build = 642315657102229504
+build_2 = 668166688985972767
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def строитель_2(ctx):
     await ctx.channel.purge(limit = 1)
-    build = get(ctx.guild.roles, id=build)
-    build_2 = get(ctx.guild.roles, id=build_2)
-    await ctx.author.add_roles(build, build_2)
+    buildpip = get(ctx.guild.roles, id=build)
+    buildpila = get(ctx.guild.roles, id=build_2)
+    await ctx.author.add_roles(buildpip, buildpila)
 
+build = 642315657102229504 
+build_3 = 668166943533957120
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def строитель_3(ctx):
     await ctx.channel.purge(limit = 1)
-    build = get(ctx.guild.roles, id=build)
-    build_3 = get(ctx.guild.roles, id=build_3)
-    await ctx.author.add_roles(build, build_3)
+    buildlepr = get(ctx.guild.roles, id=build)
+    buildtrz = get(ctx.guild.roles, id=build_3)
+    await ctx.author.add_roles(buildlepr, buildtrz)
 
+build = 642315657102229504
+build_1 = 668166512426876946
+build_2 = 668166688985972767
+build_3 = 668166943533957120
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def строитель_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    build = get(ctx.guild.roles, id=build)
-    build_1 = get(ctx.guild.roles, id=build_1)
-    build_2 = get(ctx.guild.roles, id=build_2)
-    build_3 = get(ctx.guild.roles, id=build_3)
-    await ctx.author.remove_roles(build, build_1, build_2, build_3)
+    buildrt = get(ctx.guild.roles, id=build)
+    buildfgh = get(ctx.guild.roles, id=build_1)
+    buildlop = get(ctx.guild.roles, id=build_2)
+    buildghtfs = get(ctx.guild.roles, id=build_3)
+    await ctx.author.remove_roles(buildrt, buildfgh, buildlop, buildghtfs)
 #----------------------------------------------------------------------------------
 @Bot.command()
 @commands.has_role(642285642348494848)
