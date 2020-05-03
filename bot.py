@@ -45,7 +45,8 @@ redstone = 642315599237742612
 async def редстоунер(ctx):
     await ctx.channel.purge(limit = 1)
     redstone = get(ctx.guild.roles, id=redstone)
-    await ctx.author.add_roles(redstone)
+    await ctx.author.remove_roles(redstone)
+    
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
     await ctx.send(file=discord.File('revo.jpg'))
