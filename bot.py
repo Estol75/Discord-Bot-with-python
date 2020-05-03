@@ -282,7 +282,8 @@ async def ресурсер_удалить(ctx):
     igdfgdfgdfgdfttt = get(ctx.guild.roles, id=item_2)
     hhhhhhhgffffd = get(ctx.guild.roles, id=item_3)
     await ctx.author.remove_roles(itefdsfm, itemggggfff, igdfgdfgdfgdfttt, hhhhhhhgffffd)
-#-------------------------------------------------------------------
+#------------------------------------------------------------------
+shema = 649217280617480202,
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def схематика(ctx):
@@ -290,27 +291,29 @@ async def схематика(ctx):
     shema = get(ctx.guild.roles, id=shema)
     await ctx.author.add_roles(shema)
 
+shema = 649217280617480202
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def схематика_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    shema = get(ctx.guild.roles, id=shema)
-    await ctx.author.remove_roles(shema)
+    shefdma = get(ctx.guild.roles, id=shefdma)
+    await ctx.author.remove_roles(shefdma)
 
 #---------------------------------------
+rep = 642315518644060161
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def рпшер(ctx):
     await ctx.channel.purge(limit = 1)
-    rep = get(ctx.guild.roles, id=rep)
-    await ctx.author.add_roles(rep)
-
+    rephh = get(ctx.guild.roles, id=rep)
+    await ctx.author.add_roles(rephh)
+rep = 642315518644060161
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def рпшер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    rep = get(ctx.guild.roles, id=rep)
-    await ctx.author.remove_roles(rep)
+    repg = get(ctx.guild.roles, id=rep)
+    await ctx.author.remove_roles(repg)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
