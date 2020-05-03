@@ -296,7 +296,7 @@ shema = 649217280617480202
 @commands.has_role(642285642348494848)
 async def схематика_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    shefdma = get(ctx.guild.roles, id=shefdma)
+    shefdma = get(ctx.guild.roles, id=shema)
     await ctx.author.remove_roles(shefdma)
 
 #---------------------------------------
