@@ -42,13 +42,13 @@ async def role_help(ctx):
 role_id = 642285249136689152
 
 @Bot.command(pass_context=True)
-@commands.has_role(249182889386704897)
+@commands.has_role(642306802461048833)
 async def remove(ctx):
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.remove_roles(role)
     
 @Bot.command(pass_context=True)
-@commands.has_role(249182889386704897)
+@commands.has_role(642306802461048833)
 async def test(ctx):
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
