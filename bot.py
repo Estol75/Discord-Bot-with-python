@@ -107,39 +107,49 @@ async def редстоунер_удалить(ctx):
 
 
 #-----------------------------------------------------------------------
+farmer = 642315689151037441
+farmer_1 = 668156282003521536
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def фермер_1(ctx):
     await ctx.channel.purge(limit = 1)
-    farmer = get(ctx.guild.roles, id=farmer)
-    farmer_1 = get(ctx.guild.roles, id=farmer_1)
-    await ctx.author.add_roles(farmer, farmer_1)
+    farme = get(ctx.guild.roles, id=farmer)
+    farmer = get(ctx.guild.roles, id=farmer_1)
+    await ctx.author.add_roles(farme, farmer)
 
+farmer = 642315689151037441
+farmer_2 = 668156648535097344
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def фермер_2(ctx):
     await ctx.channel.purge(limit = 1)
-    farmer = get(ctx.guild.roles, id=farmer)
-    farmer_2 = get(ctx.guild.roles, id=farmer_2)
-    await ctx.author.add_roles(farmer, farmer_2)
+    farmerlay = get(ctx.guild.roles, id=farmer)
+    farmerli = get(ctx.guild.roles, id=farmer_2)
+    await ctx.author.add_roles(farmerlay, farmerli)
 
+farmer = 64215689151037441
+farmer_3 = 668156467488227388
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def фермер_3(ctx):
     await ctx.channel.purge(limit = 1)
-    farmer = get(ctx.guild.roles, id=farmer)
-    farmer_3 = get(ctx.guild.roles, id=farmer_3)
-    await ctx.author.add_roles(farmer, farmer_3)
+    farmerpla = get(ctx.guild.roles, id=farmer)
+    farmerplayl = get(ctx.guild.roles, id=farmer_3)
+    await ctx.author.add_roles(farmerpla, farmerplayl)
 
+farmer = 642315689151037441
+farmer_1 = 668156282003521536
+farmer_2 = 668156648535097344
+farmer_3 = 668156467488227388
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def фермер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
-    farmer = get(ctx.guild.roles, id=farmer)
-    farmer_1 = get(ctx.guild.roles, id=farmer_1)
-    farmer_2 = get(ctx.guild.roles, id=farmer_2)
-    farmer_3 = get(ctx.guild.roles, id=farmer_3)
-    await ctx.author.remove_roles(farmer, farmer_1, farmer_2, farmer_3)
+    farmerrel = get(ctx.guild.roles, id=farmer)
+    farmerlil = get(ctx.guild.roles, id=farmer_1)
+    farmirt = get(ctx.guild.roles, id=farmer_2)
+    farmerlayli = get(ctx.guild.roles, id=farmer_3)
+    await ctx.author.remove_roles(farmerrel, farmerlil, farmirt, farmerlayli)
 #----------------------------------------------------------------------
 @Bot.command()
 @commands.has_role(642285642348494848)
