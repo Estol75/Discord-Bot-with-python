@@ -45,6 +45,238 @@ role_id = 642285249136689152
 async def test(ctx):
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.remove_roles(role)
+
+
+redstone = 642315599237742612,
+redstone_1 = 668166643633094656,
+redstone_2 = 668168891880439848,
+redstone_3 = 668168889619709952,
+
+#farmer ids
+farmer = 642315689151037441,
+farmer_1 = 668156282003521536,
+farmer_2 = 668156648535097344,
+farmer_3 = 668156467488227388,
+#build ids
+build = 642315657102229504,
+build_1 = 668166512426876946,
+build_2 = 668166688985972767,
+build_3 = 668166943533957120,
+#decoration ids
+dekor =642315763398737931,
+dekor_1 = 668152257560313896,
+dekor_2 = 668152395020238857,
+dekor_3 = 668155885305987112,
+# items farmer
+item = 642315552890814464,
+item_1 = 668156985920716830,
+item_2 = 668166015464505344,
+item_3 = 668166087963312161,
+
+shema = 649217280617480202,
+rep = 642315518644060161
+
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def Редстоунер_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_1 = get(ctx.guild.roles, id=redstone_1)
+    await ctx.author.add_roles(redstone, redstone_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def Редстоунер_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_2 = get(ctx.guild.roles, id=redstone_2)
+    await ctx.author.add_roles(redstone, redstone_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def Редстоунер_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_3 = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.add_roles(redstone, redstone_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def редстоунер_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    redstone = get(ctx.guild.roles, id=redstone)
+    redstone_1 = get(ctx.guild.roles, id=redstone_1)
+    redstone_2 = get(ctx.guild.roles, id=redstone_2)
+    redstone_3 = get(ctx.guild.roles, id=redstone_3)
+    await ctx.author.remove_roles(redstone, redstone_1, redstone_2, redstone_3)
+
+
+#-----------------------------------------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def фермер_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    farmer = get(ctx.guild.roles, id=farmer)
+    farmer_1 = get(ctx.guild.roles, id=farmer_1)
+    await ctx.author.add_roles(farmer, farmer_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def фермер_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    farmer = get(ctx.guild.roles, id=farmer)
+    farmer_2 = get(ctx.guild.roles, id=farmer_2)
+    await ctx.author.add_roles(farmer, farmer_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def фермер_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    farmer = get(ctx.guild.roles, id=farmer)
+    farmer_3 = get(ctx.guild.roles, id=farmer_3)
+    await ctx.author.add_roles(farmer, farmer_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def фермер_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    farmer = get(ctx.guild.roles, id=farmer)
+    farmer_1 = get(ctx.guild.roles, id=farmer_1)
+    farmer_2 = get(ctx.guild.roles, id=farmer_2)
+    farmer_3 = get(ctx.guild.roles, id=farmer_3)
+    await ctx.author.remove_roles(farmer, farmer_1, farmer_2, farmer_3)
+#----------------------------------------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def строитель_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    build = get(ctx.guild.roles, id=build)
+    build_1 = get(ctx.guild.roles, id=build_1)
+    await ctx.author.add_roles(redstone, build_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def строитель_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    build = get(ctx.guild.roles, id=build)
+    build_2 = get(ctx.guild.roles, id=build_2)
+    await ctx.author.add_roles(build, build_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def строитель_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    build = get(ctx.guild.roles, id=build)
+    build_3 = get(ctx.guild.roles, id=build_3)
+    await ctx.author.add_roles(build, build_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def строитель_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    build = get(ctx.guild.roles, id=build)
+    build_1 = get(ctx.guild.roles, id=build_1)
+    build_2 = get(ctx.guild.roles, id=build_2)
+    build_3 = get(ctx.guild.roles, id=build_3)
+    await ctx.author.remove_roles(build, build_1, build_2, build_3)
+#----------------------------------------------------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def декоратор_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    dekor = get(ctx.guild.roles, id=dekor)
+    dekor_1 = get(ctx.guild.roles, id=dekor_1)
+    await ctx.author.add_roles(dekor, dekor_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def декоратор_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    dekor = get(ctx.guild.roles, id=dekor)
+    dekor_2 = get(ctx.guild.roles, id=dekor_2)
+    await ctx.author.add_roles(dekor, dekor_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def декоратор_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    dekor = get(ctx.guild.roles, id=dekor)
+    dekor_3 = get(ctx.guild.roles, id=dekor_3)
+    await ctx.author.add_roles(dekor, dekor_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def декоратор_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    dekor = get(ctx.guild.roles, id=dekor)
+    dekor_1 = get(ctx.guild.roles, id=dekor_1)
+    dekor_2 = get(ctx.guild.roles, id=dekor_2)
+    dekor_3 = get(ctx.guild.roles, id=dekor_3)
+    await ctx.author.remove_roles(dekor, dekor_1, dekor_2, dekor_3)
+#------------------------------------------------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def ресурсер_1(ctx):
+    await ctx.channel.purge(limit = 1)
+    item = get(ctx.guild.roles, id=item)
+    item_1 = get(ctx.guild.roles, id=item_1)
+    await ctx.author.add_roles(item, item_1)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def ресурсер_2(ctx):
+    await ctx.channel.purge(limit = 1)
+    item = get(ctx.guild.roles, id=item)
+    item_2 = get(ctx.guild.roles, id=item_2)
+    await ctx.author.add_roles(item, item_2)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def ресурсер_3(ctx):
+    await ctx.channel.purge(limit = 1)
+    item = get(ctx.guild.roles, id=item)
+    item_3 = get(ctx.guild.roles, id=item_3)
+    await ctx.author.add_roles(item, item_3)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def ресурсер_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    item = get(ctx.guild.roles, id=item)
+    item_1 = get(ctx.guild.roles, id=item_1)
+    item_2 = get(ctx.guild.roles, id=item_2)
+    item_3 = get(ctx.guild.roles, id=item_3)
+    await ctx.author.remove_roles(item, item_1, item_2, item_3)
+#-------------------------------------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def схематика(ctx):
+    await ctx.channel.purge(limit = 1)
+    shema = get(ctx.guild.roles, id=shema)
+    await ctx.author.add_roles(shema)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def схематика_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    shema = get(ctx.guild.roles, id=shema)
+    await ctx.author.remove_roles(shema)
+
+#---------------------------------------
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def рпшер(ctx):
+    await ctx.channel.purge(limit = 1)
+    rep = get(ctx.guild.roles, id=rep)
+    await ctx.author.add_roles(rep)
+
+@Bot.command()
+@commands.has_role(642285642348494848)
+async def рпшер_удалить(ctx):
+    await ctx.channel.purge(limit = 1)
+    rep = get(ctx.guild.roles, id=rep)
+    await ctx.author.remove_roles(rep)
     
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
