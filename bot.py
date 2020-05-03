@@ -69,12 +69,21 @@ async def help(ctx):
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--com", inline=False)
     embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений", inline=False)
+    embed.add_field(name="**Узнать болше информацией о городе:**", value="--info", inline=False)
     embed.add_field(name="**Узнать информацию о пользователе:**", value="--status @ник", inline=False)
     embed.add_field(name="**Посмотреть аватарку игрока в дискорде:**", value="--ава @ник", inline=False)
     embed.add_field(name="Author", value="Estol", inline=False)
     mess = await ctx.send(embed=embed)
     await mess.add_reaction('👍🏻')
     await mess.add_reaction('👎🏻')
+    
+@Bot.command(pass_context= True)
+async def info(ctx):
+    embed = discord.Embed(title="Полезная информация о городе", description="В этом списке вы найдёте всю необходимую информацию о городе​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
+    embed.add_field(name="**Айпи тест сервера**", value="213.32.6.2:25000", inline=False)
+    embed.add_field(name="**Собрание**", value="Собрание каждое воскресение через неделю", inline=False)
+    embed.add_field(name="**Мэр города на данный момент**", value="Revolycioner_Rab", inline=False)
+    await ctx.send(embed=embed)
     
 @Bot.command()
 async def ава(ctx, member: discord.Member):
