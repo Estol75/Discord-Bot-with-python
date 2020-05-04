@@ -37,6 +37,7 @@ async def role_help(ctx):
     embed.add_field(name="**Выдать себе роль схематика:**", value="--схематика", inline=False)
     embed.add_field(name="**Выдать себе роль рпшер:**", value="--рпшер", inline=False)
     embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
+    embed.add_field(name="**Что бы удалить роль:**", value="--имя роли_удалить", inline=False)
     mess = await ctx.send(embed=embed)
     
 role_id = 642285249136689152
