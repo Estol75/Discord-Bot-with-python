@@ -55,11 +55,10 @@ async def test(ctx):
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
 
-
-
-
-
-
+@Bot.event
+async def on_command_error(ctx, error):
+        embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
+        await ctx.send(embed=embed)
 
 redstone = 642315599237742612
 redstone_1 = 668166643633094656
