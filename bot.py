@@ -107,8 +107,8 @@ async def редстоунер_удалить(ctx):
 
 @Bot.command()
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
+    channelf = ctx.author.voice.channel
+    await channelf.connect()
 @Bot.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
