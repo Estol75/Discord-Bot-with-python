@@ -105,7 +105,13 @@ async def редстоунер_удалить(ctx):
     lay1 = get(ctx.guild.roles, id=redstone_3)
     await ctx.author.remove_roles(lay, lay3, lay2, lay1)
 
-
+@Bot.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+@Bot.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
 #-----------------------------------------------------------------------
 farmer = 642315689151037441
 farmer_1 = 668156282003521536
