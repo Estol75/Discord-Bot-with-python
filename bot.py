@@ -41,7 +41,7 @@ async def role_help(ctx):
     mess = await ctx.send(embed=embed)
     
 
-role_id = 652932815389720596
+role_id = 702191983543976026
 @Bot.command(pass_context=True)
 @commands.has_role(707212021791326241)
 async def remove(ctx):
@@ -51,7 +51,7 @@ async def remove(ctx):
     
 @Bot.command(pass_context=True)
 @commands.has_role(707212021791326241)
-async def ÄLF(ctx):
+async def Äöß(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
