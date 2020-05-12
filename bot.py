@@ -40,18 +40,18 @@ async def role_help(ctx):
     embed.add_field(name="**Что бы удалить роль:**", value="--имя роли_удалить", inline=False)
     mess = await ctx.send(embed=embed)
     
-role_id = 642285249136689152
 
+role_id = 652932815389720596
 @Bot.command(pass_context=True)
-@commands.has_role(642306802461048833)
+@commands.has_role(707212021791326241)
 async def remove(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.remove_roles(role)
     
 @Bot.command(pass_context=True)
-@commands.has_role(642306802461048833)
-async def test(ctx):
+@commands.has_role(707212021791326241)
+async def ÄLF(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
