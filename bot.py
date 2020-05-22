@@ -396,8 +396,16 @@ async def info(ctx):
     embed = discord.Embed(title="Полезная информация о городе", description="В этом списке вы найдёте всю необходимую информацию о городе​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
     embed.add_field(name="**Айпи тест сервера**", value="95.217.46.155:25516", inline=False)
     embed.add_field(name="**Собрание**", value="Собрание каждую cоботу через неделю", inline=False)
-    embed.add_field(name="**Мэр города на данный момент**", value="Revolycioner_Rab", inline=False)
+    embed.add_field(name="**Мэр города на данный момент**", value="DoryGG а убрим не человек она обезьяна! ну бот и хуйня", inline=False)
     await ctx.send(embed=embed)
+    
+@Bot.command(pass_context= True)
+async def свадьба(ctx):
+    embed = discord.Embed(title="Расписание свадеб", description="В этом списке вы найдёте время и датут свадеб​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
+    embed.add_field(name="**Свадьба**", value="убрима и БЛАККУРТАЧКИИИИ 22.05.2020 в 18:00", inline=False)
+    embed.add_field(name="**Свадьба**", value="Твентезера и бон завтра в 18:00", inline=False)
+    embed.add_field(name="**Свадьба**", value="Эстола и Ангелочки будет тогда когда она будет", inline=False)
+    await ctx.send(embed=embed)    
     
 @Bot.command()
 async def ава(ctx, member: discord.Member):
