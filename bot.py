@@ -406,6 +406,7 @@ async def свадьба(ctx):
     embed.add_field(name="**Свадьба**", value="Утки и Революционера 22.05.2020 в 19:00", inline=False)
     embed.add_field(name="**Свадьба**", value="Твентезера и бон завтра в 18:00", inline=False)
     embed.add_field(name="**Свадьба**", value="Эстола и Ангелочки будет тогда когда она будет", inline=False)
+    embed.add_field(name="**под каблуком**", value="мафиозник у риверсонк! чё могу сказать помянем", inline=False)
     await ctx.send(embed=embed)    
     
 @Bot.command()
