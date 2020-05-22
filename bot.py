@@ -22,6 +22,8 @@ async def корды(ctx):
     embed.add_field(name="**Портал в энд (В аду):**", value="-1100 -950", inline=False)
     embed.add_field(name="Портал в Техноград (В аду)", value="-918 -750", inline=False)
     embed.add_field(name="Портал в хаб Технограда:", value="-7400 -6085", inline=False)
+    embed.add_field(name="Остров На Хп Технограда ", value="-490", inline=False)
+    embed.add_field(name="Корды острова в обычном мире ", value="-6983 -3923", inline=False)
     embed.add_field(name="Склад:", value="-7470 -6015", inline=False)
     await ctx.send(embed=embed)
 #add role command   
