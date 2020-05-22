@@ -463,6 +463,31 @@ async def ping_idiot(ctx, member: discord.Member):
     await member.send("хах затролен аххахахха ")
 
     
+@Bot.command()
+async def ping_idiot_message(ctx, member: discord.Member, arg):
+    await ctx.channel.purge(limit = 1)
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    await member.send(' '+ arg )
+    
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
