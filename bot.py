@@ -464,30 +464,11 @@ async def ping_idiot(ctx, member: discord.Member):
 
     
 @Bot.command()
-async def ping_idiot_message(ctx, member: discord.Member, arg):
-    await ctx.channel.purge(limit = 1)
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    await member.send(' '+ arg )
-    
+@commands.has_role(642306802461048833)
+async def test(ctx, member: discord.Member, arg):
+    embed = discord.Embed(title=(f'{member.name }, был вадан варн игроком {ctx.author.name} причина, '+ arg), description="⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x5adb7c)
+    await member.send( f'{member.name }, Вам был кинут варн игроком, {ctx.author.name} содержание, '+ arg)
+    await ctx.send(embed=embed)
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
