@@ -52,8 +52,8 @@ async def remove(ctx):
     await ctx.author.remove_roles(role)
     
 @Bot.command(pass_context=True)
-@commands.has_role(707212021791326241)
-async def Äörftt(ctx):
+@commands.has_role(642306802461048833)
+async def üöß(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
