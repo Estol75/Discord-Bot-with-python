@@ -61,7 +61,7 @@ async def üöß(ctx):
     
 lenin = 673856663299817472
 @Bot.command()
-@commands.has_role(642285642348494848)
+@commands.has_role(642306802461048833)
 async def lenin_gay(ctx):
     await ctx.channel.purge(limit = 1)
     red2s = get(ctx.guild.roles, id=lenin)
@@ -70,7 +70,7 @@ async def lenin_gay(ctx):
     
 lener = 673856663299817472
 @Bot.command(pass_context=True)
-@commands.has_role(642285642348494848)
+@commands.has_role(642306802461048833)
 async def remove_gay(ctx):
     await ctx.channel.purge(limit = 1)
     rolge = get(ctx.guild.roles, id=lener)
