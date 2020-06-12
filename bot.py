@@ -57,6 +57,25 @@ async def üöß(ctx):
     await ctx.channel.purge(limit = 1)
     role = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(role)
+    
+    
+lenin = 673856663299817472
+@Bot.command()
+@commands.has_role(707212021791326241)
+async def lenin_gay(ctx):
+    await ctx.channel.purge(limit = 1)
+    reds = get(ctx.guild.roles, id=lenin)
+    await ctx.author.add_roles(reds)
+    
+    
+lener = 673856663299817472
+@Bot.command(pass_context=True)
+@commands.has_role(707212021791326241)
+async def remove_gay(ctx):
+    await ctx.channel.purge(limit = 1)
+    role = get(ctx.guild.roles, id=lener)
+    await ctx.author.remove_roles(role)    
+    
 
 @Bot.event
 async def on_command_error(ctx, error):
