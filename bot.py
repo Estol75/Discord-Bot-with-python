@@ -64,8 +64,8 @@ lenin = 673856663299817472
 @commands.has_role(642285642348494848)
 async def lenin_gay(ctx):
     await ctx.channel.purge(limit = 1)
-    reds = get(ctx.guild.roles, id=lenin)
-    await ctx.author.add_roles(reds)
+    red2s = get(ctx.guild.roles, id=lenin)
+    await ctx.author.add_roles(red2s)
     
     
 lener = 673856663299817472
@@ -73,8 +73,8 @@ lener = 673856663299817472
 @commands.has_role(642285642348494848)
 async def remove_gay(ctx):
     await ctx.channel.purge(limit = 1)
-    role = get(ctx.guild.roles, id=lener)
-    await ctx.author.remove_roles(role)    
+    rolge = get(ctx.guild.roles, id=lener)
+    await ctx.author.remove_roles(rolge)    
     
 
 @Bot.event
