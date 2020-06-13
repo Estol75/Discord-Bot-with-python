@@ -56,8 +56,8 @@ role = 642306802461048833
 @commands.has_role(707212021791326241)
 async def ülöß(ctx):
     await ctx.channel.purge(limit = 1)
-    role = get(ctx.guild.roles, id=role_id)
-    await ctx.author.add_roles(role)
+    rogle = get(ctx.guild.roles, id=role_id)
+    await ctx.author.add_roles(rogle)
     
     
 lenin = 673856663299817472
