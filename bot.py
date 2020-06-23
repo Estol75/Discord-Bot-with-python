@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 from discord.utils import get
-import sqlite3
+
 
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
@@ -483,86 +483,7 @@ async def ping_idiot(ctx, member: discord.Member):
     await member.send("хах затролен аххахахха ")
     await member.send("хах затролен аххахахха ")
 
-
-connction = sqlite3.connect('server.db')
-cursor = connction.cursor()
-
-@Bot.event
-async def on_ready():
-    cursor.execute("""CREATE TABLE IF NOT EXISTS users (
-        name TEXT,
-        id INT,
-        cash BIGINT,
-        rep INT,
-        lvl INT
-    )""")
-    connction.commit()
-
-    for guild in Bot.guilds:
-        for member in guild.members:
-            if cursor.execute(f"SELECT id FROM users WHERE id = {member.id}").fetchone() is None:
-                cursor.execute(f"INSERT INTO users VALUES ('{member}', {member.id}, 0 , 0, 1)")
-            else:
-                pass
-    connction.commit()
-    print('Bot connected')
-
-@Bot.event
-async def on_member_join(member):
-    if cursor.execute(f"SELECT is FROM user WHERE id = {member.id}").fetchone() is None:
-        cursor.execute(f"INSERT INTO users VALUES ('{member}', {member.id}, 0 , 0, 1)")
-        connction.commit()
-    else:
-        pass
-
-
-@Bot.command(aliases = ['balance', 'cash'])
-async def __balance(ctx,member: discord.Member = None):
-    if member is None:
-        await ctx.send(embed = discord.Embed(
-        description = f"""Баланс пользователя **{ctx.author}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(ctx.author.id)).fetchone()[0]}** Kрон""",color=0xfcec03
-        ))
-    else:
-        await ctx.send(embed = discord.Embed(
-        description = f"""Баланс пользователся **{member}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(member.id)).fetchone()[0]}** Kрон""",color=0xfcec03
-        ))
-
-@Bot.command(aliases = ['set'])
-@commands.has_role(707212021791326241)
-async def __award(ctx, member: discord.Member = None, amount: int = None):
-    if member is None:
-        await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте выдать определенную сумму")
-    else:
-        if amount is None:
-            await ctx.send(f"***{ctx.author}, укажите сумму, которую желайте начислить на счет пользователя")
-        elif amount < 1:
-            await ctx.send(f"**{ctx.author}**, укажите сумму больше 1")
-        else:
-            cursor.execute("UPDATE users SET cash = cash + {} WHERE id = {}".format(amount, member.id))
-            connction.commit()
-
-            await ctx.message.add_reaction('✅')
-
-amountt = 2
-frozent = 642315871448072203
-@Bot.command(aliases = ['frozen'])
-@commands.has_role(642285642348494848)
-async def __frozen(ctx):
-    cursor.execute("UPDATE users SET cash = cash - {} WHERE id = {}".format(amountt, ctx.author.id))
-    connction.commit()
-    frozen = get(ctx.guild.roles, id=frozent)
-    await ctx.author.add_roles(frozen)
-    await ctx.message.add_reaction('✅')
-
-
-frozerev = 642315871448072203
-@Bot.command(pass_context=True)
-@commands.has_role(642285642348494848)
-async def remove(ctx):
-    await ctx.channel.purge(limit = 1)
-    removfroze = get(ctx.guild.roles, id=frozerev)
-    await ctx.author.remove_roles(removfroze)
-    
+  
 @Bot.command()
 @commands.has_role(642306802461048833)
 async def warn(ctx, member: discord.Member, arg):
