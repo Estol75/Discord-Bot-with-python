@@ -552,11 +552,14 @@ frozent = 642315871448072203
 @Bot.command(aliases = ['frozen'])
 @commands.has_role(642285642348494848)
 async def __frozen(ctx):
-    cursor.execute("UPDATE users SET cash = cash - {} WHERE id = {}".format(amountt, ctx.author.id))
-    connction.commit()
-    frozen = get(ctx.guild.roles, id=frozent)
-    await ctx.author.add_roles(frozen)
-    await ctx.message.add_reaction('✅')
+    if 200 > cursor.execute("SELECT cash FROM users WHERE id = {}".format(ctx.author.id)).fetchone()[0]:
+        await ctx.send("Извините сэр но вы бомж")
+    else:
+        cursor.execute("UPDATE users SET cash = cash - {} WHERE id = {}".format(amountt, ctx.author.id))
+        connction.commit()
+        frozen = get(ctx.guild.roles, id=frozent)
+        await ctx.author.add_roles(frozen)
+        await ctx.message.add_reaction('✅')
 
 
 revfrozen = 642315871448072203
