@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 from discord.utils import get
-
+import sqlite3
 
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
@@ -27,7 +27,7 @@ async def корды(ctx):
     embed.add_field(name="Корды острова в обычном мире ", value="-6983 -3923", inline=False)
     embed.add_field(name="Склад:", value="-7470 -6015", inline=False)
     await ctx.send(embed=embed)
-#add role command   
+#add role command
 
 @Bot.command()
 async def role_help(ctx):
@@ -42,7 +42,7 @@ async def role_help(ctx):
     embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
     embed.add_field(name="**Что бы удалить роль:**", value="--имя роли_удалить", inline=False)
     mess = await ctx.send(embed=embed)
-    
+
 
 role_id = 642306802461048833
 @Bot.command(pass_context=True)
@@ -59,8 +59,8 @@ async def ülöß(ctx):
     await ctx.channel.purge(limit = 1)
     rogle = get(ctx.guild.roles, id=role_id)
     await ctx.author.add_roles(rogle)
-    
-    
+
+
 lenin = 673856663299817472
 @Bot.command()
 @commands.has_role(642306802461048833)
@@ -68,16 +68,16 @@ async def lenin_gay(ctx):
     await ctx.channel.purge(limit = 1)
     red2s = get(ctx.guild.roles, id=lenin)
     await ctx.author.add_roles(red2s)
-    
-    
+
+
 lener = 673856663299817472
 @Bot.command(pass_context=True)
 @commands.has_role(642306802461048833)
 async def remove_gay(ctx):
     await ctx.channel.purge(limit = 1)
     rolge = get(ctx.guild.roles, id=lener)
-    await ctx.author.remove_roles(rolge)    
-    
+    await ctx.author.remove_roles(rolge)
+
 
 @Bot.event
 async def on_command_error(ctx, error):
@@ -93,8 +93,8 @@ async def редстоунер_1(ctx):
     reds = get(ctx.guild.roles, id=redstone)
     redst = get(ctx.guild.roles, id=redstone_1)
     await ctx.author.add_roles(reds, redst)
-    
-redstone = 642315599237742612    
+
+redstone = 642315599237742612
 redstone_2 = 668168891880439848
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -103,8 +103,8 @@ async def редстоунер_2(ctx):
     redstonplay = get(ctx.guild.roles, id=redstone)
     redstonepla = get(ctx.guild.roles, id=redstone_2)
     await ctx.author.add_roles(redstonplay, redstonepla)
-    
-redstone = 642315599237742612    
+
+redstone = 642315599237742612
 redstone_3 = 668168889619709952
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -113,10 +113,10 @@ async def редстоунер_3(ctx):
     redstonelay = get(ctx.guild.roles, id=redstone)
     redstonela = get(ctx.guild.roles, id=redstone_3)
     await ctx.author.add_roles(redstonelay, redstonela)
-  
+
 redstone = 642315599237742612
 redstone_1 = 668166643633094656
-redstone_2 = 668168891880439848    
+redstone_2 = 668168891880439848
 redstone_3 = 668168889619709952
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -189,7 +189,7 @@ async def строитель_1(ctx):
     buildlay = get(ctx.guild.roles, id=build)
     buildtr = get(ctx.guild.roles, id=build_1)
     await ctx.author.add_roles(buildlay, buildtr)
-    
+
 build = 642315657102229504
 build_2 = 668166688985972767
 @Bot.command()
@@ -200,7 +200,7 @@ async def строитель_2(ctx):
     buildpila = get(ctx.guild.roles, id=build_2)
     await ctx.author.add_roles(buildpip, buildpila)
 
-build = 642315657102229504 
+build = 642315657102229504
 build_3 = 668166943533957120
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -233,8 +233,8 @@ async def декоратор_1(ctx):
     dekorat = get(ctx.guild.roles, id=dekor)
     dekorlipe = get(ctx.guild.roles, id=dekor_1)
     await ctx.author.add_roles(dekorat, dekorlipe)
-    
-dekor =642315763398737931    
+
+dekor =642315763398737931
 dekor_2 = 668152395020238857
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -243,8 +243,8 @@ async def декоратор_2(ctx):
     dekotzuf = get(ctx.guild.roles, id=dekor)
     dekorfds = get(ctx.guild.roles, id=dekor_2)
     await ctx.author.add_roles(dekotzuf, dekorfds)
-    
-dekor =642315763398737931   
+
+dekor =642315763398737931
 dekor_3 = 668155885305987112
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -257,7 +257,7 @@ async def декоратор_3(ctx):
 dekor =642315763398737931
 dekor_1 = 668152257560313896
 dekor_2 = 668152395020238857
-dekor_3 = 668155885305987112    
+dekor_3 = 668155885305987112
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def декоратор_удалить(ctx):
@@ -301,7 +301,7 @@ async def ресурсер_3(ctx):
 item = 642315552890814464
 item_1 = 668156985920716830
 item_2 = 668166015464505344
-item_3 = 668166087963312161    
+item_3 = 668166087963312161
 @Bot.command()
 @commands.has_role(642285642348494848)
 async def ресурсер_удалить(ctx):
@@ -334,7 +334,7 @@ pod = 706574774075260948
 async def подкидыш_удалить(ctx):
     await ctx.channel.purge(limit = 1)
     podfs = get(ctx.guild.roles, id=pod)
-    await ctx.author.remove_roles(podfs)    
+    await ctx.author.remove_roles(podfs)
 #---------------------------------------
 rep = 642315518644060161
 @Bot.command()
@@ -350,15 +350,15 @@ async def рпшер_удалить(ctx):
     await ctx.channel.purge(limit = 1)
     repfdg = get(ctx.guild.roles, id=rep)
     await ctx.author.remove_roles(repfdg)
-    
+
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
     await ctx.send(file=discord.File('revo.jpg'))
-    
+
 @Bot.command(pass_context=True)
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
-    
+
 @Bot.command()
 async def status(ctx, member: discord.Member):
     roles = [role for role in member.roles]
@@ -375,7 +375,7 @@ async def status(ctx, member: discord.Member):
     embe.add_field(name="Присоединился к Дискорд серверу", value=member.joined_at.strftime("%a, %#d %B %Y"), inline=False)
     embe.add_field(name=f"Роли игрока({len(roles)})", value=" ".join({role.mention for role in roles}))
     await ctx.send(embed=embe)
-    
+
 @Bot.command(pass_context = True)
 @commands.has_role(642306802461048833)
 async def clear(ctx, amount = 10):
@@ -385,12 +385,12 @@ async def clear(ctx, amount = 10):
 @commands.has_role(642306802461048833)
 async def moreclear(ctx, amount = 50):
     await ctx.channel.purge(limit = amount)
-    
+
 
 @Bot.command(pass_context=True)
 async def япутин(ctx):
     await ctx.send(file=discord.File('putin.jpg'))
-    
+
 @Bot.command(pass_context=True)
 async def дааашка(ctx):
     await ctx.send(file=discord.File('Dashka.png'))
@@ -411,7 +411,7 @@ async def help(ctx):
     mess = await ctx.send(embed=embed)
     await mess.add_reaction('👍🏻')
     await mess.add_reaction('👎🏻')
-    
+
 @Bot.command(pass_context= True)
 async def info(ctx):
     embed = discord.Embed(title="Полезная информация о городе", description="В этом списке вы найдёте всю необходимую информацию о городе​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
@@ -419,7 +419,7 @@ async def info(ctx):
     embed.add_field(name="**Собрание**", value="Собрание каждую cоботу через неделю", inline=False)
     embed.add_field(name="**Мэр города на данный момент**", value="DoryGG а убрим не человек она обезьяна! ну бот и хуйня", inline=False)
     await ctx.send(embed=embed)
-    
+
 @Bot.command(pass_context= True)
 async def свадьба(ctx):
     embed = discord.Embed(title="Расписание свадеб", description="В этом списке вы найдёте время и датут свадеб​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x5adb7c)
@@ -428,8 +428,8 @@ async def свадьба(ctx):
     embed.add_field(name="**Свадьба**", value="Твентезера и бон завтра в 18:00", inline=False)
     embed.add_field(name="**Свадьба**", value="Эстола и Ангелочки будет тогда когда она будет", inline=False)
     embed.add_field(name="**под каблуком**", value="мафиозник у риверсонк! чё могу сказать помянем", inline=False)
-    await ctx.send(embed=embed)    
-    
+    await ctx.send(embed=embed)
+
 @Bot.command()
 async def ава(ctx, member: discord.Member):
     await ctx.send('{}'.format(member.avatar_url))
@@ -483,13 +483,91 @@ async def ping_idiot(ctx, member: discord.Member):
     await member.send("хах затролен аххахахха ")
     await member.send("хах затролен аххахахха ")
 
-  
+
+
+
+
+
+connction = sqlite3.connect('server.db')
+cursor = connction.cursor()
+
+@Bot.event
+async def on_ready():
+    cursor.execute("""CREATE TABLE IF NOT EXISTS users (
+        name TEXT,
+        id INT,
+        cash BIGINT,
+        rep INT,
+        lvl INT
+    )""")
+    connction.commit()
+
+    for guild in Bot.guilds:
+        for member in guild.members:
+            if cursor.execute(f"SELECT id FROM users WHERE id = {member.id}").fetchone() is None:
+                cursor.execute(f"INSERT INTO users VALUES ('{member}', {member.id}, 0 , 0, 1)")
+            else:
+                pass
+    connction.commit()
+    print('Bot connected')
+
+@Bot.event
+async def on_member_join(member):
+    if cursor.execute(f"SELECT is FROM user WHERE id = {member.id}").fetchone() is None:
+        cursor.execute(f"INSERT INTO users VALUES ('{member}', {member.id}, 0 , 0, 1)")
+        connction.commit()
+    else:
+        pass
+
+
+@Bot.command(aliases = ['balance', 'cash'])
+async def __balance(ctx,member: discord.Member = None):
+    if member is None:
+        await ctx.send(embed = discord.Embed(
+        description = f"""Баланс пользователя **{ctx.author}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(ctx.author.id)).fetchone()[0]}** Kрон""",color=0xfcec03
+        ))
+    else:
+        await ctx.send(embed = discord.Embed(
+        description = f"""Баланс пользователся **{member}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(member.id)).fetchone()[0]}** Kрон""",color=0xfcec03
+        ))
+
+@Bot.command(aliases = ['set'])
+@commands.has_role(707212021791326241)
+async def __award(ctx, member: discord.Member = None, amount: int = None):
+    if member is None:
+        await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте выдать определенную сумму")
+    else:
+        if amount is None:
+            await ctx.send(f"***{ctx.author}, укажите сумму, которую желайте начислить на счет пользователя")
+        elif amount < 1:
+            await ctx.send(f"**{ctx.author}**, укажите сумму больше 1")
+        else:
+            cursor.execute("UPDATE users SET cash = cash + {} WHERE id = {}".format(amount, member.id))
+            connction.commit()
+
+            await ctx.message.add_reaction('✅')
+
+amountt = 2
+frozent = 701928507231567912
+@Bot.command(aliases = ['frozen'])
+@commands.has_role(642285642348494848)
+async def __frozen(ctx):
+    cursor.execute("UPDATE users SET cash = cash - {} WHERE id = {}".format(amountt, ctx.author.id))
+    connction.commit()
+    frozen = get(ctx.guild.roles, id=frozent)
+    await ctx.author.add_roles(frozen)
+    await ctx.message.add_reaction('✅')
+
+
+
+
 @Bot.command()
 @commands.has_role(642306802461048833)
 async def warn(ctx, member: discord.Member, arg):
     embed = discord.Embed(title=(f'{member.name }, был выдан варн игроком {ctx.author.name} причина: '+ arg), description="⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x5adb7c)
     await member.send( f'{member.name }, Вам был кинут варн игроком, {ctx.author.name} содержание, '+ arg)
     await ctx.send(embed=embed)
+
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
