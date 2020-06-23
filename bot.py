@@ -548,7 +548,7 @@ async def __award(ctx, member: discord.Member = None, amount: int = None):
             await ctx.message.add_reaction('✅')
 
 amountt = 2
-frozent = 701928507231567912
+frozent = 642315871448072203
 @Bot.command(aliases = ['frozen'])
 @commands.has_role(642285642348494848)
 async def __frozen(ctx):
