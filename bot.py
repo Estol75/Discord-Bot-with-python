@@ -524,11 +524,11 @@ async def on_member_join(member):
 async def __balance(ctx,member: discord.Member = None):
     if member is None:
         await ctx.send(embed = discord.Embed(
-        description = f"""Баланс пользователя **{ctx.author}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(ctx.author.id)).fetchone()[0]}** теньге""",color=0xfcec03
+        description = f"""Баланс пользователя **{ctx.author}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(ctx.author.id)).fetchone()[0]}** тенге""",color=0xfcec03
         ))
     else:
         await ctx.send(embed = discord.Embed(
-        description = f"""Баланс пользователся **{member}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(member.id)).fetchone()[0]}** теньге""",color=0xfcec03
+        description = f"""Баланс пользователся **{member}** составляет **{cursor.execute("SELECT cash FROM users WHERE id = {}".format(member.id)).fetchone()[0]}** тенге""",color=0xfcec03
         ))
 
 @Bot.command(aliases = ['set'])
