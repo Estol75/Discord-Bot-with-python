@@ -532,7 +532,7 @@ async def __balance(ctx,member: discord.Member = None):
         ))
 
 @Bot.command(aliases = ['set'])
-@commands.has_role(707212021791326241)
+@commands.has_role(642285249136689152)
 async def __award(ctx, member: discord.Member = None, amount: int = None):
     if member is None:
         await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте выдать определенную сумму")
@@ -574,7 +574,7 @@ async def rev_frozen(ctx):
 
 
 @Bot.command(aliases = ['rev_cash'])
-@commands.has_role(707212021791326241)
+@commands.has_role(642285249136689152)
 async def __rev_cash(ctx, member: discord.Member = None, amount: int = None):
     if member is None:
         await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте украсть определенную сумму")
