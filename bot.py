@@ -562,6 +562,7 @@ async def __frozen(ctx):
         await ctx.message.add_reaction('✅')
 
 
+
 revfrozen = 642315871448072203
 @Bot.command()
 @commands.has_role(642285642348494848)
@@ -569,6 +570,32 @@ async def rev_frozen(ctx):
     await ctx.channel.purge(limit = 1)
     frozerev = get(ctx.guild.roles, id=revfrozen)
     await ctx.author.remove_roles(frozerev)
+
+
+
+@Bot.command(aliases = ['rev_cash'])
+@commands.has_role(707212021791326241)
+async def __rev_cash(ctx, member: discord.Member = None, amount: int = None):
+    if member is None:
+        await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте украсть определенную сумму")
+    else:
+        if amount is None:
+            await ctx.send(f"***{ctx.author}, укажите сумму, которую желайте украсть с счета пользователя")
+
+        else:
+            cursor.execute("UPDATE users SET cash = cash - {} WHERE id = {}".format(amount, member.id))
+            connction.commit()
+
+            await ctx.message.add_reaction('✅')
+
+
+
+
+
+
+
+
+
 
 @Bot.command()
 @commands.has_role(642306802461048833)
