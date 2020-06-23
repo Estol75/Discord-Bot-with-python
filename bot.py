@@ -544,7 +544,7 @@ async def __award(ctx, member: discord.Member = None, amount: int = None):
             await ctx.message.add_reaction('✅')
 
 amountt = 2
-frozent = 701928507231567912
+frozent = 642315871448072203
 @Bot.command(aliases = ['frozen'])
 @commands.has_role(642285642348494848)
 async def __frozen(ctx):
@@ -555,7 +555,13 @@ async def __frozen(ctx):
     await ctx.message.add_reaction('✅')
 
 
-
+frozerev = 642315871448072203
+@Bot.command(pass_context=True)
+@commands.has_role(642285642348494848)
+async def remove(ctx):
+    await ctx.channel.purge(limit = 1)
+    removfroze = get(ctx.guild.roles, id=frozerev)
+    await ctx.author.remove_roles(removfroze)
     
 @Bot.command()
 @commands.has_role(642306802461048833)
