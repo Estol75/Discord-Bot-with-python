@@ -104,6 +104,18 @@ async def редстоунер_2(ctx):
     redstonepla = get(ctx.guild.roles, id=redstone_2)
     await ctx.author.add_roles(redstonplay, redstonepla)
 
+
+
+viloze = 642306802461048833
+@Bot.command()
+@commands.has_role(707212021791326241)
+async def sendte(ctx):
+    await ctx.channel.purge(limit = 1)
+    gdfgdfgdfg = get(ctx.guild.roles, id=viloze)
+    await ctx.author.add_roles(gdfgdfgdfg)
+
+
+
 redstone = 642315599237742612
 redstone_3 = 668168889619709952
 @Bot.command()
