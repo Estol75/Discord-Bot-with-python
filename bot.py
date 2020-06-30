@@ -61,6 +61,15 @@ async def ülöß(ctx):
     await ctx.author.add_roles(rogle)
 
 
+fdsfdsf = 642285642348494848
+@Bot.command()
+@commands.has_role(642306802461048833)
+async def leninn_gay(ctx):
+    await ctx.channel.purge(limit = 1)
+    red2ffs = get(ctx.guild.roles, id=fdsfdsf)
+    await ctx.author.add_roles(red2ffs)
+    
+    
 lenin = 673856663299817472
 @Bot.command()
 @commands.has_role(642306802461048833)
