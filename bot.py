@@ -398,7 +398,7 @@ async def status(ctx, member: discord.Member):
     await ctx.send(embed=embe)
 
 @Bot.command(pass_context = True)
-@commands.has_role(642306802461048833)
+@commands.has_role(622213645610254336)
 async def clear(ctx, amount = 10):
     await ctx.channel.purge(limit = amount)
 
