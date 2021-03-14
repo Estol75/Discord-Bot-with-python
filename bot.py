@@ -417,9 +417,12 @@ async def япутин(ctx):
 async def дааашка(ctx):
     await ctx.send(file=discord.File('Dashka.png'))
 
+
 @Bot.command(pass_context=True)
 async def рита(ctx):
+    await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('rita.jpg'))
+
 
 @Bot.command(pass_context= True)
 async def help(ctx):
