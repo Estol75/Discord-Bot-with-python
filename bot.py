@@ -523,7 +523,7 @@ async def __balance(ctx,member: discord.Member = None):
         ))
 
 @Bot.command(aliases = ['set'])
-@commands.has_role(642285249136689152)
+@commands.has_role(622213645610254336)
 async def __award(ctx, member: discord.Member = None, amount: int = None):
     if member is None:
         await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте выдать определенную сумму")
