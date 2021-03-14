@@ -424,6 +424,12 @@ async def рита(ctx):
     await ctx.send(file=discord.File('rita.jpg'))
 
 
+@Bot.command(pass_context=True)
+async def даун(ctx):
+    await ctx.channel.purge(limit = 1)
+    await ctx.send(file=discord.File('gdfgdfg.mp4'))
+
+
 @Bot.command(pass_context= True)
 async def help(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
