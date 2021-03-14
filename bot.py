@@ -380,9 +380,6 @@ async def Revolycioner_Rab(ctx):
 async def ФАШИСТЫ(ctx):
     await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
 
-@Bot.command(pass_context=True)
-async def phonk(ctx):
-    await ctx.send("-p Night Car Music • Gangster Rap/ Trap Bass Cruising")
 
 @Bot.command()
 async def status(ctx, member: discord.Member):
