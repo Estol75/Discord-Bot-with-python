@@ -565,7 +565,7 @@ async def rev_frozen(ctx):
 
 
 @Bot.command(aliases = ['rev_cash'])
-@commands.has_role(642285249136689152)
+@commands.has_role(622213645610254336)
 async def __rev_cash(ctx, member: discord.Member = None, amount: int = None):
     if member is None:
         await ctx.send(f"**{ctx.author}**, укажите пользователя, которому желайте украсть определенную сумму")
