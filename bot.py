@@ -382,6 +382,12 @@ async def den4ikpro(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('den.jpg'))
 
+@Bot.command()
+async def ping(ctx):
+    ping_ = Bot.latency
+    ping =  round(ping_ * 1000)
+    await ctx.send(f"my ping is {ping}ms")
+
 
 @Bot.command(pass_context=True)
 async def ФАШИСТЫ(ctx):
