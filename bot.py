@@ -4,6 +4,8 @@ import os
 from discord.utils import get
 import sqlite3
 import random
+import youtube_dl
+
 
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
