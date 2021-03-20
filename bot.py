@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 from discord.utils import get
 import sqlite3
+import random
 
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
@@ -438,8 +439,15 @@ async def даун(ctx):
 @Bot.command(pass_context=True)
 async def дашка(ctx):
     await ctx.channel.purge(limit = 1)
-    num = random.randint(0, 1)
-    await ctx.send(file=discord.File(num + '.png'))
+    flags=[r"1.png",
+        r"2.png",
+        r"3.png",
+        r"4.png"]
+    random.choice(flags)
+    await ctx.send(file=discord.File(flags))
+
+
+
 
 
 
