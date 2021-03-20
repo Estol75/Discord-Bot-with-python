@@ -438,7 +438,11 @@ async def даун(ctx):
 @Bot.command(pass_context=True)
 async def дашка(ctx):
     await ctx.channel.purge(limit = 1)
-    await ctx.send(file=discord.File('MbdRbgS8VWU.png'))
+    num = random.randint(0, 1)
+    await ctx.send(file=discord.File(num + '.png'))
+
+
+
 
 @Bot.command(pass_context= True)
 async def help(ctx):
