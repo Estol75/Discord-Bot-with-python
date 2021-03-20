@@ -133,7 +133,7 @@ async def play(ctx, url : str):
 
     voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
     await voiceChannel.connect()
-    voice = discord.utils.get(Bot.voice_clients, guild=ctx.guild)
+    voice = discord.utils.get(Bot.voice_Bots, guild=ctx.guild)
 
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -153,7 +153,7 @@ async def play(ctx, url : str):
 
 @Bot.command()
 async def leave(ctx):
-    voice = discord.utils.get(Bot.voice_clients, guild=ctx.guild)
+    voice = discord.utils.get(Bot.voice_Bots, guild=ctx.guild)
     if voice.is_connected():
         await voice.disconnect()
     else:
@@ -162,7 +162,7 @@ async def leave(ctx):
 
 @Bot.command()
 async def pause(ctx):
-    voice = discord.utils.get(Bot.voice_clients, guild=ctx.guild)
+    voice = discord.utils.get(Bot.voice_Bots, guild=ctx.guild)
     if voice.is_playing():
         voice.pause()
     else:
@@ -171,7 +171,7 @@ async def pause(ctx):
 
 @Bot.command()
 async def resume(ctx):
-    voice = discord.utils.get(Bot.voice_clients, guild=ctx.guild)
+    voice = discord.utils.get(Bot.voice_Bots, guild=ctx.guild)
     if voice.is_paused():
         voice.resume()
     else:
@@ -180,7 +180,7 @@ async def resume(ctx):
 
 @Bot.command()
 async def stop(ctx):
-    voice = discord.utils.get(Bot.voice_clients, guild=ctx.guild)
+    voice = discord.utils.get(Bot.voice_Bots, guild=ctx.guild)
     voice.stop()
 
 
