@@ -444,7 +444,8 @@ async def дашка(ctx):
         r"3.png",
         r"4.png"]
     random.choice(flags)
-    await ctx.send(file=discord.File(flags))
+    photo = PhotoImage(file = flags)
+    await ctx.send(file=discord.File(photo))
 
 
 
