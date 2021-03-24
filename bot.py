@@ -15,6 +15,17 @@ async def on_ready():
     await Bot.change_presence(activity=discord.Game('--help | Все команды'))
     print("The Bot is ready")
 
+    
+    
+@Bot.event
+async def on_member_join(member):
+    await member.send('Private message')
+    
+    
+
+
+    
+    
 @Bot.command(pass_context= True)
 async def корды(ctx):
     embed = discord.Embed(title="Все координаты", description="Tут вы найдёте все координаты ферм​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x0384fc)
@@ -117,14 +128,6 @@ async def редстоунер_2(ctx):
     await ctx.author.add_roles(redstonplay, redstonepla)
 
 #-------------------------------------------------------------------------------------------
-
-
-
-@Bot.event
-async def on_member_join(ctx, member):
-    await ctx.send(f"Hello {member}!")
-    await ctx.member.send(f"Welcome to the server!")
-    
 
 
 
