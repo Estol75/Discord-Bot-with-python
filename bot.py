@@ -119,7 +119,13 @@ async def редстоунер_2(ctx):
 #-------------------------------------------------------------------------------------------
 
 
-
+@Bot.command(pass_context=True)
+@Bot.event
+async def on_member_join(ctx, member):
+    print(f'{member} has joined a server.')
+    await ctx.send(f"Hello {member}!")
+    await ctx.member.send(f"Welcome to the server!")
+    
 
 
 
