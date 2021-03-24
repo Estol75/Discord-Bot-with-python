@@ -10,7 +10,7 @@ import random
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
 
-intents=intents=discord.Intents.all()
+
 
 @Bot.event
 async def on_ready():
