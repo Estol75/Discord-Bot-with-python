@@ -19,7 +19,7 @@ async def on_ready():
 
     
 @Bot.event
-async def on_member_join(member):
+async def on_member_join(ctx, member):
     await member.send('Private message')
     await ctx.send(file=discord.File('rita.jpg'))
     
