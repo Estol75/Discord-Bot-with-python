@@ -10,16 +10,18 @@ import random
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
 
+intents=intents=discord.Intents.all()
+
 @Bot.event
 async def on_ready():
     await Bot.change_presence(activity=discord.Game('--help | Все команды'))
     print("The Bot is ready")
 
     
-    
-@Bot.event
+@bot.event
 async def on_member_join(member):
     await member.send('Private message')
+    await ctx.send(file=discord.File('rita.jpg'))
     
     
 
@@ -435,12 +437,12 @@ async def status(ctx, member: discord.Member):
     await ctx.send(embed=embe)
 
 @Bot.command(pass_context = True)
-@commands.has_role(622213645610254336)
+@commands.has_role(620623023296348180)
 async def clear(ctx, amount = 10):
     await ctx.channel.purge(limit = amount)
 
 @Bot.command(pass_context = True)
-@commands.has_role(642306802461048833)
+@commands.has_role(620623023296348180)
 async def moreclear(ctx, amount = 50):
     await ctx.channel.purge(limit = amount)
 
