@@ -10,7 +10,7 @@ import random
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
 
-intents=intents=discord.Intents.all()
+
 
 @Bot.event
 async def on_ready():
@@ -18,11 +18,7 @@ async def on_ready():
     print("The Bot is ready")
 
     
-@Bot.event
-async def on_member_join(ctx, member):
-    await member.send('Private message')
-    await ctx.send(file=discord.File('rita.jpg'))
-    
+
     
 
 
