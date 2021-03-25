@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 from discord.utils import get
 import sqlite3
-import random
+
 
 
 
