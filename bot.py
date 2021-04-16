@@ -456,10 +456,13 @@ async def дааашка(ctx):
 async def рита(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('rita.jpg'))
+    
+
+
 
 
 @Bot.command(pass_context=True)
-async def даун(ctx):
+async def гусь_даун(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('gdfgdfg.mp4'))
 
