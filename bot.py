@@ -110,7 +110,7 @@ async def profile(ctx, *, message:str=None):
 
 
    nikchanged = int(length) - int(number)
-   embed.add_field(name='Skin URL' ,value='[Click here to download](' + skin_url + ')')
+   embed.add_field(name='Skin download' ,value='[Click here for download](' + skin_url + ')')
    embed.add_field(name='Information' ,value="nickname changed: " + str(nikchanged), inline=False)
    requesttt = requests.get(f'https://api.ashcon.app/mojang/v2/user/{uuid}')
    dater  = requesttt.json()
@@ -143,7 +143,7 @@ async def profile(ctx, *, message:str=None):
            first = today.strftime('%Y')
            second = dt.strftime('%Y')
            dateresult  = int(first) - int(second)
-           names = names +"\n" + f"**{i + 1}.** " + people_json[i]["name"] +" |" + changed + "​⠀​⠀⠀​​⠀​⠀"
+           names = names +"\n" + f"**{i + 1}.** " + people_json[i]["name"] +" |" + changed + "​⠀"
        firstname = "**1. **" + people_json[0]["name"]
        if lengtth == numr:
            embed.add_field(name="Nicknames", value =firstname + names, inline=True)
