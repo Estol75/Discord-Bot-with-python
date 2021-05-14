@@ -621,7 +621,7 @@ async def ава(ctx, member: discord.Member):
 
 
 @Bot.command()
-@commands.has_role(642306802461048833)
+@commands.has_role(620623023296348180)
 async def warn(ctx, member: discord.Member, arg):
     embed = discord.Embed(title=(f'{member.name }, был выдан варн игроком {ctx.author.name} причина: '+ arg), description="⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x5adb7c)
     await member.send( f'{member.name }, Вам был кинут варн игроком, {ctx.author.name} содержание, '+ arg)
