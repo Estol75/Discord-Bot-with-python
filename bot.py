@@ -23,6 +23,8 @@ intents.members = True
 client = discord.Client(intents=intents)
 from discord.ext import commands
 Bot = commands.Bot(command_prefix='--', intents=intents)
+Bot.remove_command('help')
+
 
 @Bot.event
 async def on_member_join(member):
