@@ -2,4 +2,9 @@ discord.py
 aiohttp
 websockets
 chardet
-
+maya
+datetime
+mojang
+requests
+responses
+json
