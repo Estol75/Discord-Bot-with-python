@@ -3,7 +3,17 @@ from discord.ext import commands
 import os
 from discord.utils import get
 import sqlite3
-
+import requests
+import responses
+import aiohttp
+from aiohttp import request
+import time
+import asyncio
+from mojang import MojangAPI
+import json
+import urllib, json
+import maya
+from datetime import date
 
 
 
@@ -73,6 +83,85 @@ async def ülöß(ctx):
     await ctx.author.add_roles(rogle)
 
 
+@Bot.command()
+async def profile(ctx, *, message:str=None):
+
+
+   uuid = MojangAPI.get_uuid(f"{message}")
+   profile = MojangAPI.get_profile(uuid)
+   people = requests.get('https://api.mojang.com/user/profiles/' + uuid + '/names' )
+   people_json  = people.json()
+   length = len(people_json)
+   request = requests.get('https://api.namemc.com/profile/' + uuid + '/friends')
+   friends  = request.json()
+   lengtth = len(friends)
+
+   friendss = ""
+   names = ""
+   daters = ""
+   skin_url = f"https://mc-heads.net/download/{uuid}"
+
+   number = 1
+   info = people_json[int(length) - int(number)]["name"]
+   embed = discord.Embed(title=f"Minecraft info about {info}", description="User information",
+   color=discord.Color.blue())
+   embed.set_footer(text=f"request by {ctx.author}", icon_url=ctx.author.avatar_url)
+
+
+   nikchanged = int(length) - int(number)
+   embed.add_field(name='Skin URL' ,value='[Click here to download](' + skin_url + ')')
+   embed.add_field(name='Information' ,value="nickname changed: " + str(nikchanged), inline=False)
+   requesttt = requests.get(f'https://api.ashcon.app/mojang/v2/user/{uuid}')
+   dater  = requesttt.json()
+   daserts = dater["username_history"]
+   num = 1
+   numr = 0
+   # test if  nicknames more than 1
+   if length == num :
+       firstnamess = "**1. **" + people_json[0]["name"]
+       embed.add_field(name="Nicknames", value = firstnamess, inline=True)
+       if lengtth == numr:
+            embed.add_field(name="Friends", value = " 0 friends", inline=True) #add the field
+            embed.set_thumbnail(url="https://visage.surgeplay.com/full/512/" + uuid + ".png")
+            await ctx.send(embed=embed)
+
+       else:
+           for i in range(lengtth):
+               friendss = friendss +"\n" + f"**{i + 1}.** " + friends[i]["name"]
+           embed.add_field(name="Friends", value = friendss, inline=True) #add the field
+           embed.set_thumbnail(url="https://visage.surgeplay.com/full/512/" + uuid + ".png")
+           await ctx.send(embed=embed)
+
+   else:
+       for i in range(1, length):
+           daters = ""
+           daters = daters + dater["username_history"][i]["changed_at"]
+           dt = maya.parse(daters).datetime()
+           changed = dt.strftime(' %d.%m.%Y')
+           today = date.today()
+           first = today.strftime('%Y')
+           second = dt.strftime('%Y')
+           dateresult  = int(first) - int(second)
+           names = names +"\n" + f"**{i + 1}.** " + people_json[i]["name"] +" |" + changed + "​⠀​⠀⠀​​⠀​⠀"
+       firstname = "**1. **" + people_json[0]["name"]
+       if lengtth == numr:
+           embed.add_field(name="Nicknames", value =firstname + names, inline=True)
+           embed.add_field(name="Friends", value = "0 Friends", inline=True) #add the field
+           embed.set_thumbnail(url="https://visage.surgeplay.com/full/512/" + uuid + ".png")
+           await ctx.send(embed=embed)
+       else:
+           for i in range(lengtth):
+               friendss = friendss +"\n" + f"**{i + 1}.** " + friends[i]["name"]
+           embed.add_field(name="Nicknames", value = firstname + names, inline=True)
+           embed.add_field(name="Friends", value = friendss, inline=True) #add the field
+           embed.set_thumbnail(url="https://visage.surgeplay.com/full/512/" + uuid + ".png")
+
+           await ctx.send(embed=embed)
+    
+    
+    
+    
+    
 fdsfdsf = 642285642348494848
 @Bot.command()
 @commands.has_role(642306802461048833)
