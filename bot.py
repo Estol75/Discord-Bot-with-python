@@ -556,7 +556,9 @@ async def рита(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('rita.jpg'))
     
-
+@Bot.command(pass_context=True)
+async def глекус(ctx):
+    await ctx.send("даун")
 
 
 
