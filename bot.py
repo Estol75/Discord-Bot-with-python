@@ -548,8 +548,8 @@ async def рита(ctx):
     await ctx.send(file=discord.File('rita.jpg'))
     
 @Bot.command(pass_context=True)
-async def глекус(ctx):
-    await ctx.send("даун")
+async def киска(ctx):
+    await ctx.send("у твоей мамы")
 
 
 
