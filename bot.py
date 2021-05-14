@@ -29,8 +29,7 @@ async def on_ready():
 
     
 
-    
-if fdsf :
+
 
     
     
