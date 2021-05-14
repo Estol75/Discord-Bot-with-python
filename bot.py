@@ -16,10 +16,22 @@ import maya
 from datetime import date
 
 
+intents = discord.Intents.default()
+intents.members = True
 
+
+client = discord.Client(intents=intents)
+
+
+from discord.ext import commands
 Bot = commands.Bot(command_prefix= "--")
 Bot.remove_command('help')
 
+@Bot.event
+async def on_member_join(member):
+    channel = discord.utils.get(member.guild.channels, name = 'fdsfdsfsdfs22')
+    await channel.send(f"Зиег ХАЙЛЬ Доброе уро девочки вы зашли на сервер **{member.guild.name}**, вы теперь секс машина {member.mention}")
+  
 
 
 @Bot.event
@@ -28,7 +40,6 @@ async def on_ready():
     print("The Bot is ready")
 
     
-
 
 
     
