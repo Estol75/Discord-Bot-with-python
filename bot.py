@@ -570,7 +570,7 @@ async def дашка(ctx):
 
 
 @Bot.command(pass_context= True)
-async def help(ctx):
+async def commands(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
     embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
     embed.add_field(name="**Если нужны команды бота:**", value="--help", inline=False)
