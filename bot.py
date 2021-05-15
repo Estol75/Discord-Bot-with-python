@@ -164,32 +164,11 @@ async def profile(ctx, *, message:str=None):
     
     
     
+
     
-fdsfdsf = 642285642348494848
-@Bot.command()
-@commands.has_role(642306802461048833)
-async def leninn_gay(ctx):
-    await ctx.channel.purge(limit = 1)
-    red2ffs = get(ctx.guild.roles, id=fdsfdsf)
-    await ctx.author.add_roles(red2ffs)
-    
-    
-lenin = 673856663299817472
-@Bot.command()
-@commands.has_role(642306802461048833)
-async def lenin_gay(ctx):
-    await ctx.channel.purge(limit = 1)
-    red2s = get(ctx.guild.roles, id=lenin)
-    await ctx.author.add_roles(red2s)
 
 
-lener = 673856663299817472
-@Bot.command(pass_context=True)
-@commands.has_role(642306802461048833)
-async def remove_gay(ctx):
-    await ctx.channel.purge(limit = 1)
-    rolge = get(ctx.guild.roles, id=lener)
-    await ctx.author.remove_roles(rolge)
+
 
 
 @Bot.event
@@ -197,25 +176,8 @@ async def on_command_error(ctx, error):
         embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
         await ctx.send(embed=embed)
 
-redstone = 642315599237742612
-redstone_1 = 668166643633094656
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def редстоунер_1(ctx):
-    await ctx.channel.purge(limit = 1)
-    reds = get(ctx.guild.roles, id=redstone)
-    redst = get(ctx.guild.roles, id=redstone_1)
-    await ctx.author.add_roles(reds, redst)
 
-redstone = 642315599237742612
-redstone_2 = 668168891880439848
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def редстоунер_2(ctx):
-    await ctx.channel.purge(limit = 1)
-    redstonplay = get(ctx.guild.roles, id=redstone)
-    redstonepla = get(ctx.guild.roles, id=redstone_2)
-    await ctx.author.add_roles(redstonplay, redstonepla)
+
 
 #-------------------------------------------------------------------------------------------
 
@@ -227,262 +189,43 @@ async def редстоунер_2(ctx):
 
 
 
-viloze = 642306802461048833
-@Bot.command()
-@commands.has_role(707212021791326241)
-async def sendte(ctx):
-    await ctx.channel.purge(limit = 1)
-    gdfgdfgdfg = get(ctx.guild.roles, id=viloze)
-    await ctx.author.add_roles(gdfgdfgdfg)
 
 
 
-redstone = 642315599237742612
-redstone_3 = 668168889619709952
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def редстоунер_3(ctx):
-    await ctx.channel.purge(limit = 1)
-    redstonelay = get(ctx.guild.roles, id=redstone)
-    redstonela = get(ctx.guild.roles, id=redstone_3)
-    await ctx.author.add_roles(redstonelay, redstonela)
 
-redstone = 642315599237742612
-redstone_1 = 668166643633094656
-redstone_2 = 668168891880439848
-redstone_3 = 668168889619709952
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def редстоунер_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    lay = get(ctx.guild.roles, id=redstone)
-    lay3 = get(ctx.guild.roles, id=redstone_1)
-    lay2 = get(ctx.guild.roles, id=redstone_2)
-    lay1 = get(ctx.guild.roles, id=redstone_3)
-    await ctx.author.remove_roles(lay, lay3, lay2, lay1)
 
-@Bot.command()
-async def join(ctx):
-    channelf = ctx.author.voice.channel
-    await channelf.connect()
-@Bot.command()
-async def leave(ctx):
-    await ctx.voice_client.disconnect()
+
+
+
 #-----------------------------------------------------------------------
-farmer = 642315689151037441
-farmer_1 = 668156282003521536
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def фермер_1(ctx):
-    await ctx.channel.purge(limit = 1)
-    farme = get(ctx.guild.roles, id=farmer)
-    farmer = get(ctx.guild.roles, id=farmer_1)
-    await ctx.author.add_roles(farme, farmer)
 
-farmer = 642315689151037441
-farmer_2 = 668156648535097344
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def фермер_2(ctx):
-    await ctx.channel.purge(limit = 1)
-    farmerlay = get(ctx.guild.roles, id=farmer)
-    farmerli = get(ctx.guild.roles, id=farmer_2)
-    await ctx.author.add_roles(farmerlay, farmerli)
 
-farmer = 64215689151037441
-farmer_3 = 668156467488227388
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def фермер_3(ctx):
-    await ctx.channel.purge(limit = 1)
-    farmerpla = get(ctx.guild.roles, id=farmer)
-    farmerplayl = get(ctx.guild.roles, id=farmer_3)
-    await ctx.author.add_roles(farmerpla, farmerplayl)
 
-farmer = 642315689151037441
-farmer_1 = 668156282003521536
-farmer_2 = 668156648535097344
-farmer_3 = 668156467488227388
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def фермер_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    farmerrel = get(ctx.guild.roles, id=farmer)
-    farmerlil = get(ctx.guild.roles, id=farmer_1)
-    farmirt = get(ctx.guild.roles, id=farmer_2)
-    farmerlayli = get(ctx.guild.roles, id=farmer_3)
-    await ctx.author.remove_roles(farmerrel, farmerlil, farmirt, farmerlayli)
 #----------------------------------------------------------------------
-build = 642315657102229504
-build_1 = 668166512426876946
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def строитель_1(ctx):
-    await ctx.channel.purge(limit = 1)
-    buildlay = get(ctx.guild.roles, id=build)
-    buildtr = get(ctx.guild.roles, id=build_1)
-    await ctx.author.add_roles(buildlay, buildtr)
 
-build = 642315657102229504
-build_2 = 668166688985972767
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def строитель_2(ctx):
-    await ctx.channel.purge(limit = 1)
-    buildpip = get(ctx.guild.roles, id=build)
-    buildpila = get(ctx.guild.roles, id=build_2)
-    await ctx.author.add_roles(buildpip, buildpila)
 
-build = 642315657102229504
-build_3 = 668166943533957120
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def строитель_3(ctx):
-    await ctx.channel.purge(limit = 1)
-    buildlepr = get(ctx.guild.roles, id=build)
-    buildtrz = get(ctx.guild.roles, id=build_3)
-    await ctx.author.add_roles(buildlepr, buildtrz)
 
-build = 642315657102229504
-build_1 = 668166512426876946
-build_2 = 668166688985972767
-build_3 = 668166943533957120
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def строитель_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    buildrt = get(ctx.guild.roles, id=build)
-    buildfgh = get(ctx.guild.roles, id=build_1)
-    buildlop = get(ctx.guild.roles, id=build_2)
-    buildghtfs = get(ctx.guild.roles, id=build_3)
-    await ctx.author.remove_roles(buildrt, buildfgh, buildlop, buildghtfs)
+
 #----------------------------------------------------------------------------------
-dekor =642315763398737931
-dekor_1 = 668152257560313896
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def декоратор_1(ctx):
-    await ctx.channel.purge(limit = 1)
-    dekorat = get(ctx.guild.roles, id=dekor)
-    dekorlipe = get(ctx.guild.roles, id=dekor_1)
-    await ctx.author.add_roles(dekorat, dekorlipe)
 
-dekor =642315763398737931
-dekor_2 = 668152395020238857
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def декоратор_2(ctx):
-    await ctx.channel.purge(limit = 1)
-    dekotzuf = get(ctx.guild.roles, id=dekor)
-    dekorfds = get(ctx.guild.roles, id=dekor_2)
-    await ctx.author.add_roles(dekotzuf, dekorfds)
 
-dekor =642315763398737931
-dekor_3 = 668155885305987112
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def декоратор_3(ctx):
-    await ctx.channel.purge(limit = 1)
-    dekofdsfr = get(ctx.guild.roles, id=dekor)
-    dssdersd = get(ctx.guild.roles, id=dekor_3)
-    await ctx.author.add_roles(dekofdsfr, dssdersd)
 
-dekor =642315763398737931
-dekor_1 = 668152257560313896
-dekor_2 = 668152395020238857
-dekor_3 = 668155885305987112
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def декоратор_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    dekofsdr = get(ctx.guild.roles, id=dekor)
-    dekorzzztr = get(ctx.guild.roles, id=dekor_1)
-    dekoroikoi = get(ctx.guild.roles, id=dekor_2)
-    üplöüp = get(ctx.guild.roles, id=dekor_3)
-    await ctx.author.remove_roles(dekofsdr, dekorzzztr, dekoroikoi, üplöüp)
+
+
+
+
 #------------------------------------------------------------------------------
-item = 642315552890814464
-item_1 = 668156985920716830
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def ресурсер_1(ctx):
-    await ctx.channel.purge(limit = 1)
-    itefdstd = get(ctx.guild.roles, id=item)
-    itemgdfg = get(ctx.guild.roles, id=item_1)
-    await ctx.author.add_roles(itefdstd, itemgdfg)
 
-item = 642315552890814464
-item_2 = 668166015464505344
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def ресурсер_2(ctx):
-    await ctx.channel.purge(limit = 1)
-    itefdsm = get(ctx.guild.roles, id=item)
-    itefdsfsdf = get(ctx.guild.roles, id=item_2)
-    await ctx.author.add_roles(itefdsm, itefdsfsdf)
 
-item = 642315552890814464
-item_3 = 668166087963312161
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def ресурсер_3(ctx):
-    await ctx.channel.purge(limit = 1)
-    itefdsfdsm = get(ctx.guild.roles, id=item)
-    itfdsfsdf = get(ctx.guild.roles, id=item_3)
-    await ctx.author.add_roles(itefdsfdsm, itfdsfsdf)
 
-item = 642315552890814464
-item_1 = 668156985920716830
-item_2 = 668166015464505344
-item_3 = 668166087963312161
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def ресурсер_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    itefdsfm = get(ctx.guild.roles, id=item)
-    itemggggfff = get(ctx.guild.roles, id=item_1)
-    igdfgdfgdfgdfttt = get(ctx.guild.roles, id=item_2)
-    hhhhhhhgffffd = get(ctx.guild.roles, id=item_3)
-    await ctx.author.remove_roles(itefdsfm, itemggggfff, igdfgdfgdfgdfttt, hhhhhhhgffffd)
+
+
 #------------------------------------------------------------------
-shema = 649217280617480202,
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def схематика(ctx):
-    await ctx.channel.purge(limit = 1)
-    shfdsema = get(ctx.guild.roles, id=shema)
-    await ctx.author.add_roles(shfdsema)
 
-shema = 649217280617480202
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def схематика_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    shefdma = get(ctx.guild.roles, id=shema)
-    await ctx.author.remove_roles(shefdma)
 
-pod = 706574774075260948
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def подкидыш_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    podfs = get(ctx.guild.roles, id=pod)
-    await ctx.author.remove_roles(podfs)
-#---------------------------------------
-rep = 642315518644060161
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def рпшер(ctx):
-    await ctx.channel.purge(limit = 1)
-    rephh = get(ctx.guild.roles, id=rep)
-    await ctx.author.add_roles(rephh)
-rep = 642315518644060161
-@Bot.command()
-@commands.has_role(642285642348494848)
-async def рпшер_удалить(ctx):
-    await ctx.channel.purge(limit = 1)
-    repfdg = get(ctx.guild.roles, id=rep)
-    await ctx.author.remove_roles(repfdg)
+
+
+
 
 @Bot.command(pass_context=True)
 async def Revolycioner_Rab(ctx):
