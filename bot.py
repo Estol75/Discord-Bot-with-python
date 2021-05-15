@@ -32,11 +32,6 @@ async def on_member_join(member):
     await channel.send(f"Зиег ХАЙЛЬ Доброе уро девочки вы зашли на сервер **{member.guild.name}**, вы теперь секс машина {member.mention}")
 
 
-    
-
-
-    
-    
 @Bot.command(pass_context= True)
 async def корды(ctx):
     embed = discord.Embed(title="Все координаты", description="Tут вы найдёте все координаты ферм​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x0384fc)
@@ -161,70 +156,11 @@ async def profile(ctx, *, message:str=None):
 
            await ctx.send(embed=embed)
     
-    
-    
-    
-
-    
-
-
-
-
 
 @Bot.event
 async def on_command_error(ctx, error):
         embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
         await ctx.send(embed=embed)
-
-
-
-
-#-------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#-----------------------------------------------------------------------
-
-
-
-#----------------------------------------------------------------------
-
-
-
-
-#----------------------------------------------------------------------------------
-
-
-
-
-
-
-
-#------------------------------------------------------------------------------
-
-
-
-
-
-#------------------------------------------------------------------
-
-
-
-
 
 
 @Bot.command(pass_context=True)
@@ -307,11 +243,7 @@ async def дашка(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('MbdRbgS8VWU.png'))
 
-
-
-
-
-
+    
 @Bot.command(pass_context= True)
 async def commands(ctx):
     embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
@@ -350,17 +282,6 @@ async def свадьба(ctx):
 @Bot.command()
 async def ава(ctx, member: discord.Member):
     await ctx.send('{}'.format(member.avatar_url))
-
-
-
-
-
-
-
-
-
-
-
 
 
 
