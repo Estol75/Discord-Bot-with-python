@@ -54,7 +54,7 @@ async def on_member_join(member):
 @Bot.event
 async def on_member_remove(member):
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
-    msg = f"{member.mention} с ебался нахуй "
+    msg = f"{member.mention} съебался нахуй "
     await channel.send(msg)
     
 @Bot.command()
