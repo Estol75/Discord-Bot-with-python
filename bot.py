@@ -14,6 +14,12 @@ import json
 import urllib, json
 import maya
 from datetime import date
+from bs4 import BeautifulSoup
+import re
+import random
+from random import choice
+
+
 
 
 intents = discord.Intents.default()
@@ -157,9 +163,55 @@ async def profile(ctx, *, message:str=None):
            await ctx.send(embed=embed)
     
 
+    
+    
+@Bot.command()
+async def wallpaper(ctx, arg1):
+    array = []
+    intt = arg1
+
+    len_link = f"https://wallpaperscraft.com/search/?query={intt}"
+    len_response = requests.get(len_link).text
+    len_soup = BeautifulSoup(len_response, 'lxml')
+    len_block = len_soup.find('ul', class_ = "pager__list").find('li', class_ = "pager__item pager__item_last-page")
+    images_link = len_block.find('a').get('href')
+
+    str = images_link
+    #search using regex
+    numbers = re.findall('[0-9]+', images_link)
+
+    ranger = int(numbers[0])
+    ranger_result = ranger - 1
+
+    np = random.randint(1, ranger_result)
+
+
+    link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
+    response = requests.get(link).text
+
+    soup = BeautifulSoup(response, 'lxml')
+    download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
+        # result_link = download_block.page_number.find('a').get('href')
+    for imagerr in download_block:
+        images_link = imagerr.find('a').get('href')
+        array += [images_link]
+        # img=random.choice(images_link)
+    second_link = f"https://wallpaperscraft.com{choice(array)}"
+    second_response = requests.get(second_link).text
+    second_soup = BeautifulSoup(second_response, 'lxml')
+    download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
+
+
+    embed = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+    embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
+    embed.set_image(url=download_src)
+
+
+    await ctx.send(embed=embed)    
+    
 @Bot.event
 async def on_command_error(ctx, error):
-        embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
+        embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀или была неправильно выполнена⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
         await ctx.send(embed=embed)
 
 
