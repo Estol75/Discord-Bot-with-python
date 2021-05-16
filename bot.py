@@ -283,6 +283,11 @@ async def япутин(ctx):
 async def дааашка(ctx):
     await ctx.send(file=discord.File('Dashka.png'))
 
+@Bot.command(pass_context=True)
+async def дауныыыы(ctx):
+    await ctx.send(file=discord.File('Dashka.png'))
+    
+    
 
 @Bot.command(pass_context=True)
 async def рита(ctx):
