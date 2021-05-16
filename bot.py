@@ -210,14 +210,14 @@ async def wallpaper(ctx, arg1):
     download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
 
-    embed = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
-    embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
-    embed.set_image(url=download_src)
 
+    await ctx.send(download_src)
 
-    await ctx.send(embed=embed)
-
-
+@Bot.command(pass_context=True)
+async def äjgthsdf(ctx):
+    await ctx.send(file=discord.File('Dashka.png'))
+    
+    
 
 @Bot.event
 async def on_command_error(ctx, error):
@@ -282,11 +282,7 @@ async def япутин(ctx):
 async def дааашка(ctx):
     await ctx.send(file=discord.File('Dashka.png'))
 
-@Bot.command(pass_context=True)
-async def дауныыыы(ctx):
-    await ctx.send(file=discord.File('Dashka.png'))
-    
-    
+
 
 @Bot.command(pass_context=True)
 async def рита(ctx):
