@@ -40,7 +40,10 @@ from discord.ext import commands
 Bot = commands.Bot(command_prefix='--', intents=intents)
 Bot.remove_command('help')
 
-
+@Bot.event
+async def on_ready():
+    await Bot.change_presence(activity=discord.Game(name="мой бот сделан при поддержки 1x бет"))
+    
 @Bot.event
 async def on_member_join(member):
     embed = discord.Embed(title=f"Приветствую тебя на сервере {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер {member.mention}⠀⠀​​", color=0x00eeff)
