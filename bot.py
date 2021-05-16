@@ -58,37 +58,7 @@ async def on_member_remove(member):
     await channel.send(msg)
     
     
-@Bot.event
-async def on_message(message):
-    if message.content.startswith('даун'):
-        await message.channel.send('согласен полностью!')
-    if message.content.startswith('гусь даун'):
-        await message.channel.send('гусь далбаеб без матери ебаныя, пробирочный клоун')
-    if message.content.startswith('эстол даун'):
-        await message.channel.send('э ты что ахуел? далбаеб кончиный')
-    if message.content.startswith('идиот'):
-        await message.channel.send('ужос мда маф матерится ужос!!!, не то что эстол светой человек ни когда не матерится')
-    if message.content.startswith('клоун'):
-        await message.channel.send('дадада я фанатка ЖОПЕРА')
-    if message.content.startswith('Не хочу'):
-        await message.channel.send('маф когда бота будешь писать?')
-    if message.content.startswith('пошли в дс'):
-        await message.channel.send('ура дискард как ватцап ну тока дискард')
-    if message.content.startswith('дура'):
-        await message.channel.send('дура твоя мама хахаха затролен')
-    if message.content.startswith('ок'):
-        await message.channel.send('блять заебал окать сука')
-    if message.content.startswith('ну неважно'):
-        await message.channel.send('эм это очень важно')
-    if message.content.startswith('привет бот'):
-        await message.channel.send('приф')
-    if message.content.startswith('чё делаешь?'):
-        await message.channel.send('да вот твой даунский кот переделиваю далбаеб')
-    if message.content.startswith('э за что?'):
-        await message.channel.send('проста так по фану я же про')
-    if message.content.startswith('всё у меня депресия'):
-        await message.channel.send('ура, ну кароче всё отстать не мешай мне работать')
-    
+
 @Bot.command()
 async def user_agent(ctx):
     user = fake_useragent.UserAgent().random
