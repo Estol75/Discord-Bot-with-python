@@ -203,18 +203,13 @@ async def wallpaper(ctx, arg1):
     for imagerr in download_block:
         images_link = imagerr.find('a').get('href')
         array += [images_link]
-        # img=random.choice(images_link)
-    second_link = f"https://wallpaperscraft.com{choice(array)}"
-    second_response = requests.get(second_link, headers = header).text
-    second_soup = BeautifulSoup(second_response, 'lxml')
-    download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
 
 
-    await ctx.send(download_src)
+    await ctx.send(array)
 
 @Bot.command(pass_context=True)
-async def aasdf(ctx, arg1):
+async def aasaadf(ctx, arg1):
     await ctx.send(f"fdsfdsf{arg1}")
 
     
