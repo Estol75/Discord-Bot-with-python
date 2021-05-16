@@ -191,7 +191,7 @@ async def wallpaper(ctx, arg1):
     await ctx.send(len_link)
 
 @Bot.command(pass_context=True)
-async def aasaadf(ctx, arg1):
+async def baaadf(ctx, arg1):
     await ctx.send(f"fdsfdsf{arg1}")
 
     
