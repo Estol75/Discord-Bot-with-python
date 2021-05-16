@@ -183,24 +183,12 @@ async def profile(ctx, *, message:str=None):
 
 @Bot.command()
 async def wallpaper(ctx, arg1):
-    array = []
+
     intt = arg1
 
     len_link = f"https://wallpaperscraft.com/search/?query={intt}"
-    len_response = requests.get(len_link, headers = header).text
-    len_soup = BeautifulSoup(len_response, 'lxml')
-    len_block = len_soup.find('ul', class_ = "pager__list").find('li', class_ = "pager__item pager__item_last-page")
-    images_link = len_block.find('a').get('href')
 
-    str = images_link
-    #search using regex
-    numbers = re.findall('[0-9]+', images_link)
-
-    ranger = int(numbers[0])
-    ranger_result = ranger - 1
-
-
-    await ctx.send(ranger_result)
+    await ctx.send(len_link)
 
 @Bot.command(pass_context=True)
 async def aasaadf(ctx, arg1):
