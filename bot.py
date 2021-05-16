@@ -214,8 +214,8 @@ async def wallpaper(ctx, arg1):
     await ctx.send(download_src)
 
 @Bot.command(pass_context=True)
-async def äjgthsdf(ctx):
-    await ctx.send(file=discord.File('Dashka.png'))
+async def äjgthsdf(ctx, arg1):
+    await ctx.send("fdsfdsf", arg1)
     
     
 
