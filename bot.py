@@ -199,22 +199,8 @@ async def wallpaper(ctx, arg1):
     ranger = int(numbers[0])
     ranger_result = ranger - 1
 
-    np = random.randint(1, ranger_result)
 
-
-    link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
-    response = requests.get(link, headers = header).text
-
-    soup = BeautifulSoup(response, 'lxml')
-    download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
-        # result_link = download_block.page_number.find('a').get('href')
-    for imagerr in download_block:
-        images_link = imagerr.find('a').get('href')
-        array += [images_link]
-
-
-    print(array)
-    await ctx.send(array)
+    await ctx.send(ranger_result)
 
 @Bot.command(pass_context=True)
 async def aasaadf(ctx, arg1):
