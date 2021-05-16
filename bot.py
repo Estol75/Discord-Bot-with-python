@@ -213,7 +213,7 @@ async def wallpaper(ctx, arg1):
         array += [images_link]
 
 
-
+    print(array)
     await ctx.send(array)
 
 @Bot.command(pass_context=True)
