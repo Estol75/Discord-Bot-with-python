@@ -43,9 +43,12 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_member_join(member):
-    channel = discord.utils.get(member.guild.channels, name = 'fdsfdsfsdfs22')
-    await channel.send(f"Зиег ХАЙЛЬ Доброе уро девочки вы зашли на сервер **{member.guild.name}**, вы теперь секс машина {member.mention}")
-
+    embed = discord.Embed(title=f"Приветствую тебя на сервери {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер {member.mention}⠀⠀​​", color=0x00eeff)
+    embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
+    embed.add_field(name="**У нас присутствует замечательный бот**", value="Для просмотра комманд `--commands`", inline=False)
+    embed.set_thumbnail(url=member.avatar_url)
+    channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
+    await channel.send(embed=embed)
     
 @Bot.command()
 async def user_agent(ctx):
