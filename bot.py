@@ -319,7 +319,9 @@ async def свадьба(ctx):
 
 @Bot.command()
 async def ава(ctx, member: discord.Member):
-    await ctx.send('{}'.format(member.avatar_url))
+    embed = discord.Embed(title=f"Аватарка {member}", description="", color=0x1780c2)
+    embed.set_image(url=member.avatar_url)
+    await ctx.send(embed=embed)
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
