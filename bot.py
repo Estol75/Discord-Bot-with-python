@@ -214,8 +214,9 @@ async def wallpaper(ctx, arg1):
     await ctx.send(download_src)
 
 @Bot.command(pass_context=True)
-async def äjgthsdf(ctx, arg1):
-    await ctx.send("fdsfdsf", arg1)
+async def aasdf(ctx, arg1):
+    await ctx.send(f"fdsfdsf{arg1}")
+
     
     
 
