@@ -26,7 +26,7 @@ import fake_useragent
 
 
 
-user = fake_useragent.UserAgent().random
+user = "Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)"
 header = {'user-agent': user}
 
 
