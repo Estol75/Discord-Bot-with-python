@@ -48,10 +48,10 @@ async def on_member_join(member):
 
     
 @Bot.command()
-async def user_agent():
+async def user_agent(ctx):
     user = fake_useragent.UserAgent().random
     header = {'user-agent': user}
-    print(user)
+    await ctx.send(header)
 
 
 @Bot.command(pass_context= True)
