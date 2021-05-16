@@ -50,6 +50,13 @@ async def on_member_join(member):
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
     await channel.send(embed=embed)
     
+    
+@Bot.event
+async def on_member_remove(member):
+    channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
+    msg = f"{member.mention} с ебался нахуй "
+    await Bot.send(msg)
+    
 @Bot.command()
 async def user_agent(ctx):
     user = fake_useragent.UserAgent().random
