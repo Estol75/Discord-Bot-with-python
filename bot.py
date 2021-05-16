@@ -141,7 +141,7 @@ async def __wallpaper(ctx, arg1):
     if arg1 == "help":
         embed = discord.Embed(title=f"Информационный блок команды wallpaper", description=f"", color=0x7d87f5)
         embed.add_field(name='популярные жанры' , value='3D, Abstract, Animals, Anime, Art, Black \n Cars, City, Dark, Fantasy, Flowers, Food \n Holidays, Love, Macro, Nature, Space, Vector', inline = False)
-        embed.add_field(name='Запрос картинки' , value='--wallpaper `<названия>`')
+        embed.add_field(name='запрос картинки' , value='--wallpaper `<названия>`')
         embed.set_footer(text=f"Запрос был сделан{ctx.author}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
     else:
@@ -188,10 +188,8 @@ async def __wallpaper(ctx, arg1):
         await ctx.send(embed=embed)
 
 
-    await ctx.send(embed=embed)
-@Bot.command(pass_context=True)
-async def baaadf(ctx, arg1):
-    await ctx.send(f"fdsfdsf{arg1}")
+
+
 
     
     
