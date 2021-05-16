@@ -8,3 +8,4 @@ mojang
 requests
 responses
 beautifulsoup4
+bs4
