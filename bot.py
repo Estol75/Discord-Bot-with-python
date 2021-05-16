@@ -55,7 +55,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
     msg = f"{member.mention} с ебался нахуй "
-    await Bot.send(msg)
+    await channel.send(msg)
     
 @Bot.command()
 async def user_agent(ctx):
