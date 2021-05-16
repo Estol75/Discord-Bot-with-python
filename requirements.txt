@@ -7,3 +7,4 @@ datetime
 mojang
 requests
 responses
+beautifulsoup4
