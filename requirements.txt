@@ -9,4 +9,4 @@ requests
 responses
 beautifulsoup4
 bs4
-
+fake-useragent
