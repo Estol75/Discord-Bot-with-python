@@ -21,10 +21,13 @@ from bs4 import BeautifulSoup
 import re
 import random
 from random import choice
+import fake_useragent
 
 
 
 
+user = fake_useragent.UserAgent().random
+header = {'user-agent': user}
 
 
 
@@ -177,7 +180,7 @@ async def wallpaper(ctx, arg1):
     intt = arg1
 
     len_link = f"https://wallpaperscraft.com/search/?query={intt}"
-    len_response = requests.get(len_link).text
+    len_response = requests.get(len_link, headers = header).text
     len_soup = BeautifulSoup(len_response, 'lxml')
     len_block = len_soup.find('ul', class_ = "pager__list").find('li', class_ = "pager__item pager__item_last-page")
     images_link = len_block.find('a').get('href')
@@ -193,7 +196,7 @@ async def wallpaper(ctx, arg1):
 
 
     link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
-    response = requests.get(link).text
+    response = requests.get(link, headers = header).text
 
     soup = BeautifulSoup(response, 'lxml')
     download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
@@ -203,7 +206,7 @@ async def wallpaper(ctx, arg1):
         array += [images_link]
         # img=random.choice(images_link)
     second_link = f"https://wallpaperscraft.com{choice(array)}"
-    second_response = requests.get(second_link).text
+    second_response = requests.get(second_link, headers = header).text
     second_soup = BeautifulSoup(second_response, 'lxml')
     download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
@@ -214,6 +217,8 @@ async def wallpaper(ctx, arg1):
 
 
     await ctx.send(embed=embed)
+
+
 
 @Bot.event
 async def on_command_error(ctx, error):
