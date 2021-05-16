@@ -54,53 +54,9 @@ async def user_agent(ctx):
     await ctx.send(header)
 
 
-@Bot.command(pass_context= True)
-async def корды(ctx):
-    embed = discord.Embed(title="Все координаты", description="Tут вы найдёте все координаты ферм​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x0384fc)
-    embed.add_field(name="**Ферма скелетов:**", value="(По метро): -7844 -5753", inline=False)
-    embed.add_field(name="**Ферма гвардов:**", value="(по метро): -8000 -6435", inline=False)
-    embed.add_field(name="**Ферма золота и яма:**", value="-7777 -6460", inline=False)
-    embed.add_field(name="**Ферма зомби и пауков :**", value="(По метро): -7430 -5895", inline=False)
-    embed.add_field(name="**Городская ферма ифритов (В аду):**", value="(В аду): -1200 -630", inline=False)
-    embed.add_field(name="**Портал в энд (В аду):**", value="-1100 -950", inline=False)
-    embed.add_field(name="Портал в Техноград (В аду)", value="-918 -750", inline=False)
-    embed.add_field(name="Портал в хаб Технограда:", value="-7400 -6085", inline=False)
-    embed.add_field(name="Остров На Хп Технограда ", value="-490", inline=False)
-    embed.add_field(name="Корды острова в обычном мире ", value="-6983 -3923", inline=False)
-    embed.add_field(name="Склад:", value="-7470 -6015", inline=False)
-    await ctx.send(embed=embed)
-#add role command
-
-@Bot.command()
-async def role_help(ctx):
-    embed = discord.Embed(title="Выдача роли по выбору", description="При помоще команд ниже вы можете выдавать себе роли или забирать​⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xff19d1)
-    embed.add_field(name="**Выдать себе роль редстоунера:**", value="--редстоунер_уровень", inline=False)
-    embed.add_field(name="**Выдать себе роль фермер:**", value="--фермер_уровень", inline=False)
-    embed.add_field(name="**Выдать себе роль строитель:**", value="--строитель_уровень", inline=False)
-    embed.add_field(name="**Выдать себе роль декоратор:**", value="--декоратор_уровень", inline=False)
-    embed.add_field(name="**Выдать себе роль ресурсер:**", value="--ресурсер_уровень", inline=False)
-    embed.add_field(name="**Выдать себе роль схематика:**", value="--схематика", inline=False)
-    embed.add_field(name="**Выдать себе роль рпшер:**", value="--рпшер", inline=False)
-    embed.add_field(name="**Пример выдачи роли:**", value="--редстоунер_3", inline=False)
-    embed.add_field(name="**Что бы удалить роль:**", value="--имя роли_удалить", inline=False)
-    mess = await ctx.send(embed=embed)
 
 
-role_id = 642306802461048833
-@Bot.command(pass_context=True)
-@commands.has_role(707212021791326241)
-async def remove(ctx):
-    await ctx.channel.purge(limit = 1)
-    role = get(ctx.guild.roles, id=role_id)
-    await ctx.author.remove_roles(role)
 
-role = 642306802461048833
-@Bot.command(pass_context=True)
-@commands.has_role(707212021791326241)
-async def ülöß(ctx):
-    await ctx.channel.purge(limit = 1)
-    rogle = get(ctx.guild.roles, id=role_id)
-    await ctx.author.add_roles(rogle)
 
 
 @Bot.command()
