@@ -14,10 +14,15 @@ import json
 import urllib, json
 import maya
 from datetime import date
+from random import choice
+import discord
+from discord.ext import commands
+import requests
 from bs4 import BeautifulSoup
 import re
 import random
 from random import choice
+
 
 
 
