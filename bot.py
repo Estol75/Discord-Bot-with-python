@@ -169,7 +169,6 @@ async def __wallpaper(ctx, arg1):
         len_block = len_soup.find('ul', class_ = "pager__list").find('li', class_ = "pager__item pager__item_last-page")
         images_link = len_block.find('a').get('href')
 
-        str = images_link
         #search using regex
         numbers = re.findall('[0-9]+', images_link)
 
@@ -200,7 +199,44 @@ async def __wallpaper(ctx, arg1):
         embed.set_image(url=download_src)
 
 
-        await ctx.send(embed=embed)
+
+
+
+        message = await ctx.send(embed = embed)
+        await message.add_reaction('▶')
+
+        def check(reaction, user):
+            return user == ctx.author
+
+        i = 0
+        reaction = None
+
+        while True:
+            if str(reaction) == '▶':
+                i = 0
+                for imagerr in download_block:
+                    images_link = imagerr.find('a').get('href')
+                    array += [images_link]
+                    # img=random.choice(images_link)
+                second_link = f"https://wallpaperscraft.com{choice(array)}"
+                second_response = requests.get(second_link).text
+                second_soup = BeautifulSoup(second_response, 'lxml')
+                download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
+
+
+                embed = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
+                embed.set_image(url=download_src)
+                await message.edit(embed = embed)
+
+            try:
+                reaction, user = await Bot.wait_for('reaction_add', timeout = 30.0, check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
+
+        await message.clear_reactions()
+
 
 
 
