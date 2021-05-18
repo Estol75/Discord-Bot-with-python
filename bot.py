@@ -150,7 +150,10 @@ async def profile(ctx, *, message:str=None):
            await ctx.send(embed=embed)
 
 
-
+@Bot.command()
+async def sdfgfg(ctx):
+    await ctx.send("fdsfsd")
+            
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
     if arg1 == "help":
