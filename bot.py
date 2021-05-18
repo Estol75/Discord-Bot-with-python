@@ -246,7 +246,7 @@ async def __wallpaper(ctx, arg1):
 
                 try:
 
-                    reaction, user = await Bot.wait_for('reaction_add', timeout = 30.0, check = check)
+                    reaction, user = await Bot.wait_for('reaction_add', timeout = 400.0, check = check)
                     await message.remove_reaction(reaction, user)
                 except:
                     break
