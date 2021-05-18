@@ -150,9 +150,7 @@ async def profile(ctx, *, message:str=None):
            await ctx.send(embed=embed)
 
 
-@Bot.command()
-async def sdfgfg(ctx):
-    await ctx.send("fdsfsd")
+
             
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
@@ -177,7 +175,8 @@ async def __wallpaper(ctx, arg1):
 
         ranger = int(numbers[0])
         ranger_result = ranger - 1
-
+        if ranger_result == 0:
+            ranger_result + int(2)
         np = random.randint(1, ranger_result)
 
 
@@ -197,45 +196,60 @@ async def __wallpaper(ctx, arg1):
         download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
 
-        embed = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
-        embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
-        embed.set_image(url=download_src)
+        idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
+        idsr.set_image(url=download_src)
 
-        message = await ctx.send(embed = embed)
+
+        message = await ctx.send(embed = idsr)
         await message.add_reaction('▶')
+        msg = message.id
+        print(msg)
+        if msg == msg:
+            def check(reaction, user):
+                return user == ctx.author
 
-        def check(reaction, user):
-            return user == ctx.author
+            i = 0
+            reaction = None
 
-        i = 0
-        reaction = None
+            while True:
+                if str(reaction) == '▶':
+                    i = 0
+                    numbers = re.findall('[0-9]+', images_link)
 
-        while True:
-            if str(reaction) == '▶':
-                i = 0
-                for imagerr in download_block:
-                    images_link = imagerr.find('a').get('href')
-                    array += [images_link]
-                    # img=random.choice(images_link)
-                second_link = f"https://wallpaperscraft.com{choice(array)}"
-                second_response = requests.get(second_link).text
-                second_soup = BeautifulSoup(second_response, 'lxml')
-                download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
+                    ranger = int(numbers[0])
+                    ranger_result = ranger - 1
+
+                    np = random.randint(1, ranger_result)
 
 
-                embed = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
-                embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
-                embed.set_image(url=download_src)
-                await message.edit(embed = embed)
+                    link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
+                    response = requests.get(link).text
 
-            try:
-                reaction, user = await Bot.wait_for('reaction_add', timeout = 30.0, check = check)
-                await message.remove_reaction(reaction, user)
-            except:
-                break
+                    soup = BeautifulSoup(response, 'lxml')
+                    download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
+                    for imagerr in download_block:
+                        images_link = imagerr.find('a').get('href')
+                        array += [images_link]
+                        # img=random.choice(images_link)
+                    second_link = f"https://wallpaperscraft.com{choice(array)}"
+                    second_response = requests.get(second_link).text
+                    second_soup = BeautifulSoup(second_response, 'lxml')
+                    download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
-        await message.clear_reactions()
 
+                    idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"используйте ▶ чтобы получить следующую картинку", color=0x141414)
+                    idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
+                    idsr.set_image(url=download_src)
+                    dfsf = await ctx.fetch_message(msg)
+                    await dfsf.edit(embed = idsr)
+
+                try:
+
+                    reaction, user = await Bot.wait_for('reaction_add', timeout = 30.0, check = check)
+                    await message.remove_reaction(reaction, user)
+                except:
+                    break
 
 
 
