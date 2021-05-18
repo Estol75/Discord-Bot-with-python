@@ -198,10 +198,6 @@ async def __wallpaper(ctx, arg1):
         embed.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
         embed.set_image(url=download_src)
 
-
-
-
-
         message = await ctx.send(embed = embed)
         await message.add_reaction('▶')
 
@@ -236,6 +232,7 @@ async def __wallpaper(ctx, arg1):
                 break
 
         await message.clear_reactions()
+
 
 
 
