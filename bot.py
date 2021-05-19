@@ -255,6 +255,137 @@ async def __wallpaper(ctx, arg1):
 
 
 
+@Bot.command()
+async def anime(ctx,arg1):
+        array = []
+        np = random.randint(1, 3000)
+        len_link = f"http://anime.reactor.cc/tag/{arg1}/{np}"
+        len_response = requests.get(len_link).text
+        len_soup = BeautifulSoup(len_response, 'lxml')
+        len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+        images_link = len_block.find_all('div', class_ = 'image')
+
+        for imagerr in images_link:
+            images_linkss = imagerr.find('img').get("src")
+            array += [images_linkss]
+        img_pictur_url = choice(array)
+
+
+        idsr = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+        idsr.set_image(url=img_pictur_url)
+        message = await ctx.send(embed=idsr)
+        await message.add_reaction('▶')
+        await message.add_reaction('❌')
+        msg = message.id
+        print(msg)
+
+
+        if msg == msg:
+            def check(reaction, user):
+                return user == ctx.author
+
+            i = 0
+            reaction = None
+
+            while True:
+                if str(reaction) == '▶':
+                    i = 0
+                    arrays = []
+
+                    nps = random.randint(1, 30000)
+                    len_link = f"http://anime.reactor.cc/{nps}"
+                    len_response = requests.get(len_link).text
+                    len_soup = BeautifulSoup(len_response, 'lxml')
+                    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+                    images_link = len_block.find_all('div', class_ = 'image')
+
+                    for imagerr in images_link:
+                            images_linksss = imagerr.find('img').get("src")
+                            arrays += [images_linksss]
+
+                    img_pictur_url = choice(arrays)
+                    print(img_pictur_url)
+                    idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                    idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+                    idsrs.set_image(url=img_pictur_url)
+
+
+                    await message.edit(embed = idsrs)
+                if str(reaction) == '❌':
+                    msggsss = await ctx.fetch_message(msg)
+                    await msggsss.delete()
+                try:
+
+                    reaction, user = await Bot.wait_for('reaction_add', check = check)
+                    await message.remove_reaction(reaction, user)
+                except:
+                    break
+
+@Bot.command()
+async def animes(ctx):
+        array = []
+        np = random.randint(1, 3000)
+        len_link = f"http://anime.reactor.cc/{np}"
+        len_response = requests.get(len_link).text
+        len_soup = BeautifulSoup(len_response, 'lxml')
+        len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+        images_link = len_block.find_all('div', class_ = 'image')
+
+        for imagerr in images_link:
+            images_linkss = imagerr.find('img').get("src")
+            array += [images_linkss]
+        img_pictur_url = choice(array)
+
+
+        idsr = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+        idsr.set_image(url=img_pictur_url)
+        message = await ctx.send(embed=idsr)
+        await message.add_reaction('▶')
+        msg = message.id
+        print(msg)
+
+
+        if msg == msg:
+            def check(reaction, user):
+                return user == ctx.author
+
+            i = 0
+            reaction = None
+
+            while True:
+                if str(reaction) == '▶':
+                    i = 0
+                    arrays = []
+
+                    nps = random.randint(1, 30000)
+                    len_link = f"http://anime.reactor.cc/{nps}"
+                    len_response = requests.get(len_link).text
+                    len_soup = BeautifulSoup(len_response, 'lxml')
+                    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+                    images_link = len_block.find_all('div', class_ = 'image')
+
+                    for imagerr in images_link:
+                            images_linksss = imagerr.find('img').get("src")
+                            arrays += [images_linksss]
+
+                    img_pictur_url = choice(arrays)
+                    print(img_pictur_url)
+                    idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                    idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+                    idsrs.set_image(url=img_pictur_url)
+
+
+                    await message.edit(embed = idsrs)
+
+                try:
+
+                    reaction, user = await Bot.wait_for('reaction_add', check = check)
+                    await message.remove_reaction(reaction, user)
+                except:
+                    break
+
 
     
     
