@@ -260,7 +260,7 @@ async def anime(ctx,arg1):
 
         arraysst = []
 
-        lenter_link = f"http://anime.reactor.cc/search/этти"
+        lenter_link = f"http://anime.reactor.cc/search/{arg1}"
 
         lenter_response = requests.get(lenter_link).text
         lenter_soup = BeautifulSoup(lenter_response, 'lxml')
@@ -279,8 +279,8 @@ async def anime(ctx,arg1):
 
 
         array = []
-        np = random.randint(1, int(imaperter_lent))
-        len_link = f"http://anime.reactor.cc/search/{arg1}/{np}"
+        nps = random.randint(1, int(imaperter_lent))
+        len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
 
         len_response = requests.get(len_link).text
         len_soup = BeautifulSoup(len_response, 'lxml')
@@ -316,7 +316,7 @@ async def anime(ctx,arg1):
                     arrays = []
 
                     nps = random.randint(1, int(imaperter_lent))
-                    len_link = f"http://anime.reactor.cc/search/{arg1}/{np}"
+                    len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
                     len_response = requests.get(len_link).text
                     len_soup = BeautifulSoup(len_response, 'lxml')
                     len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
