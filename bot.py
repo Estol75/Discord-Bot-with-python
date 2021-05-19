@@ -259,7 +259,7 @@ async def __wallpaper(ctx, arg1):
 async def anime(ctx,arg1):
         array = []
         np = random.randint(1, 3000)
-        len_link = f"http://anime.reactor.cc/tag/{arg1}/{np}"
+        len_link = f"http://anime.reactor.cc/search/{arg1}/{np}"
         len_response = requests.get(len_link).text
         len_soup = BeautifulSoup(len_response, 'lxml')
         len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
@@ -294,7 +294,7 @@ async def anime(ctx,arg1):
                     arrays = []
 
                     nps = random.randint(1, 30000)
-                    len_link = f"http://anime.reactor.cc/tag/{arg1}/{np}"
+                    len_link = f"http://anime.reactor.cc/search/{arg1}/{np}"
                     len_response = requests.get(len_link).text
                     len_soup = BeautifulSoup(len_response, 'lxml')
                     len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
@@ -321,7 +321,6 @@ async def anime(ctx,arg1):
                     await message.remove_reaction(reaction, user)
                 except:
                     break
-
 @Bot.command()
 async def animes(ctx):
         array = []
