@@ -315,7 +315,7 @@ async def anime(ctx,arg1):
                     i = 0
                     arrays = []
 
-                    nps = random.randint(1, 30000)
+                    nps = random.randint(1, int(imaperter_lent))
                     len_link = f"http://anime.reactor.cc/search/{arg1}/{np}"
                     len_response = requests.get(len_link).text
                     len_soup = BeautifulSoup(len_response, 'lxml')
