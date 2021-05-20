@@ -151,7 +151,7 @@ async def profile(ctx, *, message:str=None):
 
 
 @Bot.command()
-async def Windows10(ctx):
+async def windows10(ctx):
     embed = discord.Embed(title=f"Windows 10 Theme 1/5", description=f"Make your Windows better", color=0x141414)
     download_src = "https://www.youtube.com/watch?v=wzpjnFQ030M&ab_channel=LinkVegasLinkVegas"
     embed.add_field(name='Tutorial' ,value='[Click here to open YT video](' + download_src + ')', inline = False)
