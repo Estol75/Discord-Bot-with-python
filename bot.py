@@ -226,7 +226,28 @@ async def windows10(ctx):
             # ending the loop if user doesn't react after x seconds
 
 
+@Bot.command()
+async def server(ctx):
+    name = str(ctx.guild.name)
+    description = str(ctx.guild.description)
 
+    owner = str(ctx.guild.owner)
+    region = str(ctx.guild.region)
+    membercount = str(ctx.guild.member_count)
+    roles = str(ctx.guild.roles)
+    icon = str(ctx.guild.icon_url)
+    server_createt = str(ctx.guild.created_at.strftime("%d.%m.%Y"))
+    botcount = len(Bot.guilds)
+
+    embed = discord.Embed(title = name + "Server Information", description=description)
+    embed.set_thumbnail(url=icon)
+    embed.add_field(name= "Owner", value=owner, inline = True)
+    embed.add_field(name= "Region", value=region, inline = True)
+    embed.add_field(name= "Member Count", value=membercount, inline = True)
+
+    embed.add_field(name= "Server Createt", value=server_createt, inline = True)
+    embed.add_field(name= "Bot on", value=botcount + " servers", inline = True)
+    await ctx.send(embed=embed)
             
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
