@@ -255,6 +255,8 @@ async def __wallpaper(ctx, arg1):
 
 
 
+
+
 @Bot.command()
 async def anime(ctx,arg1):
 
@@ -303,46 +305,50 @@ async def anime(ctx,arg1):
         print(msg)
 
 
-        if msg == msg:
-            def check(reaction, user):
-                return user == ctx.author
 
-            i = 0
-            reaction = None
+        def check(reaction, user):
+                if reaction.message != message:
+                    return False
+                    # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
 
-            while True:
-                if str(reaction) == '▶':
-                    i = 0
-                    arrays = []
+                return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
+        i = 0
+        reaction = None
 
-                    nps = random.randint(1, int(imaperter_lent))
-                    len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
-                    len_response = requests.get(len_link).text
-                    len_soup = BeautifulSoup(len_response, 'lxml')
-                    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-                    images_link = len_block.find_all('div', class_ = 'image')
+        while True:
+            if str(reaction) == '▶':
+                i = 0
+                arrays = []
 
-                    for imagerr in images_link:
-                            images_linksss = imagerr.find('img').get("src")
-                            arrays += [images_linksss]
+                nps = random.randint(1, int(imaperter_lent))
+                len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
+                len_response = requests.get(len_link).text
+                len_soup = BeautifulSoup(len_response, 'lxml')
+                len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+                images_link = len_block.find_all('div', class_ = 'image')
 
-                    img_pictur_url = choice(arrays)
-                    print(img_pictur_url)
-                    idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
-                    idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-                    idsrs.set_image(url=img_pictur_url)
+                for imagerr in images_link:
+                        images_linksss = imagerr.find('img').get("src")
+                        arrays += [images_linksss]
+
+                img_pictur_url = choice(arrays)
+                print(img_pictur_url)
+                idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+                idsrs.set_image(url=img_pictur_url)
 
 
-                    await message.edit(embed = idsrs)
-                if str(reaction) == '❌':
-                    msggsss = await ctx.fetch_message(msg)
-                    await msggsss.delete()
-                try:
+                await message.edit(embed = idsrs)
+            if str(reaction) == '❌':
+                msggsss = await ctx.fetch_message(msg)
+                await msggsss.delete()
+            try:
 
-                    reaction, user = await Bot.wait_for('reaction_add', check = check)
-                    await message.remove_reaction(reaction, user)
-                except:
-                    break
+                reaction, user = await Bot.wait_for('reaction_add', check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
+
 @Bot.command()
 async def animes(ctx):
         array = []
