@@ -150,6 +150,82 @@ async def profile(ctx, *, message:str=None):
            await ctx.send(embed=embed)
 
 
+@Bot.command()
+async def Windows10(ctx):
+    embed = discord.Embed(title=f"Windows 10 Theme 1/5", description=f"Make your Windows better", color=0x141414)
+    download_src = "https://www.youtube.com/watch?v=wzpjnFQ030M&ab_channel=LinkVegasLinkVegas"
+    embed.add_field(name='Tutorial' ,value='[Click here to open YT video](' + download_src + ')', inline = False)
+    embed.set_image(url="http://i3.ytimg.com/vi/wzpjnFQ030M/maxresdefault.jpg")
+
+
+    page2 = discord.Embed(title=f"Windows 10 Theme 2/5", description=f"Make your Windows better", color=0x141414)
+    page_img = "https://www.youtube.com/watch?v=DRyGOkD9ouU&ab_channel=LinkVegasLinkVegas"
+    page2.add_field(name='Tutorial' ,value='[Click here to open YT video](' + page_img + ')', inline = False)
+    page2.set_image(url="https://img.youtube.com/vi/DRyGOkD9ouU/maxresdefault.jpg")
+
+    page3 = discord.Embed(title=f"Windows 10 Theme 3/5", description=f"Make your Windows better", color=0x141414)
+    page_imfg = "https://www.youtube.com/watch?v=4tvwEISJryY&ab_channel=TanjimTheTechGuyTanjimTheTechGuyBest%C3%A4tigt"
+    page3.add_field(name='Tutorial' ,value='[Click here to open YT video](' + page_imfg + ')', inline = False)
+    page3.set_image(url="https://img.youtube.com/vi/4tvwEISJryY/maxresdefault.jpg")
+
+    page4 = discord.Embed(title=f"Windows 10 Theme 4/5", description=f"Make your Windows better", color=0x141414)
+    page_imfsg = "https://www.youtube.com/watch?v=StnfG80ZvXY&ab_channel=TanjimTheTechGuyTanjimTheTechGuyBest%C3%A4tigt"
+    page4.add_field(name='Tutorial' ,value='[Click here to open YT video](' + page_imfsg + ')', inline = False)
+    page4.set_image(url="https://img.youtube.com/vi/StnfG80ZvXY/maxresdefault.jpg")
+
+    page5 = discord.Embed(title=f"Windows 10 Theme 5/5", description=f"Make your Windows better", color=0x141414)
+    pagse_imfsg = "https://www.youtube.com/watch?v=_xSSbLQ_-0A&ab_channel=ViralHattrixViralHattrix"
+    page5.add_field(name='Tutorial' ,value='[Click here to open YT video](' + pagse_imfsg + ')', inline = False)
+    page5.set_image(url="https://img.youtube.com/vi/_xSSbLQ_-0A/maxresdefault.jpg")
+
+    pages = [embed, page2, page3, page4, page5]
+
+    message = await ctx.send(embed = embed)
+    await message.add_reaction('⏮')
+    await message.add_reaction('◀️')
+    await message.add_reaction('▶️')
+    await message.add_reaction('⏭')
+    msgtr = message.id
+
+
+
+    def check(reaction, user):
+            if reaction.message != message:
+                return False
+                # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
+
+            return user == ctx.author and str(reaction.emoji) in ["⏮","◀️","▶️","⏭"]
+
+    i = 0
+    reaction = None
+    times = 0
+    while True:
+        try:
+            reaction, user = await Bot.wait_for('reaction_add', check=check)
+            if str(reaction) == '⏮':
+                i = 0
+                await message.edit(embed = pages[i])
+                await message.remove_reaction(reaction, user)
+            elif str(reaction) == '◀️':
+                if i > 0:
+                    i -= 1
+                    await message.edit(embed = pages[i])
+                    await message.remove_reaction(reaction, user)
+            elif str(reaction) == '▶️':
+                if i < 4:
+                    i += 1
+                    await message.edit(embed = pages[i])
+                    await message.remove_reaction(reaction, user)
+            elif str(reaction) == '⏭':
+                i = 4
+                await message.edit(embed = pages[i])
+                await message.remove_reaction(reaction, user)
+        except asyncio.TimeoutError:
+            await message.delete()
+            break
+            # ending the loop if user doesn't react after x seconds
+
+
 
             
 @Bot.command(aliases = ['wallpaper', 'обои'])
