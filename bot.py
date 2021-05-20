@@ -258,12 +258,13 @@ async def __wallpaper(ctx, arg1):
 
 
 @Bot.command()
-async def anime(ctx,arg1):
+async def anime(ctx, *args):
+        slot = '{}'.format('+'.join(args))
 
         arraysst = []
 
-        lenter_link = f"http://anime.reactor.cc/search/{arg1}"
-
+        lenter_link = f"http://anime.reactor.cc/search/{slot}"
+        print( lenter_link)
         lenter_response = requests.get(lenter_link).text
         lenter_soup = BeautifulSoup(lenter_response, 'lxml')
         lenter_block = lenter_soup.find('div', class_ = "pagination_expanded").find_all('a')
@@ -282,7 +283,7 @@ async def anime(ctx,arg1):
 
         array = []
         nps = random.randint(1, int(imaperter_lent))
-        len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
+        len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
 
         len_response = requests.get(len_link).text
         len_soup = BeautifulSoup(len_response, 'lxml')
@@ -321,7 +322,7 @@ async def anime(ctx,arg1):
                 arrays = []
 
                 nps = random.randint(1, int(imaperter_lent))
-                len_link = f"http://anime.reactor.cc/search/{arg1}/{nps}"
+                len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
                 len_response = requests.get(len_link).text
                 len_soup = BeautifulSoup(len_response, 'lxml')
                 len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
