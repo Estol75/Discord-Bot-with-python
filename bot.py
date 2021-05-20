@@ -237,7 +237,7 @@ async def server(ctx):
     roles = str(ctx.guild.roles)
     icon = str(ctx.guild.icon_url)
     server_createt = str(ctx.guild.created_at.strftime("%d.%m.%Y"))
-    botcount = len(Bot.guilds)
+
 
     embed = discord.Embed(title = name + "Server Information", description=description)
     embed.set_thumbnail(url=icon)
@@ -246,9 +246,9 @@ async def server(ctx):
     embed.add_field(name= "Member Count", value=membercount, inline = True)
 
     embed.add_field(name= "Server Createt", value=server_createt, inline = True)
-    embed.add_field(name= "Bot on", value=botcount + " servers", inline = True)
+
     await ctx.send(embed=embed)
-            
+    
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
     if arg1 == "help":
