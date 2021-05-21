@@ -37,13 +37,14 @@ intents.members = True
 
 client = discord.Client(intents=intents)
 from discord.ext import commands
-Bot = commands.Bot(command_prefix='--', intents=intents)
+
+Bot = commands.Bot(command_prefix='__', intents=intents)
 Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
     await Bot.change_presence(activity=discord.Game(name="мой бот сделан при поддержки 1x бет"))
-    
+
 @Bot.event
 async def on_member_join(member):
     embed = discord.Embed(title=f"Приветствую тебя на сервере {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер {member.mention}⠀⠀​​", color=0x00eeff)
@@ -52,14 +53,14 @@ async def on_member_join(member):
     embed.set_thumbnail(url=member.avatar_url)
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
     await channel.send(embed=embed)
-    
-    
+
+
 @Bot.event
 async def on_member_remove(member):
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
     msg = f"{member.mention} съебался нахуй "
     await channel.send(msg)
-    
+
 
 
 @Bot.command()
@@ -248,7 +249,7 @@ async def server(ctx):
     embed.add_field(name= "Server Createt", value=server_createt, inline = True)
 
     await ctx.send(embed=embed)
-    
+
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
     if arg1 == "help":
@@ -300,57 +301,68 @@ async def __wallpaper(ctx, arg1):
 
         message = await ctx.send(embed = idsr)
         await message.add_reaction('▶')
-        msg = message.id
-        print(msg)
-        if msg == msg:
-            def check(reaction, user):
-                return user == ctx.author
+        await message.add_reaction('❌')
 
-            i = 0
-            reaction = None
+        def check(reaction, user):
+                if reaction.message != message:
+                    return False
+                    # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
 
-            while True:
-                if str(reaction) == '▶':
-                    i = 0
-                    numbers = re.findall('[0-9]+', images_link)
+                return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
+        i = 0
+        reaction = None
 
-                    ranger = int(numbers[0])
-                    ranger_result = ranger - 1
+        while True:
+            if str(reaction) == '▶':
+                array = []
+                intt = arg1
 
-                    np = random.randint(1, ranger_result)
+                len_link = f"https://wallpaperscraft.com/search/?query={intt}"
+                len_response = requests.get(len_link).text
+                len_soup = BeautifulSoup(len_response, 'lxml')
+                len_block = len_soup.find('ul', class_ = "pager__list").find('li', class_ = "pager__item pager__item_last-page")
+                images_link = len_block.find('a').get('href')
 
+                #search using regex
+                numbers = re.findall('[0-9]+', images_link)
 
-                    link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
-                    response = requests.get(link).text
-
-                    soup = BeautifulSoup(response, 'lxml')
-                    download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
-                    for imagerr in download_block:
-                        images_link = imagerr.find('a').get('href')
-                        array += [images_link]
-                        # img=random.choice(images_link)
-                    second_link = f"https://wallpaperscraft.com{choice(array)}"
-                    second_response = requests.get(second_link).text
-                    second_soup = BeautifulSoup(second_response, 'lxml')
-                    download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
+                ranger = int(numbers[0])
+                ranger_result = ranger - 1
+                if ranger_result == 0:
+                    ranger_result + int(2)
+                np = random.randint(1, ranger_result)
 
 
-                    idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"используйте ▶ чтобы получить следующую картинку", color=0x141414)
-                    idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
-                    idsr.set_image(url=download_src)
-                    dfsf = await ctx.fetch_message(msg)
-                    await dfsf.edit(embed = idsr)
+                link = f'https://wallpaperscraft.com/search/?order=&page={np}&query={intt}&size=1920x1080'
+                response = requests.get(link).text
 
-                try:
+                soup = BeautifulSoup(response, 'lxml')
+                download_block = soup.find('div', class_ = "wallpapers wallpapers_zoom wallpapers_main").find_all('li', class_ = "wallpapers__item")
+                    # result_link = download_block.page_number.find('a').get('href')
+                for imagerr in download_block:
+                    images_link = imagerr.find('a').get('href')
+                    array += [images_link]
+                    # img=random.choice(images_link)
+                second_link = f"https://wallpaperscraft.com{choice(array)}"
+                second_response = requests.get(second_link).text
+                second_soup = BeautifulSoup(second_response, 'lxml')
+                download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
-                    reaction, user = await Bot.wait_for('reaction_add', timeout = 400.0, check = check)
-                    await message.remove_reaction(reaction, user)
-                except:
-                    break
 
+                idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
+                idsr.set_image(url=download_src)
+                await message.edit(embed = idsr)
 
+            if str(reaction) == '❌':
+                msggsss = await ctx.fetch_message(msg)
+                await msggsss.delete()
+            try:
 
-
+                reaction, user = await Bot.wait_for('reaction_add', check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
 
 
 
@@ -468,52 +480,57 @@ async def animes(ctx):
         idsr.set_image(url=img_pictur_url)
         message = await ctx.send(embed=idsr)
         await message.add_reaction('▶')
+        await message.add_reaction('❌')
         msg = message.id
         print(msg)
 
 
-        if msg == msg:
-            def check(reaction, user):
-                return user == ctx.author
+        def check(reaction, user):
+                if reaction.message != message:
+                    return False
+                    # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
 
-            i = 0
-            reaction = None
+                return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
+        i = 0
+        reaction = None
 
-            while True:
-                if str(reaction) == '▶':
-                    i = 0
-                    arrays = []
+        while True:
+            if str(reaction) == '▶':
+                i = 0
+                arrays = []
 
-                    nps = random.randint(1, 30000)
-                    len_link = f"http://anime.reactor.cc/{nps}"
-                    len_response = requests.get(len_link).text
-                    len_soup = BeautifulSoup(len_response, 'lxml')
-                    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-                    images_link = len_block.find_all('div', class_ = 'image')
+                nps = random.randint(1, 30000)
+                len_link = f"http://anime.reactor.cc/{nps}"
+                len_response = requests.get(len_link).text
+                len_soup = BeautifulSoup(len_response, 'lxml')
+                len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+                images_link = len_block.find_all('div', class_ = 'image')
 
-                    for imagerr in images_link:
-                            images_linksss = imagerr.find('img').get("src")
-                            arrays += [images_linksss]
+                for imagerr in images_link:
+                        images_linksss = imagerr.find('img').get("src")
+                        arrays += [images_linksss]
 
-                    img_pictur_url = choice(arrays)
-                    print(img_pictur_url)
-                    idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
-                    idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-                    idsrs.set_image(url=img_pictur_url)
-
-
-                    await message.edit(embed = idsrs)
-
-                try:
-
-                    reaction, user = await Bot.wait_for('reaction_add', check = check)
-                    await message.remove_reaction(reaction, user)
-                except:
-                    break
+                img_pictur_url = choice(arrays)
+                print(img_pictur_url)
+                idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+                idsrs.set_image(url=img_pictur_url)
 
 
-    
-    
+                await message.edit(embed = idsrs)
+
+            if str(reaction) == '❌':
+                msggsss = await ctx.fetch_message(msg)
+                await msggsss.delete()
+            try:
+
+                reaction, user = await Bot.wait_for('reaction_add', check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
+
+
+
 
 @Bot.event
 async def on_command_error(ctx, error):
@@ -643,6 +660,8 @@ async def ава(ctx, member: discord.Member):
     embed = discord.Embed(title=f"Аватарка {member}", description="", color=0x1780c2)
     embed.set_image(url=member.avatar_url)
     await ctx.send(embed=embed)
+
+
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
