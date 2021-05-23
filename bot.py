@@ -88,7 +88,7 @@ async def on_member_join(member):
 
 
 @Bot.command()
-async def bot(ctx):
+async def bot_status(ctx):
     servers = len(Bot.guilds)
     ping_ = Bot.latency
     ping =  round(ping_ * 1000)
