@@ -616,15 +616,11 @@ async def status(ctx, member: discord.Member):
     embe.add_field(name=f"Роли игрока({len(roles)})", value=" ".join({role.mention for role in roles}))
     await ctx.send(embed=embe)
 
-@Bot.command(pass_context = True)
-@commands.has_role(620623023296348180)
+@Bot.command()
+@commands.has_permissions(administrator = True)
 async def clear(ctx, amount = 10):
     await ctx.channel.purge(limit = amount)
 
-@Bot.command(pass_context = True)
-@commands.has_role(620623023296348180)
-async def moreclear(ctx, amount = 50):
-    await ctx.channel.purge(limit = amount)
 
 
 @Bot.command(pass_context=True)
