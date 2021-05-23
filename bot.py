@@ -43,7 +43,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="Prefix q. :pencil: 1.0.0"))
+    await Bot.change_presence(activity=discord.Game(name="q.help :pencil: 1.0.0"))
 
 data = {}
 
