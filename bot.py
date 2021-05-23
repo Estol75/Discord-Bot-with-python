@@ -417,102 +417,103 @@ async def __wallpaper(ctx, arg1):
 
 @Bot.command()
 async def anime(ctx, *args):
-    if args == "help":
-        embed = discord.Embed(title="Anime help", description="​", color=0xffc800)
-        embed.add_field(name="**popular anime tags **", value="`boobs`,`ass`, `ero`, `Kyonyuu`, `Pussy`, `Megane`, `bdsm`", inline=False)
-        await ctx.send(embed = embed)
-    else:
-        slot = '{}'.format('+'.join(args))
+    slot = '{}'.format('+'.join(args))
 
-        arraysst = []
+    arraysst = []
 
-        lenter_link = f"http://anime.reactor.cc/search/{slot}"
-        print( lenter_link)
-        lenter_response = requests.get(lenter_link).text
-        lenter_soup = BeautifulSoup(lenter_response, 'lxml')
-        lenter_block = lenter_soup.find('div', class_ = "pagination_expanded").find_all('a')
+    lenter_link = f"http://anime.reactor.cc/search/{slot}"
+    print( lenter_link)
+    lenter_response = requests.get(lenter_link).text
+    lenter_soup = BeautifulSoup(lenter_response, 'lxml')
+    lenter_block = lenter_soup.find('div', class_ = "pagination_expanded").find_all('a')
 
-        for imgrt in lenter_block:
-            imgsftr = imgrt.text
-            arraysst += [imgsftr]
+    for imgrt in lenter_block:
+        imgsftr = imgrt.text
+        arraysst += [imgsftr]
 
-        numbr = len(arraysst)
+    numbr = len(arraysst)
 
-        numbrfdf =  numbr - int(1)
+    numbrfdf =  numbr - int(1)
 
-        imaperter_lent = arraysst[numbrfdf]
+    imaperter_lent = arraysst[numbrfdf]
 
 
 
-        array = []
-        nps = random.randint(1, int(imaperter_lent))
-        len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
+    array = []
+    nps = random.randint(1, int(imaperter_lent))
+    len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
 
-        len_response = requests.get(len_link).text
-        len_soup = BeautifulSoup(len_response, 'lxml')
-        len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-        images_link = len_block.find_all('div', class_ = 'image')
+    len_response = requests.get(len_link).text
+    len_soup = BeautifulSoup(len_response, 'lxml')
+    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+    images_link = len_block.find_all('div', class_ = 'image')
 
-        for imagerr in images_link:
-            images_linkss = imagerr.find('img').get("src")
-            array += [images_linkss]
-        img_pictur_url = choice(array)
-
-
-        idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
-        idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-        idsr.set_image(url=img_pictur_url)
-        message = await ctx.send(embed=idsr)
-        await message.add_reaction('▶')
-        await message.add_reaction('❌')
-        msg = message.id
-        print(msg)
+    for imagerr in images_link:
+        images_linkss = imagerr.find('img').get("src")
+        array += [images_linkss]
+    img_pictur_url = choice(array)
 
 
-
-        def check(reaction, user):
-                if reaction.message != message:
-                    return False
-                    # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
-
-                return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
-        i = 0
-        reaction = None
-
-        while True:
-            if str(reaction) == '▶':
-                i = 0
-                arrays = []
-
-                nps = random.randint(1, int(imaperter_lent))
-                len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
-                len_response = requests.get(len_link).text
-                len_soup = BeautifulSoup(len_response, 'lxml')
-                len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-                images_link = len_block.find_all('div', class_ = 'image')
-
-                for imagerr in images_link:
-                        images_linksss = imagerr.find('img').get("src")
-                        arrays += [images_linksss]
-
-                img_pictur_url = choice(arrays)
-                print(img_pictur_url)
-                idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
-                idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-                idsrs.set_image(url=img_pictur_url)
+    idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
+    idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+    idsr.set_image(url=img_pictur_url)
+    message = await ctx.send(embed=idsr)
+    await message.add_reaction('▶')
+    await message.add_reaction('❌')
+    msg = message.id
+    print(msg)
 
 
-                await message.edit(embed = idsrs)
-            if str(reaction) == '❌':
-                msggsss = await ctx.fetch_message(msg)
-                await msggsss.delete()
-            try:
 
-                reaction, user = await Bot.wait_for('reaction_add', check = check)
-                await message.remove_reaction(reaction, user)
-            except:
-                break
+    def check(reaction, user):
+            if reaction.message != message:
+                return False
+                # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
 
+            return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
+    i = 0
+    reaction = None
+
+    while True:
+        if str(reaction) == '▶':
+            i = 0
+            arrays = []
+
+            nps = random.randint(1, int(imaperter_lent))
+            len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
+            len_response = requests.get(len_link).text
+            len_soup = BeautifulSoup(len_response, 'lxml')
+            len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+            images_link = len_block.find_all('div', class_ = 'image')
+
+            for imagerr in images_link:
+                    images_linksss = imagerr.find('img').get("src")
+                    arrays += [images_linksss]
+
+            img_pictur_url = choice(arrays)
+            print(img_pictur_url)
+            idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
+            idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+            idsrs.set_image(url=img_pictur_url)
+
+
+            await message.edit(embed = idsrs)
+        if str(reaction) == '❌':
+            msggsss = await ctx.fetch_message(msg)
+            await msggsss.delete()
+        try:
+
+            reaction, user = await Bot.wait_for('reaction_add', check = check)
+            await message.remove_reaction(reaction, user)
+        except:
+            break
+
+                
+@Bot.command()
+async def anime_help(ctx):
+    embed = discord.Embed(title="Anime help", description="Popular tags​", color=0xffc800)
+    embed.add_field(name="**popular anime tags **", value="`boobs`,`ass`, `ero`, `Kyonyuu`, `Pussy`, `Megane`, `bdsm`", inline=False)
+    await ctx.send(embed = embed)               
 @Bot.command()
 async def animes(ctx):
         array = []
