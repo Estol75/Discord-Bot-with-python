@@ -45,14 +45,55 @@ Bot.remove_command('help')
 async def on_ready():
     await Bot.change_presence(activity=discord.Game(name="мой бот сделан при поддержки 1x бет"))
 
+data = {}
+
+@Bot.command()
+async def welcome_channel(ctx, arg1):
+
+    serverid = ctx.guild.id
+    serveride = f"{serverid}"
+    print(serveride)
+    data[serveride] = []
+    data[serveride].append({
+        'name': arg1,
+    })
+
+
+    with open('data.txt', 'w') as outfile:
+        json.dump(data, outfile)
+
+
+    await ctx.send(f"you add welcome message to {arg1} channel")
+
+
 @Bot.event
 async def on_member_join(member):
-    embed = discord.Embed(title=f"Приветствую тебя на сервере {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер {member.mention}⠀⠀​​", color=0x00eeff)
+
+    embed = discord.Embed(title=f"Приветствую тебя на сервере {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер, {member.mention}⠀⠀​​", color=0x00eeff)
     embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
     embed.add_field(name="**У нас присутствует замечательный бот**", value="Для просмотра комманд `--commands`", inline=False)
     embed.set_thumbnail(url=member.avatar_url)
-    channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
+
+    serverid = member.guild.id
+    serveride = f"{serverid}"
+    with open('data.txt', 'r') as json_file:
+        data = json.load(json_file)
+    for p in data[serveride]:
+        numin = p['name']
+        print(numin)
+
+
+    channel = discord.utils.get(member.guild.channels, name = numin)
     await channel.send(embed=embed)
+
+
+@Bot.command()
+async def bot(ctx):
+    servers = len(Bot.guilds)
+    ping_ = Bot.latency
+    ping =  round(ping_ * 1000)
+    await ctx.send(f"Server count {servers}, My ping is {ping} ms")
+
 
 
 @Bot.event
