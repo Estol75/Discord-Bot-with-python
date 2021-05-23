@@ -113,6 +113,13 @@ async def user_agent(ctx):
 
 
 
+@Bot.command()
+async def invite(ctx):
+    embed = discord.Embed(title = "Discord Bot QBug Invite ", description="")
+    invite_link = "https://discord.com/api/oauth2/authorize?client_id=698494567007387689&permissions=8&scope=bot"
+    embed.add_field(name= ":incoming_envelope: Invite link", value='[Click here to invite](' + invite_link + ')', inline = False)
+
+    await ctx.send(embed = embed)
 
 
 
