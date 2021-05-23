@@ -414,8 +414,14 @@ async def __wallpaper(ctx, arg1):
 
 
 
+
 @Bot.command()
 async def anime(ctx, *args):
+    if args == "help":
+        embed = discord.Embed(title="Anime help", description="​", color=0xffc800)
+        embed.add_field(name="**popular anime tags **", value="`boobs`,`ass`, `ero`, `Kyonyuu`, `Pussy`, `Megane`, `bdsm`", inline=False)
+        await ctx.send(embed = embed)
+    else:
         slot = '{}'.format('+'.join(args))
 
         arraysst = []
