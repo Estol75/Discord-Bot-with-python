@@ -38,12 +38,12 @@ intents.members = True
 client = discord.Client(intents=intents)
 from discord.ext import commands
 
-Bot = commands.Bot(command_prefix='--', intents=intents)
+Bot = commands.Bot(command_prefix='q.', intents=intents)
 Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="мой бот сделан при поддержки 1x бет"))
+    await Bot.change_presence(activity=discord.Game(name="Prefix q. :pencil: 1.0.0"))
 
 data = {}
 
@@ -69,9 +69,9 @@ async def welcome_channel(ctx, arg1):
 @Bot.event
 async def on_member_join(member):
 
-    embed = discord.Embed(title=f"Приветствую тебя на сервере {member.guild.name}.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Добро Пожаловать на сервер, {member.mention}⠀⠀​​", color=0x00eeff)
+    embed = discord.Embed(title=f"Welcome to the {member.guild.name} server.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Welcome to server, {member.mention}⠀⠀​​", color=0x00eeff)
     embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-    embed.add_field(name="**У нас присутствует замечательный бот**", value="Для просмотра комманд `--commands`", inline=False)
+    embed.add_field(name="**We have amazing bot**", value="To view commands `--commands`", inline=False)
     embed.set_thumbnail(url=member.avatar_url)
 
     serverid = member.guild.id
@@ -99,7 +99,7 @@ async def bot_status(ctx):
 @Bot.event
 async def on_member_remove(member):
     channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
-    msg = f"{member.mention} съебался нахуй "
+    msg = f"{member.mention} leave discord server "
     await channel.send(msg)
 
 
@@ -300,10 +300,10 @@ async def server(ctx):
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
     if arg1 == "help":
-        embed = discord.Embed(title=f"Информационный блок команды wallpaper", description=f"", color=0x7d87f5)
-        embed.add_field(name='популярные жанры' , value='3D, Abstract, Animals, Anime, Art, Black \n Cars, City, Dark, Fantasy, Flowers, Food \n Holidays, Love, Macro, Nature, Space, Vector', inline = False)
-        embed.add_field(name='запрос картинки' , value='--wallpaper `<названия>`')
-        embed.set_footer(text=f"Запрос был сделан{ctx.author}", icon_url=ctx.author.avatar_url)
+        embed = discord.Embed(title=f"Wallpapers information block ", description=f"", color=0x7d87f5)
+        embed.add_field(name='frequent wallpapers' , value='3D, Abstract, Animals, Anime, Art, Black \n Cars, City, Dark, Fantasy, Flowers, Food \n Holidays, Love, Macro, Nature, Space, Vector', inline = False)
+        embed.add_field(name='picture request' , value='--wallpaper `<name>`')
+        embed.set_footer(text=f"request has done by{ctx.author}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
     else:
         array = []
@@ -341,7 +341,7 @@ async def __wallpaper(ctx, arg1):
         download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
 
-        idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr = discord.Embed(title=f"Wallpaper about {arg1}", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
         idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
         idsr.set_image(url=download_src)
 
@@ -396,7 +396,7 @@ async def __wallpaper(ctx, arg1):
                 download_src = second_soup.find('div', class_ = "wallpaper__placeholder").find('img', class_ = "wallpaper__image").get('src')
 
 
-                idsr = discord.Embed(title=f"Обои на тему {arg1}", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsr = discord.Embed(title=f"Wallpaper about {arg1}", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
                 idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + download_src + ')')
                 idsr.set_image(url=download_src)
                 await message.edit(embed = idsr)
@@ -452,7 +452,7 @@ async def anime(ctx, *args):
         img_pictur_url = choice(array)
 
 
-        idsr = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
         idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
         idsr.set_image(url=img_pictur_url)
         message = await ctx.send(embed=idsr)
@@ -490,7 +490,7 @@ async def anime(ctx, *args):
 
                 img_pictur_url = choice(arrays)
                 print(img_pictur_url)
-                idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
                 idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
                 idsrs.set_image(url=img_pictur_url)
 
@@ -522,7 +522,7 @@ async def animes(ctx):
         img_pictur_url = choice(array)
 
 
-        idsr = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+        idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
         idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
         idsr.set_image(url=img_pictur_url)
         message = await ctx.send(embed=idsr)
@@ -559,7 +559,7 @@ async def animes(ctx):
 
                 img_pictur_url = choice(arrays)
                 print(img_pictur_url)
-                idsrs = discord.Embed(title=f"Обои на тему Anime", description=f"Надеюсь вам нравится подобранные обои", color=0x141414)
+                idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture", color=0x141414)
                 idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
                 idsrs.set_image(url=img_pictur_url)
 
@@ -581,29 +581,17 @@ async def animes(ctx):
 
 @Bot.event
 async def on_command_error(ctx, error):
-        embed = discord.Embed(title="ОШИБКА", description="Извините но такая команда не найдена⠀или была неправильно выполнена⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
+        embed = discord.Embed(title="Error", description="The discord bot has application error⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
         await ctx.send(embed=embed)
 
 
-@Bot.command(pass_context=True)
-async def Revolycioner_Rab(ctx):
-    await ctx.send(file=discord.File('revo.jpg'))
 
 @Bot.command(pass_context=True)
 async def den4ikpro(ctx):
     await ctx.channel.purge(limit = 1)
     await ctx.send(file=discord.File('den.jpg'))
 
-@Bot.command()
-async def ping(ctx):
-    ping_ = Bot.latency
-    ping =  round(ping_ * 1000)
-    await ctx.send(f"my ping is {ping}ms")
 
-
-@Bot.command(pass_context=True)
-async def ФАШИСТЫ(ctx):
-    await ctx.send("КТО ФАШИСТ ГДЕ ФАШИСТ ТЫ ФАШИСТ У СУКА")
 
 
 @Bot.command()
@@ -612,15 +600,15 @@ async def status(ctx, member: discord.Member):
 
     embe = discord.Embed(colour=member.color, timestamp=ctx.message.created_at)
 
-    embe.set_author(name=f"Информация о пользователи - {member}")
+    embe.set_author(name=f"Information about User - {member}")
     embe.set_thumbnail(url=member.avatar_url)
-    embe.set_footer(text=f"Запрос был сделан {ctx.author}", icon_url=ctx.author.avatar_url)
+    embe.set_footer(text=f"request has done by {ctx.author}", icon_url=ctx.author.avatar_url)
 
-    embe.add_field(name="айди", value=member.id, inline=False)
-    embe.add_field(name="Никнейм", value=member.display_name)
-    embe.add_field(name="аккаунт был создан", value=member.created_at.strftime("%a, %#d %B %Y"))
-    embe.add_field(name="Присоединился к Дискорд серверу", value=member.joined_at.strftime("%a, %#d %B %Y"), inline=False)
-    embe.add_field(name=f"Роли игрока({len(roles)})", value=" ".join({role.mention for role in roles}))
+    embe.add_field(name="ID", value=member.id, inline=False)
+    embe.add_field(name="Nickname", value=member.display_name)
+    embe.add_field(name="Account was created", value=member.created_at.strftime("%a, %#d %B %Y"))
+    embe.add_field(name="Joined server on", value=member.joined_at.strftime("%a, %#d %B %Y"), inline=False)
+    embe.add_field(name=f"User roles({len(roles)})", value=" ".join({role.mention for role in roles}))
     await ctx.send(embed=embe)
 
 @Bot.command()
@@ -628,33 +616,6 @@ async def status(ctx, member: discord.Member):
 async def clear(ctx, amount = 10):
     await ctx.channel.purge(limit = amount)
 
-
-
-@Bot.command(pass_context=True)
-async def япутин(ctx):
-    await ctx.send(file=discord.File('putin.jpg'))
-
-@Bot.command(pass_context=True)
-async def дааашка(ctx):
-    await ctx.send(file=discord.File('Dashka.png'))
-
-
-
-@Bot.command(pass_context=True)
-async def рита(ctx):
-    await ctx.channel.purge(limit = 1)
-    await ctx.send(file=discord.File('rita.jpg'))
-
-@Bot.command(pass_context=True)
-async def киска(ctx):
-    await ctx.send("у твоей мамы")
-
-
-
-@Bot.command(pass_context=True)
-async def гусь_даун(ctx):
-    await ctx.channel.purge(limit = 1)
-    await ctx.send(file=discord.File('gdfgdfg.mp4'))
 
 
 @Bot.command(pass_context=True)
@@ -680,26 +641,10 @@ async def commands(ctx):
     await mess.add_reaction('👍🏻')
     await mess.add_reaction('👎🏻')
 
-@Bot.command(pass_context= True)
-async def info(ctx):
-    embed = discord.Embed(title="Полезная информация о городе", description="В этом списке вы найдёте всю необходимую информацию о городе​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x00eeff)
-    embed.add_field(name="**Айпи тест сервера**", value="95.217.46.155:25516", inline=False)
-    embed.add_field(name="**Собрание**", value="Собрание каждую cоботу через неделю", inline=False)
-    embed.add_field(name="**Мэр города на данный момент**", value="DoryGG а убрим не человек она обезьяна! ну бот и хуйня", inline=False)
-    await ctx.send(embed=embed)
 
-@Bot.command(pass_context= True)
-async def свадьба(ctx):
-    embed = discord.Embed(title="Расписание свадеб", description="В этом списке вы найдёте время и датут свадеб​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0x5adb7c)
-    embed.add_field(name="**Свадьба**", value="убрима и БЛАККУРТАЧКИИИИ 22.05.2020 в 18:00", inline=False)
-    embed.add_field(name="**Свадьба**", value="Утки и Революционера 22.05.2020 в 19:00", inline=False)
-    embed.add_field(name="**Свадьба**", value="Твентезера и бон завтра в 18:00", inline=False)
-    embed.add_field(name="**Свадьба**", value="Эстола и Ангелочки будет тогда когда она будет", inline=False)
-    embed.add_field(name="**под каблуком**", value="мафиозник у риверсонк! чё могу сказать помянем", inline=False)
-    await ctx.send(embed=embed)
 
 @Bot.command()
-async def ава(ctx, member: discord.Member):
+async def avatar(ctx, member: discord.Member):
     embed = discord.Embed(title=f"Аватарка {member}", description="", color=0x1780c2)
     embed.set_image(url=member.avatar_url)
     await ctx.send(embed=embed)
