@@ -48,6 +48,7 @@ async def on_ready():
 data = {}
 
 @Bot.command()
+@commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
 
     serverid = ctx.guild.id
