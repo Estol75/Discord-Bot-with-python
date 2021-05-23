@@ -633,21 +633,25 @@ async def дашка(ctx):
 
 
 @Bot.command(pass_context= True)
-async def commands(ctx):
-    embed = discord.Embed(title="Техноград Бот", description="Tут вы найдёте все команды бота​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xeee657)
-    embed.add_field(name="**Команда что бы посмотреть все координаты:**", value="--корды", inline=False)
-    embed.add_field(name="**Если нужны команды бота:**", value="--help", inline=False)
-    embed.add_field(name="**Oчистить текст:**", value="--clear число сообщений лимит 10 команда тока для Велоцераптор", inline=False)
-    embed.add_field(name="**Oчистить многа текста:**", value="--moreclear число сообщений лимит 50 команда тока для Велоцераптор", inline=False)
-    embed.add_field(name="**Узнать болше информацией о городе:**", value="--info", inline=False)
-    embed.add_field(name="**Забирать и добавлять себе роли:**", value="--role_help", inline=False)
-    embed.add_field(name="**Узнать информацию о пользователе:**", value="--status @ник", inline=False)
-    embed.add_field(name="**Посмотреть аватарку игрока в дискорде:**", value="--ава @ник", inline=False)
-    embed.add_field(name="**Нашел баг или хочешь предложить идею:**", value="пиши Estol#7368 в лс", inline=False)
-    embed.add_field(name="Author", value="Estol", inline=False)
-    mess = await ctx.send(embed=embed)
-    await mess.add_reaction('👍🏻')
-    await mess.add_reaction('👎🏻')
+async def help(ctx):
+    embed = discord.Embed(title="QBut Bot comamnds", description="In thist message can you find all commands​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xffc800)
+    embed.add_field(name="**Add Welcome message to channel **", value="`welcome_channel <Channel name>`, need administrator", inline=False)
+    embed.add_field(name="**:frame_photo: Show User avatar**", value="`avatar <@user>`", inline=False)
+    embed.add_field(name="**Show user discord status**", value="`status <@user>`", inline=False)
+
+    embed.add_field(name="**Anime Pictures**", value="`anime_help` or `<anime tag>`", inline=False)
+    embed.add_field(name="**Second anime command random anime picture**", value="`animes`", inline=False)
+    embed.add_field(name=":wales: **Wallpaper**", value="`wallpaper help` or `wallpaper <tag>`", inline=False)
+    embed.add_field(name="**Server status**", value="`server`", inline=False)
+    embed.add_field(name="**QBot invite link**", value="`invite`", inline=False)
+
+    embed.add_field(name=":milky_way: Windows 10 themes", value="`windows10`", inline=False)
+    embed.add_field(name="Minecraft profile information", value="`profile <nickname>`", inline=False)
+    embed.add_field(name=":tools: Clear command", value="`clear <amount>`, need administrator", inline=False)
+
+    await ctx.send(embed=embed)
+
+
 
 
 
