@@ -44,6 +44,26 @@ Bot.remove_command('help')
 async def on_ready():
     await Bot.change_presence(activity=discord.Game(name="q.help v1.0.0"))
 
+    
+@Bot.event
+async def on_guild_join(guild):
+    with open('lang.txt', 'r') as f:
+        data = json.load(f)
+        guild_id = str(guild.id)
+        serverid = guild_id
+        serveride = f"{serverid}"
+        print(serveride)
+        data[serveride] = []
+        data[serveride].append({
+            'name': "en",
+        })
+
+
+        with open('lang.txt', 'w') as outfile:
+            json.dump(data, outfile)
+    
+    
+
 data = {}
 
 @Bot.command()
