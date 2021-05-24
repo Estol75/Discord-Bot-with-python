@@ -140,10 +140,11 @@ async def test(ctx):
         numin = p['name']
 
         
+
     if numin == "ru":
-        print("russian")
+        await ctx.send("russian")
     else:
-        print("englich")
+        await ctx.send("english")
 
 
 data = {}
