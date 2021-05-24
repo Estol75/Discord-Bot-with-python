@@ -62,7 +62,42 @@ async def on_guild_join(guild):
         with open('lang.txt', 'w') as outfile:
             json.dump(data, outfile)
     
-    
+@Bot.command()
+async def tests(ctx):
+    user_serv_id = f"{ctx.guild.id}"
+    with open('lang.txt') as json_file:
+        data = json.load(json_file)
+    for p in data[user_serv_id]:
+        numin = p['name']
+
+        
+
+    if numin == "ru":
+        await ctx.send("russian")
+    else:
+        await ctx.send("english")
+
+
+data = {}
+@Bot.command()
+async def lang(ctx, arg1):
+
+    with open('lang.txt', 'r') as f:
+        data = json.load(f)
+
+        serverid = ctx.guild.id
+        serveride = f"{serverid}"
+        print(serveride)
+        data[serveride] = []
+        data[serveride].append({
+            'name': arg1,
+        })
+
+
+        with open('lang.txt', 'w') as outfile:
+            json.dump(data, outfile)
+
+   
 
 data = {}
 
@@ -130,41 +165,6 @@ async def user_agent(ctx):
     header = {'user-agent': user}
     await ctx.send(header)
 
-
-@Bot.command()
-async def test(ctx):
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
-
-        
-
-    if numin == "ru":
-        await ctx.send("russian")
-    else:
-        await ctx.send("english")
-
-
-data = {}
-@Bot.command()
-async def lang(ctx, arg1):
-
-    with open('lang.txt', 'r') as f:
-        data = json.load(f)
-
-        serverid = ctx.guild.id
-        serveride = f"{serverid}"
-        print(serveride)
-        data[serveride] = []
-        data[serveride].append({
-            'name': arg1,
-        })
-
-
-        with open('lang.txt', 'w') as outfile:
-            json.dump(data, outfile)
 
 
 @Bot.command()
