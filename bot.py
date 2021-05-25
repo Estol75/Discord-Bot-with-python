@@ -32,7 +32,7 @@ header = {'user-agent': user}
 
 intents = discord.Intents.default()
 intents.members = True
-intents = discord.Intents(messages=True, guilds=True)
+intents.guilds = True
 
 client = discord.Client(intents=intents)
 from discord.ext import commands
