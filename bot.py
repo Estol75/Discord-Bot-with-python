@@ -32,7 +32,7 @@ header = {'user-agent': user}
 
 intents = discord.Intents.default()
 intents.members = True
-
+intents = discord.Intents(messages=True, guilds=True)
 
 client = discord.Client(intents=intents)
 from discord.ext import commands
@@ -42,7 +42,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.5"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.6"))
 
 
 @Bot.event
