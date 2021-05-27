@@ -94,7 +94,7 @@ async def lang(ctx, arg1):
 
         with open('lang.txt', 'w') as outfile:
             json.dump(data, outfile)
-    await ctx.send(arg1)
+
 data = {}
 
 @Bot.command()
