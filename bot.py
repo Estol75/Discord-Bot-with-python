@@ -347,6 +347,57 @@ async def profile(ctx, *, message:str=None):
 
 
 @Bot.command()
+async def kiss(ctx, member: discord.Member):
+    img = [
+        "https://i.imgur.com/i1PIph3.gif",
+        "https://i.imgur.com/WVSwvm6.gif",
+        "https://i.imgur.com/sZhtvBR.gif",
+        "https://i.imgur.com/So3TIVK.gif",
+        "https://i.imgur.com/q340AoA.gif",
+        "https://i.imgur.com/o9MMMeW.gif",
+        "https://i.imgur.com/OjTBV8G.gif",
+        "https://i.imgur.com/SeCRpPp.gif",
+        "https://i.imgur.com/LRPJt19.gif",
+        "https://i.imgur.com/9R4XQIv.gif",
+        "https://i.imgur.com/FVlX0Vs.gif",
+        "https://i.imgur.com/9758cJX.gif",
+        "https://i.imgur.com/b3KBV8i.gif",
+        "https://i.imgur.com/YLkDu7a.gif",
+
+        "https://i.imgur.com/AOpGwmX.gif",
+        "https://i.imgur.com/hwrhrWZ.gif",
+        "https://i.imgur.com/KAmjoLO.gif",
+        "https://i.imgur.com/yP3W3pH.gif",
+        "https://i.imgur.com/SS7sQpj.gif",
+        "https://i.imgur.com/ltDNY6b.gif",
+        "https://i.imgur.com/THyefKo.gif",
+        "https://i.imgur.com/QETjUCT.gif",
+        "https://i.imgur.com/L0ujw2R.gif"
+
+
+    ]
+    #check language
+    user_serv_id = f"{ctx.guild.id}"
+    with open('lang.txt') as json_file:
+        data = json.load(json_file)
+    for p in data[user_serv_id]:
+        numin = p['name']
+    #command
+    if numin == "ru":
+        num = random.randint(0,23)
+        embed = discord.Embed(title=f"{ctx.author.name} поцеловал(а) {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+        embed.set_image(url=img[num])
+        await ctx.send(embed = embed)
+    else:
+        num = random.randint(0,23)
+        embed = discord.Embed(title=f"{ctx.author.name} kiss {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+        embed.set_image(url=img[num])
+        await ctx.send(embed = embed)
+        
+        
+@Bot.command()
 async def windows10(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
