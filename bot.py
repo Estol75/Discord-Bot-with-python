@@ -151,6 +151,45 @@ async def on_member_join(member):
         channel = discord.utils.get(member.guild.channels, name = numin)
         await channel.send(embed=embed)
 
+@Bot.command()
+async def sex(ctx, member: discord.Member):
+    img = [
+        "https://wetgif.com/wp-content/uploads/gif-hentai-incest-19-1.gif",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4q5Q1GC9L9LZG-28yP7uIIa_mK5qdgmN1qgdPRvwnzvERlOc&s",
+        "https://www.eroticaingif.com/upload/2019/01/12/20190112041432-babece34.gif",
+        "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
+        "https://lh3.googleusercontent.com/proxy/MsWv7sK3KDewBjIG4JdTHyfC-5H-PV57QoTthW-_-B6_2MGuhynlsXZE_gk4oBTM6MocES2VkDTJaMPaSodoIR9vZ1gVALSmSg",
+        "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
+        "https://cdn.hentaihand.com/assets/images/531302/4.gif",
+        "http://i.redd.it/k37eby6s0q641.gif",
+        "https://www.xxx-3d.com/thumb/176/769_rose.jpg",
+        "https://thehentaigif.com/wp-content/uploads/2020/10/22688886-81.gif",
+        "https://lh3.googleusercontent.com/proxy/cdnBWyXQkGbDzbMj9zzwoy5uaC_FXeY3ZZDLjRIAS2Wgp06fskzjQEro6bAbXE-kG-LHABqiVrLwBI-M-OZswi0napnpi2XCuZDClgEQXkvfw12Pz7-ze6CPOXBs9_UdmyUsp27Iz0F3",
+        "https://static.hentai-gif-anime.com/upload/20200717/76/153902/detail.gif",
+        "https://i0.wp.com/uncensored-hentai.top/wp-content/uploads/2020/07/my-hero-academia-9.gif?ssl=1",
+        "http://i.redd.it/0f80ek7tis851.gif",
+
+
+    ]
+    #check language
+    user_serv_id = f"{ctx.guild.id}"
+    with open('lang.txt') as json_file:
+        data = json.load(json_file)
+    for p in data[user_serv_id]:
+        numin = p['name']
+    #command
+    if numin == "ru":
+        num = random.randint(0,14)
+        embed = discord.Embed(title=f"{ctx.author.name} шрекнул(ся) с {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+        embed.set_image(url=img[num])
+        await ctx.send(embed = embed)
+    else:
+        num = random.randint(0,23)
+        embed = discord.Embed(title=f"{ctx.author.name} sex {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+        embed.set_image(url=img[num])
+        await ctx.send(embed = embed)
 
 @Bot.command()
 async def bot_status(ctx):
