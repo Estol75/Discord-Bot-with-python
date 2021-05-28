@@ -23,7 +23,7 @@ import random
 from random import choice
 import fake_useragent
 
-
+from discord.ext import commands
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
@@ -1091,6 +1091,68 @@ async def avatar(ctx, member: discord.Member):
         await ctx.send(embed=embed)
 
 
+# Read the Data files and store them in a variable
+
+
+OWNERID = 249182889386704897
+
+# Define "Bot"
+
+# Let us Know when the Bot is ready and has started
+
+# A simple and small ERROR handler
+@Bot.event
+async def on_command_error(ctx,error):
+    embed = discord.Embed(
+    title='',
+    color=discord.Color.red())
+    if isinstance(error, commands.CommandNotFound):
+        pass
+    if isinstance(error, commands.MissingPermissions):
+        embed.add_field(name=f'Invalid Permissions', value=f'You dont have {error.missing_perms} permissions.')
+        await ctx.send(embed=embed)
+    else:
+        embed.add_field(name = f':x: Terminal Error', value = f"```{error}```")
+        await ctx.send(embed = embed)
+        raise error
+
+# Load command to manage our "Cogs" or extensions
+@Bot.command()
+async def load(ctx, extension):
+    # Check if the user running the command is actually the owner of the Bot
+    if ctx.author.id == OWNERID:
+        Bot.load_extension(f'Cogs.{extension}')
+        await ctx.send(f"Enabled the Cog!")
+    else:
+        await ctx.send(f"You are not cool enough to use this command")
+
+# Unload command to manage our "Cogs" or extensions
+@Bot.command()
+async def unload(ctx, extension):
+    # Check if the user running the command is actually the owner of the Bot
+    if ctx.author.id == OWNERID:
+        Bot.unload_extension(f'Cogs.{extension}')
+        await ctx.send(f"Disabled the Cog!")
+    else:
+        await ctx.send(f"You are not cool enough to use this command")
+
+# Reload command to manage our "Cogs" or extensions
+@Bot.command(name = "reload")
+async def reload_(ctx, extension):
+    # Check if the user running the command is actually the owner of the Bot
+    if ctx.author.id == OWNERID:
+        Bot.reload_extension(f'Cogs.{extension}')
+        await ctx.send(f"Reloaded the Cog!")
+    else:
+        await ctx.send(f"You are not cool enough to use this command")
+
+# Automatically load all the .py files in the Cogs folder
+for filename in os.listdir('./Cogs'):
+    if filename.endswith('.py'):
+        try:
+            Bot.load_extension(f'Cogs.{filename[:-3]}')
+        except Exception:
+            raise Exception
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
