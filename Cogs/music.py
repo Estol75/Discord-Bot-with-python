@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-
+import json
 import asyncio
 import itertools
 import sys
@@ -60,23 +60,51 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def create_source(cls, ctx, search: str, *, loop, download=False):
-        loop = loop or asyncio.get_event_loop()
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
+        #language check
+        if numin == "ru":
+            loop = loop or asyncio.get_event_loop()
 
-        to_run = partial(ytdl.extract_info, url=search, download=download)
-        data = await loop.run_in_executor(None, to_run)
+            to_run = partial(ytdl.extract_info, url=search, download=download)
+            data = await loop.run_in_executor(None, to_run)
 
-        if 'entries' in data:
-            # take first item from a playlist
-            data = data['entries'][0]
+            if 'entries' in data:
+                # take first item from a playlist
+                data = data['entries'][0]
+            embedss = discord.Embed(title="Песня добавлена", description=f'названия песни​ `{data["title"]}​`', color=0xffc800)
+            await ctx.send(embed = embedss)
 
-        await ctx.send(f'```ini\n[Added {data["title"]} to the Queue.]\n```')
+            if download:
+                source = ytdl.prepare_filename(data)
+            else:
+                return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
 
-        if download:
-            source = ytdl.prepare_filename(data)
+            return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
         else:
-            return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
+            loop = loop or asyncio.get_event_loop()
 
-        return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
+            to_run = partial(ytdl.extract_info, url=search, download=download)
+            data = await loop.run_in_executor(None, to_run)
+
+
+            if 'entries' in data:
+                # take first item from a playlist
+                data = data['entries'][0]
+            embedss = discord.Embed(title="Song added", description=f'Song name​ `{data["title"]}​`', color=0xffc800)
+            await ctx.send(embed = embedss)
+
+            if download:
+                source = ytdl.prepare_filename(data)
+            else:
+                return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
+
+            return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
+
+
 
     @classmethod
     async def regather_stream(cls, data, *, loop):
@@ -98,9 +126,14 @@ class MusicPlayer(commands.Cog):
     When the bot disconnects from the Voice it's instance will be destroyed.
     """
 
-    __slots__ = ('bot', '_guild', '_channel', '_cog', 'queue', 'next', 'current', 'np', 'volume')
+    __slots__ = ('bot', '_guild', '_channel', '_cog', 'queue', 'next', 'current', 'np', 'volume', 'ctx')
 
     def __init__(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         self.bot = ctx.bot
         self._guild = ctx.guild
         self._channel = ctx.channel
@@ -116,6 +149,7 @@ class MusicPlayer(commands.Cog):
         ctx.bot.loop.create_task(self.player_loop())
 
     async def player_loop(self):
+
         """Our main player loop."""
         await self.bot.wait_until_ready()
 
@@ -214,6 +248,12 @@ class Music(commands.Cog):
 
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
+        #language check
         try:
             channel = ctx.author.voice.channel
         except AttributeError:
@@ -233,8 +273,10 @@ class Music(commands.Cog):
                 await channel.connect()
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
-
-        await ctx.send(f'Connected to: **{channel}**', )
+        if numin == "ru":
+            await ctx.send(f'Бот подключился к: **{channel}**', )
+        else:
+            await ctx.send(f'Connected to: **{channel}**', )
 
     @commands.command(name='play', aliases=['sing'])
     async def play_(self, ctx, *, search: str):
