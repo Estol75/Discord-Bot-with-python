@@ -123,6 +123,7 @@ async def welcome_channel(ctx, arg1):
         await ctx.send(f"you add welcome message to {arg1} channel")
 
 
+
 @Bot.event
 async def on_member_join(member):
     #check language
