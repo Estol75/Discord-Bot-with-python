@@ -101,7 +101,7 @@ data = {}
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('data.txt') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
