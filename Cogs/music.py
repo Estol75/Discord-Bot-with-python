@@ -129,13 +129,10 @@ class MusicPlayer(commands.Cog):
     __slots__ = ('bot', '_guild', '_channel', '_cog', 'queue', 'next', 'current', 'np', 'volume', 'ctx')
 
     def __init__(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+
         self.bot = ctx.bot
         self._guild = ctx.guild
+        self._guilds = ctx.guild.id
         self._channel = ctx.channel
         self._cog = ctx.cog
 
@@ -149,7 +146,12 @@ class MusicPlayer(commands.Cog):
         ctx.bot.loop.create_task(self.player_loop())
 
     async def player_loop(self):
-
+        print(self._guilds)
+        user_serv_id = f"{self._guilds}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Our main player loop."""
         await self.bot.wait_until_ready()
 
@@ -169,16 +171,23 @@ class MusicPlayer(commands.Cog):
                 try:
                     source = await YTDLSource.regather_stream(source, loop=self.bot.loop)
                 except Exception as e:
-                    await self._channel.send(f'There was an error processing your song.\n'
-                                             f'```css\n[{e}]\n```')
+                    if numin == "ru":
+                        await self._channel.send(f'При обработке вашей песни произошла ошибка.\n'
+                                                 f'```css\n[{e}]\n```')
+                    else:
+                        await self._channel.send(f'There was an error processing your song.\n'
+                                                 f'```css\n[{e}]\n```')
                     continue
 
             source.volume = self.volume
             self.current = source
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
-            self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
-                                               f'`{source.requester}`')
+            if numin == "ru":
+                self.np = await self._channel.send(f'**Щяс играет:** `{source.title}`')
+            else:
+                self.np = await self._channel.send(f'**Now Playing:** `{source.title}`')
+
             await self.next.wait()
 
             # Make sure the ffmpeg process is cleaned up.
@@ -267,18 +276,24 @@ class Music(commands.Cog):
             try:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(f'Moving to channel: <{channel}> timed out.')
+                if numin == "ru":
+                    raise VoiceConnectionError(f'Переход на канал: <{channel}> время вышло.')
+                else:
+                    raise VoiceConnectionError(f'Moving to channel: <{channel}> timed out.')
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
+                if numin == "ru":
+                    raise VoiceConnectionError(f'Подключение к каналу: <{channel}> время вышло.')
+                else:
+                    raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
         if numin == "ru":
             await ctx.send(f'Бот подключился к: **{channel}**', )
         else:
             await ctx.send(f'Connected to: **{channel}**', )
 
-    @commands.command(name='play', aliases=['sing'])
+    @commands.command(name='play', aliases=['sing', 'p'])
     async def play_(self, ctx, *, search: str):
         await ctx.trigger_typing()
 
@@ -297,37 +312,66 @@ class Music(commands.Cog):
 
     @commands.command(name='pause')
     async def pause_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Pause the currently playing song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_playing():
-            return await ctx.send('I am not currently playing anything!')
+            if numin == "ru":
+                return await ctx.send('Я сейчас ни во что не играю!')
+            else:
+                return await ctx.send('I am not currently playing anything!')
         elif vc.is_paused():
             return
 
         vc.pause()
-        await ctx.send(f'**`{ctx.author}`**: Paused the song!')
+        if numin == "ru":
+            await ctx.send(f'**`{ctx.author}`**: Поставил(а) песню на паузу!')
+        else:
+            await ctx.send(f'**`{ctx.author}`**: Paused the song!')
 
     @commands.command(name='resume')
     async def resume_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Resume the currently paused song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!', )
+            if numin == "ru":
+                return await ctx.send('Я сейчас ни во что не играю!', )
+            else:
+                return await ctx.send('I am not currently playing anything!', )
         elif not vc.is_paused():
             return
 
         vc.resume()
-        await ctx.send(f'**`{ctx.author}`**: Resumed the song!')
-
+        if numin == "ru":
+            await ctx.send(f'**`{ctx.author}`**: Продолжил(а) песню!')
+        else:
+            await ctx.send(f'**`{ctx.author}`**: Resumed the song!')
     @commands.command(name='skip')
     async def skip_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Skip the song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!')
+            if numin == "ru":
+                return await ctx.send('Я сейчас ни во что не играю!')
+            else:
+                return await ctx.send('I am not currently playing anything!')
 
         if vc.is_paused():
             pass
@@ -335,20 +379,32 @@ class Music(commands.Cog):
             return
 
         vc.stop()
-        await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
+        if numin == "ru":
+            await ctx.send(f'**`{ctx.author}`**: Пропустил(a) песню')
+        else:
+            await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
 
     @commands.command(name='queue', aliases=['q', 'playlist'])
     async def queue_info(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Retrieve a basic queue of upcoming songs."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently connected to voice!')
-
+            if numin == "ru":
+                return await ctx.send('я не подключен к голосовому каналу')
+            else:
+                return await ctx.send('I am not currently connected to voice!')
         player = self.get_player(ctx)
         if player.queue.empty():
-            return await ctx.send('There are currently no more queued songs.')
-
+            if numin == "ru":
+                return await ctx.send('В данный момент песен в очереди нет.')
+            else:
+                return await ctx.send('There are currently no more queued songs.')
         # Grab up to 5 entries from the queue...
         upcoming = list(itertools.islice(player.queue._queue, 0, 5))
 
@@ -359,27 +415,50 @@ class Music(commands.Cog):
 
     @commands.command(name='now_playing', aliases=['np', 'current', 'currentsong', 'playing'])
     async def now_playing_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Display information about the currently playing song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently connected to voice!', )
+            if numin == "ru":
+                return await ctx.send('я не подключен к голосовому каналу', )
+            else:
+                return await ctx.send('I am not currently connected to voice!', )
 
         player = self.get_player(ctx)
         if not player.current:
-            return await ctx.send('I am not currently playing anything!')
+            if numin == "ru":
+                return await ctx.send('Я сейчас ни во что не играю!')
+            else:
+                return await ctx.send('I am not currently playing anything!')
 
         try:
             # Remove our previous now_playing message.
             await player.np.delete()
         except discord.HTTPException:
             pass
-
-        player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
-                                   f'requested by `{vc.source.requester}`')
-
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
+        if numin == "ru":
+            player.np = await ctx.send(f'**Щяс играет:** `{vc.source.title}` '
+                                       f'запросил(а) `{vc.source.requester}`')
+        else:
+            player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
+                                       f'requested by `{vc.source.requester}`')
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Change the player volume.
         Parameters
         ------------
@@ -389,21 +468,32 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently connected to voice!', )
-
+            if numin == "ru":
+                return await ctx.send('я не подключен к голосовому каналу!', )
+            else:
+                return await ctx.send('I am not currently connected to voice!', )
         if not 0 < vol < 101:
-            return await ctx.send('Please enter a value between 1 and 100.')
-
+            if numin == "ru":
+                return await ctx.send('Пожалуйста, выберите между 1 и 100.')
+            else:
+                return await ctx.send('Please enter a value between 1 and 100.')
         player = self.get_player(ctx)
 
         if vc.source:
             vc.source.volume = vol / 100
 
         player.volume = vol / 100
-        await ctx.send(f'**`{ctx.author}`**: Set the volume to **{vol}%**')
-
+        if numin == "ru":
+            await ctx.send(f'**`{ctx.author}`**: Поставил громкость на **{vol}%**')
+        else:
+            await ctx.send(f'**`{ctx.author}`**: Set the volume to **{vol}%**')
     @commands.command(name='stop', aliases=['leave'])
     async def stop_(self, ctx):
+        user_serv_id = f"{ctx.guild.id}"
+        with open('lang.txt') as json_file:
+            data = json.load(json_file)
+        for p in data[user_serv_id]:
+            numin = p['name']
         """Stop the currently playing song and destroy the player.
         !Warning!
             This will destroy the player assigned to your guild, also deleting any queued songs and settings.
@@ -411,8 +501,10 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!')
-
+            if numin == "ru":
+                return await ctx.send('Я сейчас ни во что не играю!')
+            else:
+                return await ctx.send('I am not currently playing anything!')
         await self.cleanup(ctx.guild)
 
 
