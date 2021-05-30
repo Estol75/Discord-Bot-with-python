@@ -113,14 +113,14 @@ data = {}
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
-    user_serv_id = f"{ctx.guild.id}"
+    user_serv_id = f"{member.guild.id}"
     with open('data.txt') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
     with open('data.txt', 'r') as f:
         data = json.load(f)
-        guild_id = ctx.author.id
+        guild_id = member.author.id
         serverid = guild_id
         serveride = f"{serverid}"
         data[serveride] = []
