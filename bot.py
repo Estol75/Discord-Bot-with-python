@@ -60,7 +60,20 @@ async def on_guild_join(guild):
 
         with open('lang.txt', 'w') as outfile:
             json.dump(data, outfile)
+            
+    with open('data.txt', 'r') as f:
+        data = json.load(f)
+        guild_id = str(guild.id)
+        serverid = guild_id
+        serveride = f"{serverid}"
+        print(serveride)
+        data[serveride] = []
+        data[serveride].append({
+            'name': "General",
+        })
 
+        with open('data.txt', 'w') as outfile:
+            json.dump(data, outfile)
 
 @Bot.command()
 async def lang_test(ctx):
