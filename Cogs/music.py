@@ -184,7 +184,7 @@ class MusicPlayer(commands.Cog):
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             if numin == "ru":
-                self.np = await self._channel.send(f'**Щяс играет:** `{source.title}`')
+                self.np = await self._channel.send(f'**сейчас играет:** `{source.title}`')
             else:
                 self.np = await self._channel.send(f'**Now Playing:** `{source.title}`')
 
@@ -447,7 +447,7 @@ class Music(commands.Cog):
         for p in data[user_serv_id]:
             numin = p['name']
         if numin == "ru":
-            player.np = await ctx.send(f'**Щяс играет:** `{vc.source.title}` '
+            player.np = await ctx.send(f'**сейчас играет:** `{vc.source.title}` '
                                        f'запросил(а) `{vc.source.requester}`')
         else:
             player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
