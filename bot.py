@@ -63,7 +63,7 @@ async def on_guild_join(guild):
 
 
 @Bot.command()
-async def test(ctx):
+async def lang_test(ctx):
     user_serv_id = f"{ctx.guild.id}"
     with open('lang.txt') as json_file:
         data = json.load(json_file)
@@ -71,14 +71,14 @@ async def test(ctx):
         numin = p['name']
 
     if numin == "ru":
-        await ctx.send("russian")
+        await ctx.send("На сервере поставлен русский язык")
     else:
-        await ctx.send("english")
+        await ctx.send("On server is english language")
 
 
 
 @Bot.command()
-async def lang(ctx, arg1):
+async def set_lang(ctx, arg1):
 
     with open('lang.txt', 'r') as f:
         data = json.load(f)
@@ -100,21 +100,27 @@ data = {}
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
+    user_serv_id = f"{ctx.guild.id}"
+    with open('lang.txt') as json_file:
+        data = json.load(json_file)
+    for p in data[user_serv_id]:
+        numin = p['name']
+    with open('data.txt', 'r') as f:
+        data = json.load(f)
+        guild_id = ctx.author.id
+        serverid = guild_id
+        serveride = f"{serverid}"
+        data[serveride] = []
+        data[serveride].append({
+            'name': arg1,
+        })
 
-    serverid = ctx.guild.id
-    serveride = f"{serverid}"
-    print(serveride)
-    data[serveride] = []
-    data[serveride].append({
-        'name': arg1,
-    })
-
-
-    with open('data.txt', 'w') as outfile:
-        json.dump(data, outfile)
-
-
-    await ctx.send(f"you add welcome message to {arg1} channel")
+        with open('data.txt', 'w') as outfile:
+            json.dump(data, outfile)
+    if numin == "ru":
+        await ctx.send(f"Вы добавляете приветственное сообщение в {arg1} канал")
+    else:
+        await ctx.send(f"you add welcome message to {arg1} channel")
 
 
 @Bot.event
