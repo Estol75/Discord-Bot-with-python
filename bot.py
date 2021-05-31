@@ -70,9 +70,9 @@ async def on_guild_join(guild):
         serveride = f"{serverid}"
         print(serveride)
         data[serveride] = []
-        data[serveride].append({
-            'name': "general",
-        })
+        data[serveride].append{
+            'name': "general"
+        )
 
         with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
@@ -116,7 +116,7 @@ data = {}
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
     user_serv_id = f"{ctx.guild.id}"
-    with open('data.json') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
