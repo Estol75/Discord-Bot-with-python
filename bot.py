@@ -137,6 +137,26 @@ async def welcome_channel(ctx, arg1):
         await ctx.send(f"you add welcome message to {arg1} channel")
 
 
+@Bot.command()
+@commands.has_permissions(administrator=True, manage_roles=True)
+async def e48(ctx, emoji, role: discord.Role, *, message):
+
+    emb = discord.Embed(description=message)
+    msg = await ctx.channel.send(embed=emb)
+    await msg.add_reaction(emoji)
+
+    with open('reactrole.json') as json_file:
+        data = json.load(json_file)
+
+        new_react_role = {'role_name': role.name,
+        'role_id': role.id,
+        'emoji': emoji,
+        'message_id': msg.id}
+
+        data.append(new_react_role)
+
+    with open('reactrole.json', 'w') as f:
+        json.dump(data, f, indent=4)
 
 @Bot.event
 async def on_member_join(member):
