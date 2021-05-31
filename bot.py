@@ -74,8 +74,9 @@ async def on_guild_join(guild):
             'name': "general"
         })
 
-        with open('data.json', 'w') as outfile:
-            json.dump(data, outfile)
+    with open('data.json', 'w') as outfile:
+        json.dump(data, outfile)
+
 
 @Bot.command()
 async def lang_test(ctx):
