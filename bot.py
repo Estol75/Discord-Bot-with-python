@@ -47,7 +47,7 @@ async def on_ready():
 
 @Bot.event
 async def on_guild_join(guild):
-    with open('lang.txt', 'r') as f:
+    with open('lang.json', 'r') as f:
         data = json.load(f)
         guild_id = str(guild.id)
         serverid = guild_id
@@ -58,10 +58,12 @@ async def on_guild_join(guild):
             'name': "en",
         })
 
-        with open('lang.txt', 'w') as outfile:
+        with open('lang.json', 'w') as outfile:
             json.dump(data, outfile)
             
-    with open('data.txt', 'r') as f:
+@Bot.event
+async def on_guild_join(guild):
+    with open('data.json', 'r') as f:
         data = json.load(f)
         guild_id = str(guild.id)
         serverid = guild_id
@@ -69,16 +71,16 @@ async def on_guild_join(guild):
         print(serveride)
         data[serveride] = []
         data[serveride].append({
-            'name': "General",
+            'name': "general",
         })
 
-        with open('data.txt', 'w') as outfile:
+        with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
 
 @Bot.command()
 async def lang_test(ctx):
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -93,7 +95,7 @@ async def lang_test(ctx):
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def set_lang(ctx, arg1):
-    with open('lang.txt', 'r') as f:
+    with open('lang.json', 'r') as f:
         data = json.load(f)
 
         serverid = ctx.guild.id
@@ -105,7 +107,7 @@ async def set_lang(ctx, arg1):
         })
 
 
-        with open('lang.txt', 'w') as outfile:
+        with open('lang.json', 'w') as outfile:
             json.dump(data, outfile)
     await ctx.send(arg1)
 data = {}
@@ -114,11 +116,11 @@ data = {}
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
     user_serv_id = f"{ctx.guild.id}"
-    with open('data.txt') as json_file:
+    with open('data.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
-    with open('data.txt', 'r') as f:
+    with open('data.json', 'r') as f:
         data = json.load(f)
         guild_id = ctx.author.id
         serverid = guild_id
@@ -128,7 +130,7 @@ async def welcome_channel(ctx, arg1):
             'name': arg1,
         })
 
-        with open('data.txt', 'w') as outfile:
+        with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
     if numin == "ru":
         await ctx.send(f"Вы добавляете приветственное сообщение в {arg1} канал")
@@ -141,7 +143,7 @@ async def welcome_channel(ctx, arg1):
 async def on_member_join(member):
     #check language
     user_serv_id = f"{member.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -149,7 +151,7 @@ async def on_member_join(member):
 
     serverid = member.guild.id
     serveride = f"{serverid}"
-    with open('data.txt', 'r') as json_file:
+    with open('data.json', 'r') as json_file:
         data = json.load(json_file)
     for p in data[serveride]:
         numin = p['name']
@@ -193,7 +195,7 @@ async def sex(ctx, member: discord.Member):
     ]
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -215,7 +217,7 @@ async def sex(ctx, member: discord.Member):
 async def bot_status(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -248,7 +250,7 @@ async def user_agent(ctx):
 async def invite(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -269,7 +271,7 @@ async def invite(ctx):
 async def profile(ctx, *, message:str=None):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -437,7 +439,7 @@ async def kiss(ctx, member: discord.Member):
     ]
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -460,7 +462,7 @@ async def kiss(ctx, member: discord.Member):
 async def windows10(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -580,7 +582,7 @@ async def server(ctx):
     server_createt = str(ctx.guild.created_at.strftime("%d.%m.%Y"))
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -611,7 +613,7 @@ async def server(ctx):
 async def __wallpaper(ctx, arg1):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -754,7 +756,7 @@ async def __wallpaper(ctx, arg1):
 async def anime(ctx, *args):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -866,7 +868,7 @@ async def anime(ctx, *args):
 async def anime_help(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -883,7 +885,7 @@ async def anime_help(ctx):
 async def animes(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -974,7 +976,7 @@ async def animes(ctx):
 async def on_command_error(ctx, error):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -991,7 +993,7 @@ async def on_command_error(ctx, error):
 async def status(ctx, member: discord.Member):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -1046,7 +1048,7 @@ async def дашка(ctx):
 async def help(ctx):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
@@ -1095,7 +1097,7 @@ async def help(ctx):
 async def avatar(ctx, member: discord.Member):
     #check language
     user_serv_id = f"{ctx.guild.id}"
-    with open('lang.txt') as json_file:
+    with open('lang.json') as json_file:
         data = json.load(json_file)
     for p in data[user_serv_id]:
         numin = p['name']
