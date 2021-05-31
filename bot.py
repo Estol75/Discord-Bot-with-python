@@ -70,9 +70,9 @@ async def on_guild_join(guild):
         serveride = f"{serverid}"
         print(serveride)
         data[serveride] = []
-        data[serveride].append{
+        data[serveride].append({
             'name': "general"
-        }
+        })
 
         with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
