@@ -61,8 +61,7 @@ async def on_guild_join(guild):
         with open('lang.json', 'w') as outfile:
             json.dump(data, outfile)
             
-@Bot.event
-async def on_guild_join(guild):
+
     with open('data.json', 'r') as f:
         data = json.load(f)
         guild_id = str(guild.id)
@@ -71,11 +70,11 @@ async def on_guild_join(guild):
         print(serveride)
         data[serveride] = []
         data[serveride].append({
-            'name': "general"
+            'name': "general",
         })
 
-    with open('data.json', 'w') as outfile:
-        json.dump(data, outfile)
+        with open('data.json', 'w') as outfile:
+            json.dump(data, outfile)
 
 
 @Bot.command()
