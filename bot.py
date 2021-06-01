@@ -57,11 +57,12 @@ async def on_guild_join(guild):
         data[serveride].append({
             'name': "en",
         })
-
+    
         with open('lang.json', 'w') as outfile:
             json.dump(data, outfile)
-
-    with open('data.json', 'r') as f:
+            
+    datas = os.environ.get('data') 
+    with open('datas', 'r') as f:
         data = json.load(f)
         guild_id = str(guild.id)
         serverid = guild_id
@@ -71,8 +72,8 @@ async def on_guild_join(guild):
         data[serveride].append({
             'name': "general",
         })
-
-        with open('data.json', 'w') as outfile:
+        
+        with open('datas', 'w') as outfile:
             json.dump(data, outfile)
 
 
