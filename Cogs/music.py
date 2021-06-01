@@ -61,7 +61,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def create_source(cls, ctx, search: str, *, loop, download=False):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -148,7 +148,7 @@ class MusicPlayer(commands.Cog):
     async def player_loop(self):
         print(self._guilds)
         user_serv_id = f"{self._guilds}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -258,7 +258,7 @@ class Music(commands.Cog):
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -313,7 +313,7 @@ class Music(commands.Cog):
     @commands.command(name='pause')
     async def pause_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -337,7 +337,7 @@ class Music(commands.Cog):
     @commands.command(name='resume')
     async def resume_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -360,7 +360,7 @@ class Music(commands.Cog):
     @commands.command(name='skip')
     async def skip_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -387,7 +387,7 @@ class Music(commands.Cog):
     @commands.command(name='queue', aliases=['q', 'playlist'])
     async def queue_info(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -416,7 +416,7 @@ class Music(commands.Cog):
     @commands.command(name='now_playing', aliases=['np', 'current', 'currentsong', 'playing'])
     async def now_playing_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -442,7 +442,7 @@ class Music(commands.Cog):
         except discord.HTTPException:
             pass
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -455,7 +455,7 @@ class Music(commands.Cog):
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
@@ -490,7 +490,7 @@ class Music(commands.Cog):
     @commands.command(name='stop', aliases=['leave'])
     async def stop_(self, ctx):
         user_serv_id = f"{ctx.guild.id}"
-        with open('lang.txt') as json_file:
+        with open('lang.json') as json_file:
             data = json.load(json_file)
         for p in data[user_serv_id]:
             numin = p['name']
