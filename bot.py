@@ -61,7 +61,7 @@ async def on_guild_join(guild):
         with open('lang.json', 'w') as outfile:
             json.dump(data, outfile)
             
-    datas = os.environ.get('data') 
+    datas = os.environ.get('DATA') 
     with open('datas', 'r') as f:
         data = json.load(f)
         guild_id = str(guild.id)
