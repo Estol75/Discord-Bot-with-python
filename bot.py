@@ -96,34 +96,23 @@ async def testerrr(ctx):
     client_secret = os.environ.get('data') # This pulls your variable out of Config Var and makes it available
     if client_secret == None: # This is to detect if you're working locally and the Config Var therefore isn't available
         print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', w) as json_file: # ... so it pulls from the locally stored JSON file.
+        with open('data.json', r) as json_file: # ... so it pulls from the locally stored JSON file.
             client_secret = json.load(json_file)
 
-            data = json.load(json_file)
-            guild_id = str(guild.id)
-            serverid = guild_id
-            serveride = f"{serverid}"
-            print(serveride)
-            data[serveride] = []
-            data[serveride].append({
-                'name': "en",
+
+            data["fdsf"].append({
+                'name': "fdfen",
             })
             with open('data.json', 'w') as outfile:
                 json.dump(data, outfile)
     else:
         client_secret = json.loads(client_secret) # This converts the Config Var to JSON for OAuth
         print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', w) as json_file: # ... so it pulls from the locally stored JSON file.
+        with open('data.json', r) as json_file: # ... so it pulls from the locally stored JSON file.
             client_secret = json.load(json_file)
 
-            data = json.load(json_file)
-            guild_id = str(guild.id)
-            serverid = guild_id
-            serveride = f"{serverid}"
-            print(serveride)
-            data[serveride] = []
-            data[serveride].append({
-                'name': "en",
+            data["fdsf"].append({
+                'name': "cxyen",
             })
             with open('data.json', 'w') as outfile:
                 json.dump(data, outfile)
