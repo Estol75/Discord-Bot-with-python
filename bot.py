@@ -22,7 +22,7 @@ import re
 import random
 from random import choice
 import fake_useragent
-
+import bmemcached
 from discord.ext import commands
 
 user = fake_useragent.UserAgent().random
@@ -76,6 +76,17 @@ async def on_guild_join(guild):
         with open('datas', 'w') as outfile:
             json.dump(data, outfile)
 
+@Bot.command()
+async def tel(ctx):
+    servers = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
+    user = os.environ.get('MEMCACHIER_USERNAME', '')
+    passw = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+    mc = bmemcached.Client(servers, username=user, password=passw)
+
+    mc.enable_retry_delay(True)  # Enabled by default. Sets retry delay to 5s.
+    mc.set("foo", "bar")
+    print(mc.get("foo"))
 
 @Bot.command()
 async def lang_test(ctx):
