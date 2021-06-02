@@ -17,3 +17,4 @@ discord.py[voice]
 ffmpeg
 PyNaCl
 colorlog
+python-binary-memcached
