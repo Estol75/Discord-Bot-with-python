@@ -18,3 +18,4 @@ ffmpeg
 PyNaCl
 colorlog
 python-binary-memcached
+pylibmc
