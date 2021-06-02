@@ -79,34 +79,15 @@ async def on_guild_join(guild):
 
 @Bot.command()
 async def tel(ctx):
-    servers = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
+  servers = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
     user = os.environ.get('MEMCACHIER_USERNAME', '')
     passw = os.environ.get('MEMCACHIER_PASSWORD', '')
 
-    mc = pylibmc.Client(servers, binary=True,
-                        username=user, password=passw,
-                        behaviors={
-                          # Faster IO
-                          'tcp_nodelay': True,
+    mc = bmemcached.Client(servers, username=user, password=passw)
 
-                          # Keep connection alive
-                          'tcp_keepalive': True,
-
-                          # Timeout for set/get requests
-                          'connect_timeout': 2000, # ms
-                          'send_timeout': 750 * 1000, # us
-                          'receive_timeout': 750 * 1000, # us
-                          '_poll_timeout': 2000, # ms
-
-                          # Better failover
-                          'ketama': True,
-                          'remove_failed': 1,
-                          'retry_timeout': 2,
-                          'dead_timeout': 30,
-                        })
+    mc.enable_retry_delay(True)  # Enabled by default. Sets retry delay to 5s.
 
     mc.set("foo", "bar")
-    print(mc.get("foo"))
     await ctx.send(mc.get("foo"))
 
 @Bot.command()
