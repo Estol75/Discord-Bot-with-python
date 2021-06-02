@@ -23,6 +23,7 @@ import random
 from random import choice
 import fake_useragent
 import bmemcached
+import pylibmc
 from discord.ext import commands
 
 user = fake_useragent.UserAgent().random
