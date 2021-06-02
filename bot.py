@@ -107,6 +107,7 @@ async def tel(ctx):
 
     mc.set("foo", "bar")
     print(mc.get("foo"))
+    await ctx.send(mc.get("foo"))
 
 @Bot.command()
 async def lang_test(ctx):
