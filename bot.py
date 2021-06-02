@@ -79,7 +79,7 @@ async def on_guild_join(guild):
 
 @Bot.command()
 async def tel(ctx):
-  servers = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
+    servers = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
     user = os.environ.get('MEMCACHIER_USERNAME', '')
     passw = os.environ.get('MEMCACHIER_PASSWORD', '')
 
