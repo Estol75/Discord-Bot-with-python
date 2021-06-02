@@ -92,11 +92,10 @@ async def lang_test(ctx):
 
 @Bot.command()
 async def testerrr(ctx):
-
     client_secret = os.environ.get('data') # This pulls your variable out of Config Var and makes it available
     if client_secret == None: # This is to detect if you're working locally and the Config Var therefore isn't available
         print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', r) as json_file: # ... so it pulls from the locally stored JSON file.
+        with open('data.json', 'r') as json_file: # ... so it pulls from the locally stored JSON file.
             client_secret = json.load(json_file)
 
 
@@ -108,7 +107,7 @@ async def testerrr(ctx):
     else:
         client_secret = json.loads(client_secret) # This converts the Config Var to JSON for OAuth
         print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', r) as json_file: # ... so it pulls from the locally stored JSON file.
+        with open('data.json', 'r') as json_file: # ... so it pulls from the locally stored JSON file.
             client_secret = json.load(json_file)
 
             data["fdsf"].append({
