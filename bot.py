@@ -60,20 +60,18 @@ async def on_guild_join(guild):
     serverid = guild_id
     serveride = f"{serverid}"
 
-    # PASS = os.environ.get('PASSW')
-
-
     db = cluster["discord"]
     collection = db["data"]
 
-    post = {"_id": serveride, "name": "en", "prefix": "q."}
-    
+    post = {"_id": serveride, "name": "en"}
+
     collection.insert_one(post)
-    
+
     db = cluster["discord"]
-    collection = db["server"]
-    post_two = {"_id": "server id", serveride: ".", }
-    collection.insert_one(post_two)
+    collections = db["server"]
+    post_two = {"_id": "server id", serveride: "." }
+    collections.insert_one(post_two)
+
     
 @Bot.command()
 @commands.has_permissions(administrator = True)
