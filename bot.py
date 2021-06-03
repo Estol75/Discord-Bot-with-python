@@ -28,7 +28,6 @@ import pymongo
 from pymongo import MongoClient
 
 
-
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
 
@@ -46,9 +45,11 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.69"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.59"))
 
-
+#
+# cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
+# cluster = MongoClient("mongodb+srv://Estol:JWTZW7UrQSeTFYVY@cluster0.bjidh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
 
 db = cluster["discord"]
@@ -66,7 +67,7 @@ async def test(ctx):
     db = cluster["discord"]
     collection = db["data"]
 
-    post = {"_id": 3424234, "name": "en"}
+    post = {"_id": serveride, "name": "en"}
 
     collection.insert_one(post)
 
@@ -76,12 +77,13 @@ async def change(ctx, arg1):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
-    result = collection.update_one({"_id": 3424234}, {"$set": {"name": arg1}})
+    result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
 
 
 @Bot.command()
 async def lag(ctx):
     await ctx.send("lagaet")
-
+    
+    
 token = os.environ.get('TOKEN')
 Bot.run(token)
