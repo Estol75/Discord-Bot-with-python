@@ -1137,6 +1137,7 @@ OWNERID = 249182889386704897
 # Let us Know when the Bot is ready and has started
 
 # A simple and small ERROR handler
+
 @Bot.event
 async def on_command_error(ctx,error):
     embed = discord.Embed(
@@ -1147,18 +1148,20 @@ async def on_command_error(ctx,error):
     result = collection.find({"_id": serveride})
     for result in result:
         numin = result["name"]
-        
-    if numin == "ru":
-        if isinstance(error, commands.CommandNotFound):
+
+
+    if isinstance(error, commands.CommandNotFound):
+        if numin == "ru":
             embed.add_field(name=f'даная команда не найдена', value=f'Проверти команду на наличие ошибок')
-        if isinstance(error, commands.MissingPermissions):
+            await ctx.send(embed=embed)
+        else:
+            embed.add_field(name=f'Command Not Found', value=f'check your command')
+            await ctx.send(embed=embed)
+    if isinstance(error, commands.MissingPermissions):
+        if numin == "ru":
             embed.add_field(name=f'Недостаточно прав', value=f'у вас нет прав{error.missing_perms}.')
             await ctx.send(embed=embed)
-
-    else:
-        if isinstance(error, commands.CommandNotFound):
-            embed.add_field(name=f'Command Not Found', value=f'check your command')
-        if isinstance(error, commands.MissingPermissions):
+        else:
             embed.add_field(name=f'Invalid Permissions', value=f'You dont have {error.missing_perms} permissions.')
             await ctx.send(embed=embed)
 
