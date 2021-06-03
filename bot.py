@@ -1042,6 +1042,11 @@ async def help(ctx):
         embed.add_field(name="Майнкрафт профиль", value="`profile <никнейм>`", inline=False)
         embed.add_field(name=":tools: Команда очистить", value="`clear <число>`, нужен админ", inline=False)
 
+        embed.add_field(name=":roller_coaster: Поцеловать игрока", value="`kiss <@user>`", inline=False)
+        embed.add_field(name=":roller_coaster: секс", value="`sex <@user>`", inline=False)
+
+        embed.add_field(name=":earth_americas: Выбрать язык на сервере", value="`set_lang <en или ru>`, нужен админ", inline=False)
+        embed.add_field(name=":musical_note: Музыкальный бот помощь", value="`music`", inline=False)
         await ctx.send(embed=embed)
 
     else:
@@ -1060,7 +1065,14 @@ async def help(ctx):
         embed.add_field(name="Minecraft profile information", value="`profile <nickname>`", inline=False)
         embed.add_field(name=":tools: Clear command", value="`clear <amount>`, need administrator", inline=False)
 
+        embed.add_field(name=":roller_coaster: kiss a user", value="`kiss <@user>`", inline=False)
+        embed.add_field(name=":roller_coaster: sex", value="`sex <@user>`", inline=False)
+
+        embed.add_field(name=":earth_americas: Select language on server", value="`set_lang <en or ru>`, need administrator", inline=False)
+        embed.add_field(name=":musical_note: Music help", value="`music`", inline=False)
+
         await ctx.send(embed=embed)
+
 
 
 
