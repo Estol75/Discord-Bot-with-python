@@ -154,6 +154,12 @@ class MusicPlayer(commands.Cog):
 
     async def player_loop(self):
         print(self._guilds)
+                                    
+        mongo = os.environ.get('MONGO')
+        cluster = MongoClient(mongo)
+        db = cluster["discord"]
+        collection = db["data"]  
+                                    
         serveride = f"{self._guilds}"
         result = collection.find({"_id": serveride})
 
