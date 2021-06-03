@@ -11,12 +11,6 @@ from youtube_dl import YoutubeDL
 import pymongo
 from pymongo import MongoClient
 
-mongo = os.environ.get('MONGO')
-cluster = MongoClient(mongo)
-
-db = cluster["discord"]
-collection = db["data"]
-
 
 ytdlopts = {
     'format': 'bestaudio/best',
@@ -65,6 +59,11 @@ class YTDLSource(discord.PCMVolumeTransformer):
         This is only useful when you are NOT downloading.
         """
         return self.__getattribute__(item)
+    mongo = os.environ.get('MONGO')
+    cluster = MongoClient(mongo)
+
+    db = cluster["discord"]
+    collection = db["data"]
 
     @classmethod
     async def create_source(cls, ctx, search: str, *, loop, download=False):
@@ -111,7 +110,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
                 return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
 
             return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
-
 
 
     @classmethod
