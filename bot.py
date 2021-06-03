@@ -85,31 +85,35 @@ async def lang_test(ctx):
     else:
         await ctx.send("On server is english language")
 
+cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
+
+db = cluster["discord"]
+collection = db["data"]
+
 @Bot.command()
-async def testerrr(ctx):
-    client_secret = os.environ.get('data') # This pulls your variable out of Config Var and makes it available
-    if client_secret == None: # This is to detect if you're working locally and the Config Var therefore isn't available
-        print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', 'r') as json_file: # ... so it pulls from the locally stored JSON file.
-            client_secret = json.load(json_file)
+async def test(ctx):
+    guild_id = str(ctx.guild.id)
+    serverid = guild_id
+    serveride = f"{serverid}"
+
+    # PASS = os.environ.get('PASSW')
 
 
-            data["fdsf"].append({
-                'name': "fdfen",
-            })
-            with open('data.json', 'w') as outfile:
-                json.dump(data, outfile)
-    else:
-        client_secret = json.loads(client_secret) # This converts the Config Var to JSON for OAuth
-        print('\n\nResorted to local JSON file.\n\n')
-        with open('data.json', 'r') as json_file: # ... so it pulls from the locally stored JSON file.
-            client_secret = json.load(json_file)
+    db = cluster["discord"]
+    collection = db["data"]
 
-            data["fdsf"].append({
-                'name': "cxyen",
-            })
-            with open('data.json', 'w') as outfile:
-                json.dump(data, outfile)
+    post = {"_id": serveride, "name": "en"}
+
+    collection.insert_one(post)
+
+
+@Bot.command()
+async def change(ctx, arg1):
+    guild_id = str(ctx.guild.id)
+    serverid = guild_id
+    serveride = f"{serverid}"
+    result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+
 
 
 @Bot.command()
