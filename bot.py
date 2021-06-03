@@ -59,7 +59,7 @@ collection = db["data"]
 
 @Bot.command()
 async def test(ctx):
-
+    print(mongo)
     # PASS = os.environ.get('PASSW')
 
 
