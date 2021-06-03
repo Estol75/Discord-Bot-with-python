@@ -66,7 +66,7 @@ async def on_guild_join(guild):
     db = cluster["discord"]
     collection = db["data"]
 
-    post = {"_id": serveride, "name": "en"}
+    post = {"_id": serveride, "name": "en", "prefix": "q."}
 
     collection.insert_one(post)
 
