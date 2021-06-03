@@ -49,51 +49,13 @@ async def on_ready():
     await Bot.change_presence(activity=discord.Game(name="q.help v1.0.59"))
 
 
+cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
 
-@Bot.event
-async def on_guild_join(guild):
-    cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
-
-    db = cluster["discord"]
-    collection = db["data"]
-
-
-    guild_id = str(guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
-
-    # PASS = os.environ.get('PASSW')
-
-
-    db = cluster["discord"]
-    collection = db["data"]
-
-    post = {"_id": serveride, "name": "en"}
-
-    collection.insert_one(post)
-
-
-@Bot.command()
-async def lang_test(ctx):
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
-
-    if numin == "ru":
-        await ctx.send("На сервере поставлен русский язык")
-    else:
-        await ctx.send("On server is english language")
-
-
+db = cluster["discord"]
+collection = db["data"]
 
 @Bot.command()
 async def test(ctx):
-    cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
-
-    db = cluster["discord"]
-    collection = db["data"]
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
@@ -111,16 +73,15 @@ async def test(ctx):
 
 @Bot.command()
 async def change(ctx, arg1):
-    cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
-
-    db = cluster["discord"]
-    collection = db["data"]
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
     result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
 
 
+@Bot.command()
+async def lag(ctx):
+    await ctx.send("lagaet")
 
 @Bot.command()
 @commands.has_permissions(administrator = True)
