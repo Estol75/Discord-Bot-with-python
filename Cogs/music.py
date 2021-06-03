@@ -8,7 +8,8 @@ import traceback
 from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
-
+import pymongo
+from pymongo import MongoClient
 
 mongo = os.environ.get('MONGO')
 cluster = MongoClient(mongo)
