@@ -1091,7 +1091,7 @@ async def help(ctx):
 
         embed.add_field(name=":earth_americas: Выбрать язык на сервере", value="`set_lang <en или ru>`, нужен админ", inline=False)
         embed.add_field(name=":musical_note: Музыкальный бот помощь", value="`music`", inline=False)
-        embed.add_field(name=" Выбрать префикс бота", value="`prefix <Символ или слова>`", inline=False)
+        embed.add_field(name=" Выбрать префикс бота", value="`prefix <Символ или слова>`, нужен админ", inline=False)
         await ctx.send(embed=embed)
 
     else:
@@ -1115,7 +1115,7 @@ async def help(ctx):
 
         embed.add_field(name=":earth_americas: Select language on server", value="`set_lang <en or ru>`, need administrator", inline=False)
         embed.add_field(name=":musical_note: Music help", value="`music`", inline=False)
-        embed.add_field(name=" Select Bot prefix", value="`prefix <Symbol or word>`", inline=False)
+        embed.add_field(name=" Select Bot prefix", value="`prefix <Symbol or word>`, need administrator", inline=False)
 
         await ctx.send(embed=embed)
 
