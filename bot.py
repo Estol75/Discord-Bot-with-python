@@ -25,6 +25,9 @@ import fake_useragent
 import bmemcached
 import pylibmc
 from discord.ext import commands
+import pymongo
+from pymongo import MongoClient
+
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
