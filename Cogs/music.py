@@ -10,6 +10,13 @@ from functools import partial
 from youtube_dl import YoutubeDL
 
 
+mongo = os.environ.get('MONGO')
+cluster = MongoClient(mongo)
+
+db = cluster["discord"]
+collection = db["data"]
+
+
 ytdlopts = {
     'format': 'bestaudio/best',
     'outtmpl': 'downloads/%(extractor)s-%(id)s-%(title)s.%(ext)s',
