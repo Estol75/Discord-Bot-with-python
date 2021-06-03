@@ -54,6 +54,8 @@ cluster = MongoClient(mongo)
 db = cluster["discord"]
 collection = db["data"]
 
+collections = db["server"]
+
 @Bot.event
 async def on_guild_join(guild):
     guild_id = str(guild.id)
@@ -66,9 +68,10 @@ async def on_guild_join(guild):
     post = {"_id": serveride, "name": "en"}
 
     collection.insert_one(post)
-
+    
     db = cluster["discord"]
     collections = db["server"]
+    
     post_two = {"_id": "server id", serveride: "." }
     collections.insert_one(post_two)
 
