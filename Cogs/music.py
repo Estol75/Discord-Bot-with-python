@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+@Estol75
+Estol75
+/
+estol
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+estol/Cogs/music.py /
+@Estol75
+Estol75 Update music.py
+Latest commit 6b9df9f 2 days ago
+ History
+ 1 contributor
+512 lines (422 sloc)  19.1 KB
+
 import discord
 from discord.ext import commands
 import json
@@ -60,11 +91,11 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def create_source(cls, ctx, search: str, *, loop, download=False):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         #language check
         if numin == "ru":
             loop = loop or asyncio.get_event_loop()
@@ -147,11 +178,11 @@ class MusicPlayer(commands.Cog):
 
     async def player_loop(self):
         print(self._guilds)
-        user_serv_id = f"{self._guilds}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{self._guilds}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Our main player loop."""
         await self.bot.wait_until_ready()
 
@@ -257,11 +288,11 @@ class Music(commands.Cog):
 
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         #language check
         try:
             channel = ctx.author.voice.channel
@@ -312,11 +343,11 @@ class Music(commands.Cog):
 
     @commands.command(name='pause')
     async def pause_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Pause the currently playing song."""
         vc = ctx.voice_client
 
@@ -336,11 +367,11 @@ class Music(commands.Cog):
 
     @commands.command(name='resume')
     async def resume_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Resume the currently paused song."""
         vc = ctx.voice_client
 
@@ -359,11 +390,11 @@ class Music(commands.Cog):
             await ctx.send(f'**`{ctx.author}`**: Resumed the song!')
     @commands.command(name='skip')
     async def skip_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Skip the song."""
         vc = ctx.voice_client
 
@@ -386,11 +417,11 @@ class Music(commands.Cog):
 
     @commands.command(name='queue', aliases=['q', 'playlist'])
     async def queue_info(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Retrieve a basic queue of upcoming songs."""
         vc = ctx.voice_client
 
@@ -415,11 +446,11 @@ class Music(commands.Cog):
 
     @commands.command(name='now_playing', aliases=['np', 'current', 'currentsong', 'playing'])
     async def now_playing_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Display information about the currently playing song."""
         vc = ctx.voice_client
 
@@ -441,11 +472,11 @@ class Music(commands.Cog):
             await player.np.delete()
         except discord.HTTPException:
             pass
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         if numin == "ru":
             player.np = await ctx.send(f'**сейчас играет:** `{vc.source.title}` '
                                        f'запросил(а) `{vc.source.requester}`')
@@ -454,11 +485,11 @@ class Music(commands.Cog):
                                        f'requested by `{vc.source.requester}`')
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Change the player volume.
         Parameters
         ------------
@@ -489,11 +520,11 @@ class Music(commands.Cog):
             await ctx.send(f'**`{ctx.author}`**: Set the volume to **{vol}%**')
     @commands.command(name='stop', aliases=['leave'])
     async def stop_(self, ctx):
-        user_serv_id = f"{ctx.guild.id}"
-        with open('lang.json') as json_file:
-            data = json.load(json_file)
-        for p in data[user_serv_id]:
-            numin = p['name']
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
         """Stop the currently playing song and destroy the player.
         !Warning!
             This will destroy the player assigned to your guild, also deleting any queued songs and settings.
