@@ -1154,20 +1154,14 @@ async def on_command_error(ctx,error):
         if isinstance(error, commands.MissingPermissions):
             embed.add_field(name=f'Недостаточно прав', value=f'у вас нет прав{error.missing_perms}.')
             await ctx.send(embed=embed)
-        else:
-            embed.add_field(name = f':x: Ошибка терминала', value = f"```{error}```")
-            await ctx.send(embed = embed)
-            raise error
+
     else:
         if isinstance(error, commands.CommandNotFound):
             embed.add_field(name=f'Command Not Found', value=f'check your command')
         if isinstance(error, commands.MissingPermissions):
             embed.add_field(name=f'Invalid Permissions', value=f'You dont have {error.missing_perms} permissions.')
             await ctx.send(embed=embed)
-        else:
-            embed.add_field(name = f':x: Terminal Error', value = f"```{error}```")
-            await ctx.send(embed = embed)
-            raise error
+
 
 # Load command to manage our "Cogs" or extensions
 @Bot.command()
