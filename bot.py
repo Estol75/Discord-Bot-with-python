@@ -88,7 +88,8 @@ async def lang(ctx):
     result = collection.find({"_id": serveride})
 
     for result in result:
-        print(result["name"])
+        numin = result["name"]
+
 
 
 
@@ -97,11 +98,11 @@ data = {}
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def welcome_channel(ctx, arg1):
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
     with open('data.json', 'r') as f:
         data = json.load(f)
         guild_id = ctx.author.id
@@ -124,11 +125,11 @@ async def welcome_channel(ctx, arg1):
 @Bot.event
 async def on_member_join(member):
     #check language
-    user_serv_id = f"{member.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{member.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
     #command
 
     serverid = member.guild.id
@@ -176,11 +177,10 @@ async def sex(ctx, member: discord.Member):
 
     ]
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
     #command
     if numin == "ru":
         num = random.randint(0,14)
@@ -198,11 +198,10 @@ async def sex(ctx, member: discord.Member):
 @Bot.command()
 async def bot_status(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
     #command
     servers = len(Bot.guilds)
     ping_ = Bot.latency
@@ -231,11 +230,10 @@ async def user_agent(ctx):
 @Bot.command()
 async def invite(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
     #command
     if numin == "ru":
         embed = discord.Embed(title = "Приглашения бота QBug ", description="")
@@ -249,14 +247,16 @@ async def invite(ctx):
         await ctx.send(embed = embed)
 
 
+
+
+
 @Bot.command()
 async def profile(ctx, *, message:str=None):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
 
     uuid = MojangAPI.get_uuid(f"{message}")
     profile = MojangAPI.get_profile(uuid)
@@ -420,11 +420,10 @@ async def kiss(ctx, member: discord.Member):
 
     ]
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
     #command
     if numin == "ru":
         num = random.randint(0,23)
@@ -443,11 +442,10 @@ async def kiss(ctx, member: discord.Member):
 @Bot.command()
 async def windows10(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
 
     if numin == "ru":
@@ -563,11 +561,10 @@ async def server(ctx):
     icon = str(ctx.guild.icon_url)
     server_createt = str(ctx.guild.created_at.strftime("%d.%m.%Y"))
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
     if numin == "ru":
         embed = discord.Embed(title = " информация о сервере " + name , description=description)
@@ -594,11 +591,10 @@ async def server(ctx):
 @Bot.command(aliases = ['wallpaper', 'обои'])
 async def __wallpaper(ctx, arg1):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
 
     if arg1 == "help":
@@ -737,11 +733,10 @@ async def __wallpaper(ctx, arg1):
 @Bot.command()
 async def anime(ctx, *args):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
 
     slot = '{}'.format('+'.join(args))
@@ -849,11 +844,10 @@ async def anime(ctx, *args):
 @Bot.command()
 async def anime_help(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
     if numin == "ru":
         embed = discord.Embed(title="Аниме информация", description="Популярные теги​", color=0xffc800)
@@ -866,11 +860,10 @@ async def anime_help(ctx):
 @Bot.command()
 async def animes(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
     array = []
     np = random.randint(1, 3000)
@@ -957,11 +950,10 @@ async def animes(ctx):
 @Bot.event
 async def on_command_error(ctx, error):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
     if numin == "ru":
         embed = discord.Embed(title="Ошибка", description="Ошибка 503⠀⠀⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
@@ -974,11 +966,10 @@ async def on_command_error(ctx, error):
 @Bot.command()
 async def status(ctx, member: discord.Member):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
     if numin == "ru":
 
@@ -1078,11 +1069,10 @@ async def help(ctx):
 @Bot.command()
 async def avatar(ctx, member: discord.Member):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
 
     if numin == "ru":
