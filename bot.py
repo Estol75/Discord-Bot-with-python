@@ -54,9 +54,9 @@ cluster = MongoClient(mongo)
 db = cluster["discord"]
 collection = db["data"]
 
-@Bot.command()
-async def test(ctx):
-    guild_id = str(ctx.guild.id)
+@Bot.event
+async def on_guild_join(guild):
+    guild_id = str(guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
 
@@ -72,7 +72,8 @@ async def test(ctx):
 
 
 @Bot.command()
-async def change(ctx, arg1):
+@commands.has_permissions(administrator = True)
+async def set_lang(ctx, arg1):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
@@ -83,24 +84,7 @@ async def change(ctx, arg1):
 async def lag(ctx):
     await ctx.send("lagaet")
 
-@Bot.command()
-@commands.has_permissions(administrator = True)
-async def set_lang(ctx, arg1):
-    with open('lang.json', 'r') as f:
-        data = json.load(f)
 
-        serverid = ctx.guild.id
-        serveride = f"{serverid}"
-        print(serveride)
-        data[serveride] = []
-        data[serveride].append({
-            'name': arg1,
-        })
-
-
-        with open('lang.json', 'w') as outfile:
-            json.dump(data, outfile)
-    await ctx.send(arg1)
 data = {}
 
 @Bot.command()
