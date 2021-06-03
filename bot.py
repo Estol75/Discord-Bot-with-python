@@ -45,7 +45,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.3"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.4"))
 
 
 mongo = os.environ.get('MONGO')
