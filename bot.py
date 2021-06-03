@@ -48,35 +48,20 @@ async def on_ready():
 
 @Bot.event
 async def on_guild_join(guild):
-    with open('lang.json', 'r') as f:
-        data = json.load(f)
-        guild_id = str(guild.id)
-        serverid = guild_id
-        serveride = f"{serverid}"
-        print(serveride)
-        data[serveride] = []
-        data[serveride].append({
-            'name': "en",
-        })
+    guild_id = str(guild.id)
+    serverid = guild_id
+    serveride = f"{serverid}"
     
-        with open('lang.json', 'w') as outfile:
-            json.dump(data, outfile)
-            
-    datas = os.environ.get('DATA') 
-    with open('datas', 'r') as f:
-        data = json.load(f)
-        guild_id = str(guild.id)
-        serverid = guild_id
-        serveride = f"{serverid}"
-        print(serveride)
-        data[serveride] = []
-        data[serveride].append({
-            'name': "general",
-        })
-        
-        with open('datas', 'w') as outfile:
-            json.dump(data, outfile)
+    PASS = os.environ.get('PASSW') 
 
+    cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
+    db = cluster["discord"]
+    collection = db[serveride]
+
+    post = {"_id": serveride, "name": "en"}
+
+    
+    collection.insert_one(post)
 
 
 @Bot.command()
