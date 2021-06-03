@@ -1142,15 +1142,32 @@ async def on_command_error(ctx,error):
     embed = discord.Embed(
     title='',
     color=discord.Color.red())
-    if isinstance(error, commands.CommandNotFound):
-        pass
-    if isinstance(error, commands.MissingPermissions):
-        embed.add_field(name=f'Invalid Permissions', value=f'You dont have {error.missing_perms} permissions.')
-        await ctx.send(embed=embed)
+
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
+        
+    if numin == "ru":
+        if isinstance(error, commands.CommandNotFound):
+            embed.add_field(name=f'даная команда не найдена', value=f'Проверти команду на наличие ошибок')
+        if isinstance(error, commands.MissingPermissions):
+            embed.add_field(name=f'Недостаточно прав', value=f'у вас нет прав{error.missing_perms}.')
+            await ctx.send(embed=embed)
+        else:
+            embed.add_field(name = f':x: Ошибка терминала', value = f"```{error}```")
+            await ctx.send(embed = embed)
+            raise error
     else:
-        embed.add_field(name = f':x: Terminal Error', value = f"```{error}```")
-        await ctx.send(embed = embed)
-        raise error
+        if isinstance(error, commands.CommandNotFound):
+            embed.add_field(name=f'Command Not Found', value=f'check your command')
+        if isinstance(error, commands.MissingPermissions):
+            embed.add_field(name=f'Invalid Permissions', value=f'You dont have {error.missing_perms} permissions.')
+            await ctx.send(embed=embed)
+        else:
+            embed.add_field(name = f':x: Terminal Error', value = f"```{error}```")
+            await ctx.send(embed = embed)
+            raise error
 
 # Load command to manage our "Cogs" or extensions
 @Bot.command()
