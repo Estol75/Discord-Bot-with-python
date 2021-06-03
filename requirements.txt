@@ -12,7 +12,7 @@ bs4
 fake-useragent
 lxml
 pip 
-youtube_dl
+youtube_dl==2021.05.16
 discord.py[voice]
 ffmpeg
 PyNaCl
