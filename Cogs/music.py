@@ -34,7 +34,11 @@ ffmpegopts = {
 
 ytdl = YoutubeDL(ytdlopts)
 
+mongo = os.environ.get('MONGO')
+cluster = MongoClient(mongo)
 
+db = cluster["discord"]
+collection = db["data"]
 class VoiceConnectionError(commands.CommandError):
     """Custom Exception class for connection errors."""
 
