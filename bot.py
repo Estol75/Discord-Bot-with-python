@@ -50,7 +50,8 @@ async def on_ready():
 #
 # cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
 # cluster = MongoClient("mongodb+srv://Estol:JWTZW7UrQSeTFYVY@cluster0.bjidh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-cluster = MongoClient("mongodb://Estol:CPS5RzxAoZesay07@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
+mongo = os.environ.get('MONGO')
+cluster = MongoClient(mongo)
 
 db = cluster["discord"]
 collection = db["data"]
