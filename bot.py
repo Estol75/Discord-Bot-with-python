@@ -1020,11 +1020,10 @@ async def дашка(ctx):
 @Bot.command(pass_context= True)
 async def help(ctx):
     #check language
-    user_serv_id = f"{ctx.guild.id}"
-    with open('lang.json') as json_file:
-        data = json.load(json_file)
-    for p in data[user_serv_id]:
-        numin = p['name']
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
         #command
 
     if numin == "ru":
