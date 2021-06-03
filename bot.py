@@ -40,7 +40,25 @@ intents.guilds = True
 client = discord.Client(intents=intents)
 from discord.ext import commands
 
-Bot = commands.Bot(command_prefix='q.', intents=intents)
+mongo = os.environ.get('MONGO')
+cluster = MongoClient(mongo)
+
+db = cluster["discord"]
+collection = db["data"]
+
+collections = db["server"]
+
+def get_prefix(clients, message):
+    serveride = f"{message.guild.id}"
+    result = collections.find({"_id": serveride})
+
+    for result in result:
+        prefixs = result[serveride]
+
+    return str(prefixs)
+
+
+Bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 Bot.remove_command('help')
 
 @Bot.event
