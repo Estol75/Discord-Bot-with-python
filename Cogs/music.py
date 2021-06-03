@@ -8,6 +8,7 @@ import traceback
 from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
+import os
 import pymongo
 from pymongo import MongoClient
 
@@ -153,6 +154,11 @@ class MusicPlayer(commands.Cog):
 
     async def player_loop(self):
         print(self._guilds)
+        serveride = f"{self._guilds}"
+        result = collection.find({"_id": serveride})
+
+        for result in result:
+            numin = result["name"]
 
         """Our main player loop."""
         await self.bot.wait_until_ready()
