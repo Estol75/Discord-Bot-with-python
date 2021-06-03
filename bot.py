@@ -174,14 +174,14 @@ async def on_member_join(member):
     if numin == "ru":
         embed = discord.Embed(title=f"Добро пожаловать на {member.guild.name} сервер.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"приветствую тебя, {member.mention}⠀⠀​​", color=0x00eeff)
         embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**У нас на сервере приветствую прекрасны бот**", value="для просмотра команд`--commands`", inline=False)
+        embed.add_field(name="**У нас на сервере приветствую прекрасны бот**", value="для просмотра команд`q.help`", inline=False)
         embed.set_thumbnail(url=member.avatar_url)
         channel = discord.utils.get(member.guild.channels, name = channel)
         await channel.send(embed=embed)
     else:
         embed = discord.Embed(title=f"Welcome to the {member.guild.name} server.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Welcome to server, {member.mention}⠀⠀​​", color=0x00eeff)
         embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**We have amazing bot**", value="To view commands `--commands`", inline=False)
+        embed.add_field(name="**We have amazing bot**", value="To view commands `q.help`", inline=False)
         embed.set_thumbnail(url=member.avatar_url)
         channel = discord.utils.get(member.guild.channels, name = channel)
         await channel.send(embed=embed)
