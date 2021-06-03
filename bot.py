@@ -1139,13 +1139,7 @@ async def reload_(ctx, extension):
     else:
         await ctx.send(f"You are not cool enough to use this command")
 
-# Automatically load all the .py files in the Cogs folder
-for filename in os.listdir('./Cogs'):
-    if filename.endswith('.py'):
-        try:
-            Bot.load_extension(f'Cogs.{filename[:-3]}')
-        except Exception:
-            raise Exception
+
 
 token = os.environ.get('TOKEN')
 Bot.run(token)
