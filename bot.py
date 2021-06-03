@@ -58,9 +58,6 @@ collection = db["data"]
 
 @Bot.command()
 async def test(ctx):
-    guild_id = str(ctx.guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
 
     # PASS = os.environ.get('PASSW')
 
@@ -68,17 +65,15 @@ async def test(ctx):
     db = cluster["discord"]
     collection = db["data"]
 
-    post = {"_id": serveride, "name": "en"}
+    post = {"_id": 432434, "name": "en"}
 
     collection.insert_one(post)
 
 
 @Bot.command()
 async def change(ctx, arg1):
-    guild_id = str(ctx.guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
-    result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+
+    result = collection.update_one({"_id": 432434}, {"$set": {"name": arg1}})
 
 
 @Bot.command()
