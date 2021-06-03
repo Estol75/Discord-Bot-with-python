@@ -27,6 +27,28 @@ from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
 
+
+
+user = fake_useragent.UserAgent().random
+header = {'user-agent': user}
+
+
+
+intents = discord.Intents.default()
+intents.members = True
+intents.guilds = True
+
+client = discord.Client(intents=intents)
+from discord.ext import commands
+
+Bot = commands.Bot(command_prefix='q.', intents=intents)
+Bot.remove_command('help')
+
+@Bot.event
+async def on_ready():
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.59"))
+
+
 cluster = MongoClient("mongodb://Estol:JWTZW7UrQSeTFYVY@cluster0-shard-00-00.bjidh.mongodb.net:27017,cluster0-shard-00-01.bjidh.mongodb.net:27017,cluster0-shard-00-02.bjidh.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-12d4np-shard-0&authSource=admin&retryWrites=true&w=majority")
 
 db = cluster["discord"]
