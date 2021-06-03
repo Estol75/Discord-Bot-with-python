@@ -67,9 +67,14 @@ async def on_guild_join(guild):
     collection = db["data"]
 
     post = {"_id": serveride, "name": "en", "prefix": "q."}
-
+    
     collection.insert_one(post)
-
+    
+    db = cluster["discord"]
+    collection = db["server"]
+    post_two = {"_id": "server id", serveride: ".", }
+    collection.insert_one(post_two)
+    
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def prefix(ctx, arg1):
