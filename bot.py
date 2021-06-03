@@ -1075,7 +1075,38 @@ async def help(ctx):
 
 
 
+@Bot.command()
+async def music(ctx):
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
+    if numin == "ru":
+        embed = discord.Embed(title= ":musical_note: Музыка помощь", description ="Команды для проигрывания музыки")
 
+        embed.add_field(name="**Играть музыку**", value="`play, sing, p <названия песни или YT ссылку>`", inline=False)
+        embed.add_field(name="**Пропустить песню**", value="`skip`", inline=False)
+        embed.add_field(name="**Изменить громкость музыки**", value="`vol <1 - 100>`", inline=False)
+        embed.add_field(name="**Названия песни которая сейчас играет**", value="`np`", inline=False)
+        embed.add_field(name="**Поставить песню на паузу**", value="`pause`", inline=False)
+        embed.add_field(name="**Продолжить песню**", value="`resume`", inline=False)
+        embed.add_field(name="**Песни в плейлисте**", value="`queue или q`", inline=False)
+        embed.add_field(name="**Остановить бота**", value="`stop`", inline=False)
+
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(title= ":musical_note:  Music Help", description ="commands to play music")
+
+        embed.add_field(name="**Play music**", value="`play, sing, p <song name or YT URL>`", inline=False)
+        embed.add_field(name="**Song skip**", value="`skip`", inline=False)
+        embed.add_field(name="**Change Music bot value**", value="`vol <1 - 100>`", inline=False)
+        embed.add_field(name="**Song now playing**", value="`np`", inline=False)
+        embed.add_field(name="**Pause song**", value="`pause`", inline=False)
+        embed.add_field(name="**Resume song**", value="`resume`", inline=False)
+        embed.add_field(name="**Songs in playlist**", value="`queue or q`", inline=False)
+        embed.add_field(name="**Stop music bot**", value="`stop`", inline=False)
+
+        await ctx.send(embed=embed)
 
 @Bot.command()
 async def avatar(ctx, member: discord.Member):
