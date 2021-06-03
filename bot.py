@@ -147,22 +147,17 @@ async def welcome_channel(ctx, arg1):
 
     for result in result:
         numin = result["name"]
-    with open('data.json', 'r') as f:
-        data = json.load(f)
-        guild_id = ctx.author.id
-        serverid = guild_id
-        serveride = f"{serverid}"
-        data[serveride] = []
-        data[serveride].append({
-            'name': arg1,
-        })
 
-        with open('data.json', 'w') as outfile:
-            json.dump(data, outfile)
+    serveride = f"{str(ctx.guild.id)}"
+    result = collection.update_one({"_id": serveride}, {"$set": {"channel": arg1}})
+
+
+
     if numin == "ru":
         await ctx.send(f"Вы добавляете приветственное сообщение в {arg1} канал")
     else:
         await ctx.send(f"you add welcome message to {arg1} channel")
+
 
 
 
