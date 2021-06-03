@@ -19,3 +19,5 @@ PyNaCl
 colorlog
 python-binary-memcached
 pylibmc
+pymongo
+dnspython
