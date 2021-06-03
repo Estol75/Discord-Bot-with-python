@@ -82,19 +82,19 @@ async def prefix(ctx, arg1):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
-    result = collection.update_one({"_id": serveride}, {"$set": {"prefix": arg1}})
+    result = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
 
 
     serveride = f"{ctx.guild.id}"
-    result = collection.find({"_id": serveride})
+    result = collections.find({"_id": serveride})
 
     for result in result:
         numin = result["name"]
         prefixs = result["prefix"]
     if numin == "ru":
-        await ctx.send(f"Префикс изменён на {arg1}")
+        await ctx.send(f"Префикс изменён на {prefixs}")
     else:
-        await ctx.send(f"prefix change to {arg1}")
+        await ctx.send(f"prefix change to {prefixs}")
         
         
 @Bot.command()
