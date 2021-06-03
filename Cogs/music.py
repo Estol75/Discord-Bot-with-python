@@ -153,11 +153,7 @@ class MusicPlayer(commands.Cog):
 
     async def player_loop(self):
         print(self._guilds)
-        serveride = f"{self._guilds}"
-        result = collection.find({"_id": serveride})
 
-        for result in result:
-            numin = result["name"]
         """Our main player loop."""
         await self.bot.wait_until_ready()
 
