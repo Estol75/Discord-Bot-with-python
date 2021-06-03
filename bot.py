@@ -66,7 +66,7 @@ async def test(ctx):
     db = cluster["discord"]
     collection = db["data"]
 
-    post = {"_id": serveride, "name": "en"}
+    post = {"_id": 3424234, "name": "en"}
 
     collection.insert_one(post)
 
@@ -76,7 +76,7 @@ async def change(ctx, arg1):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
-    result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+    result = collection.update_one({"_id": 3424234}, {"$set": {"name": arg1}})
 
 
 @Bot.command()
