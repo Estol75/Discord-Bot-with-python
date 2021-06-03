@@ -80,20 +80,19 @@ async def set_lang(ctx, arg1):
     result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
 
 
-@Bot.command()
-async def lang(ctx):
-    guild_id = str(ctx.guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
+    serveride = f"{ctx.guild.id}"
     result = collection.find({"_id": serveride})
 
     for result in result:
         numin = result["name"]
 
+    if numin == "ru":
+        await ctx.send("на сервере успешно установлен русский язык")
+    else:
+        await ctx.send("Server language was set to English")    
 
 
 
-data = {}
 
 @Bot.command()
 @commands.has_permissions(administrator = True)
