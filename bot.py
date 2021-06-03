@@ -975,24 +975,6 @@ async def animes(ctx):
             break
 
 
-
-
-@Bot.event
-async def on_command_error(ctx, error):
-    #check language
-    serveride = f"{ctx.guild.id}"
-    result = collection.find({"_id": serveride})
-    for result in result:
-        numin = result["name"]
-        #command
-    if numin == "ru":
-        embed = discord.Embed(title="Ошибка", description="Ошибка 503⠀⠀⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
-        await ctx.send(embed=embed)
-    else:
-        embed = discord.Embed(title="Error", description="The discord bot has application error⠀​⠀​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀​⠀​⠀⠀​​⠀​⠀⠀​⠀​⠀​⠀​⠀​⠀⠀​", color=0xb80208)
-        await ctx.send(embed=embed)
-
-
 @Bot.command()
 async def status(ctx, member: discord.Member):
     #check language
