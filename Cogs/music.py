@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@Estol75
-Estol75
-/
-estol
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-estol/Cogs/music.py /
-@Estol75
-Estol75 Update music.py
-Latest commit 6b9df9f 2 days ago
- History
- 1 contributor
-512 lines (422 sloc)  19.1 KB
-
 import discord
 from discord.ext import commands
 import json
