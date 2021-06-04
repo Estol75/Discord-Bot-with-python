@@ -115,7 +115,32 @@ async def prefix(ctx, arg1):
     else:
         await ctx.send(f"prefix change to {arg1}")
         
-        
+ 
+
+@Bot.command()
+async def Bug(ctx, *args):
+
+    serveride = f"{str(ctx.guild.id)}"
+    user = f"{str(ctx.author.id)}"
+
+    db = cluster["discord"]
+    collection = db["bugs"]
+
+    post = {"_id": serveride, "user": user, "bug": args}
+
+    collection.insert_one(post)
+
+
+    result = collection.find({"_id": serveride})
+    for result in result:
+        numin = result["name"]
+
+    if numin == "ru":
+        await ctx.send("Спасибо, вам за найденный баг")
+    else:
+        await ctx.send("Thanks, for find the bug")
+
+
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def set_lang(ctx, arg1):
