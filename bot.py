@@ -128,6 +128,7 @@ async def on_guild_remove(guild):
     serveride = f"{serverid}"
     db = cluster["discord"]
     collection = db["data"]
+    collection = db["server"]
     results = collection.delete_one({"_id": serveride})    
     
 @Bot.command()
