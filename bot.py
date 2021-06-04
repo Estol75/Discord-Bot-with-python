@@ -115,10 +115,12 @@ async def prefix(ctx, arg1):
     else:
         await ctx.send(f"prefix change to {arg1}")
         
- 
+@Bot.command()
+async def say(ctx, *, msg):
+    await ctx.send(msg)
 
 @Bot.command()
-async def Bug(ctx, *args):
+async def bug(ctx, *args):
 
     serveride = f"{str(ctx.guild.id)}"
     user = f"{str(ctx.author.id)}"
