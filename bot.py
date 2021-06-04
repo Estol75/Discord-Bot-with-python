@@ -117,6 +117,7 @@ async def prefix(ctx, arg1):
         
 @Bot.command()
 async def say(ctx, *, msg):
+    await ctx.channel.purge(limit = 1)
     await ctx.send(msg)
 
 @Bot.command()
