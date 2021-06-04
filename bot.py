@@ -120,6 +120,16 @@ async def SSay(ctx, *, msg):
     await ctx.channel.purge(limit = 1)
     await ctx.send(msg)
 
+    
+@Bot.command()
+async def on_guild_remove(guild):
+    guild_id = str(guild.id)
+    serverid = guild_id
+    serveride = f"{serverid}"
+    db = cluster["discord"]
+    collection = db["data"]
+    results = collection.delete_one({"_id": serveride})    
+    
 @Bot.command()
 async def bug(ctx, *args):
 
