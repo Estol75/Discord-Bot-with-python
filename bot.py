@@ -121,7 +121,7 @@ async def SSay(ctx, *, msg):
     await ctx.send(msg)
 
     
-@Bot.command()
+@Bot.event
 async def on_guild_remove(guild):
     guild_id = str(guild.id)
     serverid = guild_id
