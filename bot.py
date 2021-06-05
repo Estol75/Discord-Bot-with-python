@@ -127,9 +127,10 @@ async def on_guild_remove(guild):
     serverid = guild_id
     serveride = f"{serverid}"
     db = cluster["discord"]
-    collection = db["data"]
+    collections = db["data"]
     collection = db["server"]
     results = collection.delete_one({"_id": serveride})    
+    results_two = collections.delete_one({"_id": serveride})    
     
 @Bot.command()
 async def bug(ctx, *args):
