@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.5"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.6"))
 
 
 mongo = os.environ.get('MONGO')
@@ -100,23 +100,23 @@ async def prefix(ctx, arg1):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
-    result = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
+    resultssss = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
 
 
     serveride = f"{ctx.guild.id}"
     result = collection.find({"_id": serveride})
-    
 
     for result in result:
         numin = result["name"]
-        prefixs = result["prefix"]
+        
     if numin == "ru":
         await ctx.send(f"Префикс изменён на {arg1}")
     else:
         await ctx.send(f"prefix change to {arg1}")
         
 @Bot.command()
-async def SSay(ctx, *, msg):
+@commands.has_permissions(administrator = True)
+async def say(ctx, *, msg):
     await ctx.channel.purge(limit = 1)
     await ctx.send(msg)
 
@@ -156,13 +156,14 @@ async def bug(ctx, *args):
         await ctx.send("Thanks, for find the bug")
 
 
+        
 @Bot.command()
 @commands.has_permissions(administrator = True)
-async def set_lang(ctx, arg1):
+async def autoroleoff(ctx):
     guild_id = str(ctx.guild.id)
     serverid = guild_id
     serveride = f"{serverid}"
-    result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+    result = collection.update_one({"_id": serveride}, {"$set": {"autorole": "delete$1"}})
 
 
     serveride = f"{ctx.guild.id}"
@@ -172,9 +173,64 @@ async def set_lang(ctx, arg1):
         numin = result["name"]
 
     if numin == "ru":
-        await ctx.send("на сервере успешно установлен русский язык")
+        await ctx.send("Автороль было успешно выключена")
     else:
-        await ctx.send("Server language was set to English")    
+        await ctx.send("Autorole was desable")        
+ 
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def autorole(ctx, arg1: str = None):
+
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+
+    if arg1 is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, допишите роль `@role`")
+        else:
+            await ctx.send("Please add role `@role`")
+    else:
+        serveride = f"{str(ctx.guild.id)}"
+        result = collection.update_one({"_id": serveride}, {"$set": {"autorole": arg1}})
+
+
+
+        if numin == "ru":
+            await ctx.send(f" Роль {arg1} добавлена в автороли")
+        else:
+            await ctx.send(f"Role {arg1} add to autorole")
+
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def set_lang(ctx, arg1):
+    guild_id = str(ctx.guild.id)
+    serverid = guild_id
+    serveride = f"{serverid}"
+    
+
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+
+    if arg1 == "ru":
+        result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+        await ctx.send("на сервере успешно установлен русский язык")
+    if arg1 == "en":
+        result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
+        await ctx.send("Server language was set to English")
+
+    else:
+        if numin == "en":
+            await ctx.send("Please select ru or en")
+        if numin == "ru":
+            await ctx.send("Пожалуйста, выберите между ru и en") 
 
 
 
@@ -205,26 +261,47 @@ async def welcome_channel(ctx, arg1):
 async def on_member_join(member):
     #check language
     serveride = f"{member.guild.id}"
+    print(serveride)
     result = collection.find({"_id": serveride})
+    
+    resultsss = collections.find({"_id": serveride})
 
     for result in result:
         numin = result["name"]
         channel = result["channel"]
 
+        
+    for resultsss in resultsss:
+        prefixs = resultsss[serveride]
+
     if numin == "ru":
         embed = discord.Embed(title=f"Добро пожаловать на {member.guild.name} сервер.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"приветствую тебя, {member.mention}⠀⠀​​", color=0x00eeff)
         embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**У нас на сервере приветствую прекрасны бот**", value="для просмотра команд`q.help`", inline=False)
+        embed.add_field(name="**У нас на сервере приветствую прекрасны бот**", value=f"для просмотра команд`{prefixs}help`", inline=False)
         embed.set_thumbnail(url=member.avatar_url)
         channel = discord.utils.get(member.guild.channels, name = channel)
         await channel.send(embed=embed)
     else:
         embed = discord.Embed(title=f"Welcome to the {member.guild.name} server.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Welcome to server, {member.mention}⠀⠀​​", color=0x00eeff)
         embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**We have amazing bot**", value="To view commands `q.help`", inline=False)
+        embed.add_field(name="**We have amazing bot**", value=f"To view commands `{prefixs}help`", inline=False)
         embed.set_thumbnail(url=member.avatar_url)
         channel = discord.utils.get(member.guild.channels, name = channel)
         await channel.send(embed=embed)
+
+    try:
+        autorole = result["autorole"]
+    except KeyError as autorole:
+        print ('I got a KeyError - reason "%s"' % str(autorole))
+    else:
+        sym =len(autorole)
+        last = int(sym) - int(1)
+        von = autorole[3: last]
+        print(von)
+
+
+        role = discord.utils.get(member.guild.roles, id=int(von))
+        await member.add_roles(role)
 
 @Bot.command()
 async def sex(ctx, member: discord.Member):
@@ -1069,6 +1146,7 @@ async def дашка(ctx):
     await ctx.send(file=discord.File('MbdRbgS8VWU.png'))
 
 
+
 @Bot.command(pass_context= True)
 async def help(ctx):
     #check language
@@ -1084,7 +1162,7 @@ async def help(ctx):
         embed.add_field(name="**:frame_photo: Просмотр аватарки**", value="`avatar <@никнейм>`", inline=False)
         embed.add_field(name="**Статус пользователя**", value="`status <@никнейм>`", inline=False)
 
-        embed.add_field(name="**Аниме картинки**", value="`anime_help` или `<anime тег>`", inline=False)
+        embed.add_field(name="**Аниме картинки**", value="`anime_help` или `anime <тег>`", inline=False)
         embed.add_field(name="**Рандомная аниме картика**", value="`animes`", inline=False)
         embed.add_field(name=":wales: **Обои**", value="`wallpaper help` или `wallpaper <тег>`", inline=False)
         embed.add_field(name="**Статус сервера**", value="`server`", inline=False)
@@ -1100,6 +1178,12 @@ async def help(ctx):
         embed.add_field(name=":earth_americas: Выбрать язык на сервере", value="`set_lang <en или ru>`, нужен админ", inline=False)
         embed.add_field(name=":musical_note: Музыкальный бот помощь", value="`music`", inline=False)
         embed.add_field(name=" Выбрать префикс бота", value="`prefix <Символ или слова>`, нужен админ", inline=False)
+
+        embed.add_field(name="Сказать от имени бота", value="`say <текст>`, нужен админ", inline=False)
+        embed.add_field(name="Добавить автороль", value="`autorole <@role>`, нужен админ", inline=False)
+        embed.add_field(name="Отключить автороль", value="`autoroleoff`, нужен админ", inline=False)
+        embed.add_field(name="Отправить баг", value="`bug <Описать найденный баг>`", inline=False)
+
         await ctx.send(embed=embed)
 
     else:
@@ -1108,7 +1192,7 @@ async def help(ctx):
         embed.add_field(name="**:frame_photo: Show User avatar**", value="`avatar <@user>`", inline=False)
         embed.add_field(name="**Show user discord status**", value="`status <@user>`", inline=False)
 
-        embed.add_field(name="**Anime Pictures**", value="`anime_help` or `<anime tag>`", inline=False)
+        embed.add_field(name="**Anime Pictures**", value="`anime_help` or `anime <tag>`", inline=False)
         embed.add_field(name="**Second anime command random anime picture**", value="`animes`", inline=False)
         embed.add_field(name=":wales: **Wallpaper**", value="`wallpaper help` or `wallpaper <tag>`", inline=False)
         embed.add_field(name="**Server status**", value="`server`", inline=False)
@@ -1124,6 +1208,12 @@ async def help(ctx):
         embed.add_field(name=":earth_americas: Select language on server", value="`set_lang <en or ru>`, need administrator", inline=False)
         embed.add_field(name=":musical_note: Music help", value="`music`", inline=False)
         embed.add_field(name=" Select Bot prefix", value="`prefix <Symbol or word>`, need administrator", inline=False)
+
+        embed.add_field(name="Say message from bot", value="`say <text>`, need administrator", inline=False)
+        embed.add_field(name="add Autorole", value="`autorole <@role>`, need administrator", inline=False)
+        embed.add_field(name="disable Autorole", value="`autoroleoff`, need administrator", inline=False)
+        embed.add_field(name="send a bug", value="`bug <Problem Text>`", inline=False)
+
 
         await ctx.send(embed=embed)
 
