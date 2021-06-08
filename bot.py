@@ -305,42 +305,45 @@ async def on_member_join(member):
 
 @Bot.command()
 async def sex(ctx, member: discord.Member):
-    img = [
-        "https://wetgif.com/wp-content/uploads/gif-hentai-incest-19-1.gif",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4q5Q1GC9L9LZG-28yP7uIIa_mK5qdgmN1qgdPRvwnzvERlOc&s",
-        "https://www.eroticaingif.com/upload/2019/01/12/20190112041432-babece34.gif",
-        "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
-        "https://lh3.googleusercontent.com/proxy/MsWv7sK3KDewBjIG4JdTHyfC-5H-PV57QoTthW-_-B6_2MGuhynlsXZE_gk4oBTM6MocES2VkDTJaMPaSodoIR9vZ1gVALSmSg",
-        "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
-        "https://cdn.hentaihand.com/assets/images/531302/4.gif",
-        "http://i.redd.it/k37eby6s0q641.gif",
-        "https://www.xxx-3d.com/thumb/176/769_rose.jpg",
-        "https://thehentaigif.com/wp-content/uploads/2020/10/22688886-81.gif",
-        "https://lh3.googleusercontent.com/proxy/cdnBWyXQkGbDzbMj9zzwoy5uaC_FXeY3ZZDLjRIAS2Wgp06fskzjQEro6bAbXE-kG-LHABqiVrLwBI-M-OZswi0napnpi2XCuZDClgEQXkvfw12Pz7-ze6CPOXBs9_UdmyUsp27Iz0F3",
-        "https://static.hentai-gif-anime.com/upload/20200717/76/153902/detail.gif",
-        "https://i0.wp.com/uncensored-hentai.top/wp-content/uploads/2020/07/my-hero-academia-9.gif?ssl=1",
-        "http://i.redd.it/0f80ek7tis851.gif",
-
-
-    ]
-    #check language
-    serveride = f"{ctx.guild.id}"
-    result = collection.find({"_id": serveride})
-    for result in result:
-        numin = result["name"]
-    #command
-    if numin == "ru":
-        num = random.randint(0,14)
-        embed = discord.Embed(title=f"{ctx.author.name} шрекнул(ся) с {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
-
-        embed.set_image(url=img[num])
-        await ctx.send(embed = embed)
+    if ctx.channel.nsfw == False:
+        await ctx.send("need/нужно NSFW")
     else:
-        num = random.randint(0,23)
-        embed = discord.Embed(title=f"{ctx.author.name} sex {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+        img = [
+            "https://wetgif.com/wp-content/uploads/gif-hentai-incest-19-1.gif",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4q5Q1GC9L9LZG-28yP7uIIa_mK5qdgmN1qgdPRvwnzvERlOc&s",
+            "https://www.eroticaingif.com/upload/2019/01/12/20190112041432-babece34.gif",
+            "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
+            "https://lh3.googleusercontent.com/proxy/MsWv7sK3KDewBjIG4JdTHyfC-5H-PV57QoTthW-_-B6_2MGuhynlsXZE_gk4oBTM6MocES2VkDTJaMPaSodoIR9vZ1gVALSmSg",
+            "https://cdn.xxxhentaipics.com/images/533/files/f040e159526459ceab32e7322beba486/gif-hentai-gifs_0.gif",
+            "https://cdn.hentaihand.com/assets/images/531302/4.gif",
+            "http://i.redd.it/k37eby6s0q641.gif",
+            "https://www.xxx-3d.com/thumb/176/769_rose.jpg",
+            "https://thehentaigif.com/wp-content/uploads/2020/10/22688886-81.gif",
+            "https://lh3.googleusercontent.com/proxy/cdnBWyXQkGbDzbMj9zzwoy5uaC_FXeY3ZZDLjRIAS2Wgp06fskzjQEro6bAbXE-kG-LHABqiVrLwBI-M-OZswi0napnpi2XCuZDClgEQXkvfw12Pz7-ze6CPOXBs9_UdmyUsp27Iz0F3",
+            "https://static.hentai-gif-anime.com/upload/20200717/76/153902/detail.gif",
+            "https://i0.wp.com/uncensored-hentai.top/wp-content/uploads/2020/07/my-hero-academia-9.gif?ssl=1",
+            "http://i.redd.it/0f80ek7tis851.gif",
 
-        embed.set_image(url=img[num])
-        await ctx.send(embed = embed)
+
+        ]
+        #check language
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+        for result in result:
+            numin = result["name"]
+        #command
+        if numin == "ru":
+            num = random.randint(0,14)
+            embed = discord.Embed(title=f"{ctx.author.name} шрекнул(ся) с {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+            embed.set_image(url=img[num])
+            await ctx.send(embed = embed)
+        else:
+            num = random.randint(0,23)
+            embed = discord.Embed(title=f"{ctx.author.name} sex {member.name}⠀", description=f":heart: :heart: :heart:  ", color=0x00eeff)
+
+            embed.set_image(url=img[num])
+            await ctx.send(embed = embed)
 
 @Bot.command()
 async def bot_status(ctx):
@@ -879,113 +882,116 @@ async def __wallpaper(ctx, arg1):
 
 @Bot.command()
 async def anime(ctx, *args):
-    #check language
-    serveride = f"{ctx.guild.id}"
-    result = collection.find({"_id": serveride})
-    for result in result:
-        numin = result["name"]
-        #command
-
-    slot = '{}'.format('+'.join(args))
-
-    arraysst = []
-
-    lenter_link = f"http://anime.reactor.cc/search/{slot}"
-    print( lenter_link)
-    lenter_response = requests.get(lenter_link).text
-    lenter_soup = BeautifulSoup(lenter_response, 'lxml')
-    lenter_block = lenter_soup.find('div', class_ = "pagination_expanded").find_all('a')
-
-    for imgrt in lenter_block:
-        imgsftr = imgrt.text
-        arraysst += [imgsftr]
-
-    numbr = len(arraysst)
-
-    numbrfdf =  numbr - int(1)
-
-    imaperter_lent = arraysst[numbrfdf]
-
-
-
-    array = []
-    nps = random.randint(1, int(imaperter_lent))
-    len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
-
-    len_response = requests.get(len_link).text
-    len_soup = BeautifulSoup(len_response, 'lxml')
-    len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-    images_link = len_block.find_all('div', class_ = 'image')
-
-    for imagerr in images_link:
-        images_linkss = imagerr.find('img').get("src")
-        array += [images_linkss]
-    img_pictur_url = choice(array)
-
-    if numin == "ru":
-        idsr = discord.Embed(title=f"Обои на тему Аниме", description=f"Нажми на реакцию для переключения картинки ▶", color=0x141414)
-        idsr.add_field(name='Открыть обои в браузере' ,value='[Нажми чтобы открыть](' + img_pictur_url + ')')
-        idsr.set_image(url=img_pictur_url)
-
+    if ctx.channel.nsfw == False:
+        await ctx.send("need/нужно NSFW")
     else:
-        idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
-        idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-        idsr.set_image(url=img_pictur_url)
-    message = await ctx.send(embed=idsr)
-    await message.add_reaction('▶')
-    await message.add_reaction('❌')
-    msg = message.id
-    print(msg)
+        #check language
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
+        for result in result:
+            numin = result["name"]
+            #command
+
+        slot = '{}'.format('+'.join(args))
+
+        arraysst = []
+
+        lenter_link = f"http://anime.reactor.cc/search/{slot}"
+        print( lenter_link)
+        lenter_response = requests.get(lenter_link).text
+        lenter_soup = BeautifulSoup(lenter_response, 'lxml')
+        lenter_block = lenter_soup.find('div', class_ = "pagination_expanded").find_all('a')
+
+        for imgrt in lenter_block:
+            imgsftr = imgrt.text
+            arraysst += [imgsftr]
+
+        numbr = len(arraysst)
+
+        numbrfdf =  numbr - int(1)
+
+        imaperter_lent = arraysst[numbrfdf]
 
 
 
-    def check(reaction, user):
-            if reaction.message != message:
-                return False
-                # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
+        array = []
+        nps = random.randint(1, int(imaperter_lent))
+        len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
 
-            return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
-    i = 0
-    reaction = None
+        len_response = requests.get(len_link).text
+        len_soup = BeautifulSoup(len_response, 'lxml')
+        len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+        images_link = len_block.find_all('div', class_ = 'image')
 
-    while True:
-        if str(reaction) == '▶':
-            i = 0
-            arrays = []
+        for imagerr in images_link:
+            images_linkss = imagerr.find('img').get("src")
+            array += [images_linkss]
+        img_pictur_url = choice(array)
 
-            nps = random.randint(1, int(imaperter_lent))
-            len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
-            len_response = requests.get(len_link).text
-            len_soup = BeautifulSoup(len_response, 'lxml')
-            len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
-            images_link = len_block.find_all('div', class_ = 'image')
+        if numin == "ru":
+            idsr = discord.Embed(title=f"Обои на тему Аниме", description=f"Нажми на реакцию для переключения картинки ▶", color=0x141414)
+            idsr.add_field(name='Открыть обои в браузере' ,value='[Нажми чтобы открыть](' + img_pictur_url + ')')
+            idsr.set_image(url=img_pictur_url)
 
-            for imagerr in images_link:
-                    images_linksss = imagerr.find('img').get("src")
-                    arrays += [images_linksss]
+        else:
+            idsr = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
+            idsr.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+            idsr.set_image(url=img_pictur_url)
+        message = await ctx.send(embed=idsr)
+        await message.add_reaction('▶')
+        await message.add_reaction('❌')
+        msg = message.id
+        print(msg)
 
-            img_pictur_url = choice(arrays)
-            print(img_pictur_url)
-            if numin == "ru":
-                idsrs = discord.Embed(title=f"Обои на тему Аниме", description=f"Нажми на реакцию для переключения картинки ▶", color=0x141414)
-                idsrs.add_field(name='Открыть обои в браузере' ,value='[Нажми чтобы открыть](' + img_pictur_url + ')')
-                idsrs.set_image(url=img_pictur_url)
-                await message.edit(embed = idsrs)
-            else:
-                idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
-                idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
-                idsrs.set_image(url=img_pictur_url)
-                await message.edit(embed = idsrs)
 
-        if str(reaction) == '❌':
-            msggsss = await ctx.fetch_message(msg)
-            await msggsss.delete()
-        try:
 
-            reaction, user = await Bot.wait_for('reaction_add', check = check)
-            await message.remove_reaction(reaction, user)
-        except:
-            break
+        def check(reaction, user):
+                if reaction.message != message:
+                    return False
+                    # SOLUTION: Checks if the message reacted on is the same as the one the bot sent
+
+                return user == ctx.author and str(reaction.emoji) in ["▶", "❌"]
+        i = 0
+        reaction = None
+
+        while True:
+            if str(reaction) == '▶':
+                i = 0
+                arrays = []
+
+                nps = random.randint(1, int(imaperter_lent))
+                len_link = f"http://anime.reactor.cc/search/{slot}/{nps}"
+                len_response = requests.get(len_link).text
+                len_soup = BeautifulSoup(len_response, 'lxml')
+                len_block = len_soup.find('div', id = "contentinner").find('div', id = "post_list")
+                images_link = len_block.find_all('div', class_ = 'image')
+
+                for imagerr in images_link:
+                        images_linksss = imagerr.find('img').get("src")
+                        arrays += [images_linksss]
+
+                img_pictur_url = choice(arrays)
+                print(img_pictur_url)
+                if numin == "ru":
+                    idsrs = discord.Embed(title=f"Обои на тему Аниме", description=f"Нажми на реакцию для переключения картинки ▶", color=0x141414)
+                    idsrs.add_field(name='Открыть обои в браузере' ,value='[Нажми чтобы открыть](' + img_pictur_url + ')')
+                    idsrs.set_image(url=img_pictur_url)
+                    await message.edit(embed = idsrs)
+                else:
+                    idsrs = discord.Embed(title=f"Wallpaper Anime", description=f"Click on the reaction below to scroll to the next picture ", color=0x141414)
+                    idsrs.add_field(name='Open Image in Browser' ,value='[Click here to open](' + img_pictur_url + ')')
+                    idsrs.set_image(url=img_pictur_url)
+                    await message.edit(embed = idsrs)
+
+            if str(reaction) == '❌':
+                msggsss = await ctx.fetch_message(msg)
+                await msggsss.delete()
+            try:
+
+                reaction, user = await Bot.wait_for('reaction_add', check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
 
 
 @Bot.command()
