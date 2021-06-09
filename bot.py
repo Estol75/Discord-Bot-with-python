@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.6"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.7"))
 
 
 mongo = os.environ.get('MONGO')
@@ -133,27 +133,38 @@ async def on_guild_remove(guild):
     results_two = collections.delete_one({"_id": serveride})    
     
 @Bot.command()
-async def bug(ctx, *args):
+async def bug(ctx, *, msg: str = None):
+
 
     serveride = f"{str(ctx.guild.id)}"
-    user = f"{str(ctx.author.id)}"
+    user = f"{str(ctx.author)}"
 
     db = cluster["discord"]
     collection = db["bugs"]
 
-    post = {"_id": serveride, "user": user, "bug": args}
-
-    collection.insert_one(post)
-
-
+    post = {"_id": serveride, "user": user, "bug": msg}
     result = collection.find({"_id": serveride})
+
     for result in result:
         numin = result["name"]
 
-    if numin == "ru":
-        await ctx.send("Спасибо, вам за найденный баг")
+    if msg is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, допишите найденый баг")
+        else:
+            await ctx.send("Please add argument text")
     else:
-        await ctx.send("Thanks, for find the bug")
+        collection.insert_one(post)
+
+
+
+        if numin == "ru":
+            collection.insert_one(post)
+            await ctx.send("Спасибо, вам за найденный баг")
+        else:
+            collection.insert_one(post)
+            await ctx.send("Thanks, for find the bug")
+
 
 
         
