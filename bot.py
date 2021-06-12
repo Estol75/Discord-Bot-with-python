@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.7"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.8"))
 
 
 mongo = os.environ.get('MONGO')
@@ -96,11 +96,7 @@ async def on_guild_join(guild):
     
 @Bot.command()
 @commands.has_permissions(administrator = True)
-async def prefix(ctx, arg1):
-    guild_id = str(ctx.guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
-    resultssss = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
+async def prefix(ctx, arg1: str = None):
 
 
     serveride = f"{ctx.guild.id}"
@@ -108,18 +104,54 @@ async def prefix(ctx, arg1):
 
     for result in result:
         numin = result["name"]
-        
-    if numin == "ru":
-        await ctx.send(f"Префикс изменён на {arg1}")
+
+    if arg1 is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, добавьте префикс например `prefix -`")
+        else:
+            await ctx.send("Please add the prefix eg `prefix -`")
+
+
     else:
-        await ctx.send(f"prefix change to {arg1}")
+        serveride = f"{serverid}"
+        resultssss = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
+
+        if numin == "ru":
+            await ctx.send(f"Префикс изменён на {arg1}")
+        else:
+            await ctx.send(f"prefix change to {arg1}")
         
 @Bot.command()
 @commands.has_permissions(administrator = True)
-async def say(ctx, *, msg):
-    await ctx.channel.purge(limit = 1)
-    await ctx.send(msg)
+async def say(ctx, *, msg: str = None):
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
 
+    for result in result:
+        numin = result["name"]
+    if msg is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, добавьте text `say text`")
+        else:
+            await ctx.send("Please add the text `say text`")
+    else:
+        await ctx.channel.purge(limit = 1)
+        await ctx.send(msg)
+
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def mute(ctx, user : discord.Member, duration = 0,*, unit = None):
+    roleobject = discord.utils.get(ctx.message.guild.roles, id=850428222976819210)
+    await ctx.send(f":white_check_mark: Muted {user} for {duration}{unit}")
+    await user.add_roles(roleobject)
+    if unit == "s":
+        wait = 1 * duration
+        await asyncio.sleep(wait)
+    elif unit == "m":
+        wait = 60 * duration
+        await asyncio.sleep(wait)
+    await user.remove_roles(roleobject)
+    await ctx.send(f":white_check_mark: {user} was unmuted")
     
 @Bot.event
 async def on_guild_remove(guild):
@@ -133,7 +165,6 @@ async def on_guild_remove(guild):
     results_two = collections.delete_one({"_id": serveride})    
     
 @Bot.command()
-@commands.has_permissions(administrator = True)
 async def feedback(ctx, *, msg: str = None):
 
     serveride = f"{ctx.guild.id}"
@@ -218,11 +249,8 @@ async def autorole(ctx, arg1: str = None):
 
 @Bot.command()
 @commands.has_permissions(administrator = True)
-async def set_lang(ctx, arg1):
-    guild_id = str(ctx.guild.id)
-    serverid = guild_id
-    serveride = f"{serverid}"
-    
+async def set_lang(ctx, msg: str = None):
+
 
     serveride = f"{ctx.guild.id}"
     result = collection.find({"_id": serveride})
@@ -230,42 +258,57 @@ async def set_lang(ctx, arg1):
     for result in result:
         numin = result["name"]
 
-
-    if arg1 == "ru":
-        result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
-        await ctx.send("на сервере успешно установлен русский язык")
-    if arg1 == "en":
-        result = collection.update_one({"_id": serveride}, {"$set": {"name": arg1}})
-        await ctx.send("Server language was set to English")
-
-    else:
-        if numin == "en":
-            await ctx.send("Please select ru or en")
+    if msg is None:
         if numin == "ru":
-            await ctx.send("Пожалуйста, выберите между ru и en") 
+            await ctx.send("Пожалуйста, добавьте язык en или ru `set_lang ru/en`")
+        else:
+            await ctx.send("Please add language `set_lang en/ru`")
+    else:
+
+        if msg == "ru":
+            result = collection.update_one({"_id": serveride}, {"$set": {"name": msg}})
+            await ctx.send("на сервере успешно установлен русский язык")
+
+
+        elif msg == "en":
+            result = collection.update_one({"_id": serveride}, {"$set": {"name": msg}})
+            await ctx.send("Server language was set to English")
+
+
+        else:
+            if numin == "ru":
+                await ctx.send("Пожалуйста выберети между ru и en")
+            else:
+                await ctx.send("please select ru or en")
 
 
 
 
 @Bot.command()
 @commands.has_permissions(administrator = True)
-async def welcome_channel(ctx, arg1):
+async def welcome_channel(ctx, arg1: str = None):
     serveride = f"{ctx.guild.id}"
     result = collection.find({"_id": serveride})
 
     for result in result:
         numin = result["name"]
 
-    serveride = f"{str(ctx.guild.id)}"
-    result = collection.update_one({"_id": serveride}, {"$set": {"channel": arg1}})
+    if arg1 is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, добавьте названия канала например `welcome_channel general`")
+        else:
+            await ctx.send("Please add the channel name eg `welcome_channel general`")
 
-
-
-    if numin == "ru":
-        await ctx.send(f"Вы добавляете приветственное сообщение в {arg1} канал")
     else:
-        await ctx.send(f"you add welcome message to {arg1} channel")
+        serveride = f"{str(ctx.guild.id)}"
+        result = collection.update_one({"_id": serveride}, {"$set": {"channel": arg1}})
 
+
+
+        if numin == "ru":
+            await ctx.send(f"Вы добавляете приветственное сообщение в {arg1} канал")
+        else:
+            await ctx.send(f"you add welcome message to {arg1} channel")
 
 
 
@@ -1204,7 +1247,7 @@ async def help(ctx):
         embed.add_field(name="Сказать от имени бота", value="`say <текст>`, нужен админ", inline=False)
         embed.add_field(name="Добавить автороль", value="`autorole <@role>`, нужен админ", inline=False)
         embed.add_field(name="Отключить автороль", value="`autoroleoff`, нужен админ", inline=False)
-        embed.add_field(name="Отправить баг", value="`bug <Описать найденный баг>`", inline=False)
+        embed.add_field(name="Отправить баг", value="`feedback <Описать найденный баг>`", inline=False)
 
         await ctx.send(embed=embed)
 
@@ -1234,7 +1277,7 @@ async def help(ctx):
         embed.add_field(name="Say message from bot", value="`say <text>`, need administrator", inline=False)
         embed.add_field(name="add Autorole", value="`autorole <@role>`, need administrator", inline=False)
         embed.add_field(name="disable Autorole", value="`autoroleoff`, need administrator", inline=False)
-        embed.add_field(name="send a bug", value="`bug <Problem Text>`", inline=False)
+        embed.add_field(name="send a bug", value="`feedback <Problem Text>`", inline=False)
 
 
         await ctx.send(embed=embed)
