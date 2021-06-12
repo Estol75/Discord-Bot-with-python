@@ -133,37 +133,38 @@ async def on_guild_remove(guild):
     results_two = collections.delete_one({"_id": serveride})    
     
 @Bot.command()
-async def bug(ctx, *, msg: str = None):
+@commands.has_permissions(administrator = True)
+async def feedback(ctx, *, msg: str = None):
 
-
-    serveride = f"{str(ctx.guild.id)}"
-    user = f"{str(ctx.author)}"
-
-    db = cluster["discord"]
-    collection = db["bugs"]
-
-    post = {"_id": serveride, "user": user, "bug": msg}
+    serveride = f"{ctx.guild.id}"
     result = collection.find({"_id": serveride})
 
     for result in result:
         numin = result["name"]
 
+    collectionst = db["bugs"]
     if msg is None:
         if numin == "ru":
-            await ctx.send("Пожалуйста, допишите найденый баг")
+            await ctx.send("Пожалуйста, допишите роль текст")
         else:
-            await ctx.send("Please add argument text")
+            await ctx.send("Please add feedback text")
     else:
-        collection.insert_one(post)
+        serveride = f"{str(ctx.guild.id)}"
+        author = f"{ctx.author}"
+        id_ran = random.randint(0,9999)
+        post = {"_id": id_ran, "user": author, "bug": msg}
+        collectionst.insert_one(post)
 
+        serveride = f"{ctx.guild.id}"
+        result = collection.find({"_id": serveride})
 
+        for result in result:
+            numin = result["name"]
 
         if numin == "ru":
-            collection.insert_one(post)
-            await ctx.send("Спасибо, вам за найденный баг")
+            await ctx.send(f"спасибо вам за поддержку бота")
         else:
-            collection.insert_one(post)
-            await ctx.send("Thanks, for find the bug")
+            await ctx.send(f"Thank you for helping make bot better")
 
 
 
@@ -270,49 +271,53 @@ async def welcome_channel(ctx, arg1):
 
 @Bot.event
 async def on_member_join(member):
-    #check language
     serveride = f"{member.guild.id}"
-    print(serveride)
-    result = collection.find({"_id": serveride})
-    
-    resultsss = collections.find({"_id": serveride})
+    resultsss = collection.find({"_id": serveride})
 
-    for result in result:
-        numin = result["name"]
-        channel = result["channel"]
+    embed_ru = discord.Embed(title=f"▬▬▬▬▬[{member.guild.name}]▬▬▬▬▬ \nДобро пожаловать на сервер \n└{member.guild.name}.", description=f":hand_splayed: Приветствую тебя, {member.mention}⠀\n :fireworks: Надеюсь тебе понравится у нас​​", color=0xffc800)
+    embed_ru.set_image(url="https://media1.tenor.com/images/83f1d91029dc0a158e2d27b8535d3b7d/tenor.gif?itemid=21103469")
+    embed_ru.add_field(name=f"информация о {member.mention}", value=":arrow_forward: " + member.created_at.strftime("%a, %#d %B %Y") + f" \n :id: {member.id}")
+    embed_ru.set_thumbnail(url=member.avatar_url)
+    embed_ru.set_footer(text=f"новый игрок {member.mention}", icon_url=member.avatar_url)
 
-        
-    for resultsss in resultsss:
-        prefixs = resultsss[serveride]
-
-    if numin == "ru":
-        embed = discord.Embed(title=f"Добро пожаловать на {member.guild.name} сервер.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"приветствую тебя, {member.mention}⠀⠀​​", color=0x00eeff)
-        embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**У нас на сервере приветствую прекрасны бот**", value=f"для просмотра команд`{prefixs}help`", inline=False)
-        embed.set_thumbnail(url=member.avatar_url)
-        channel = discord.utils.get(member.guild.channels, name = channel)
-        await channel.send(embed=embed)
-    else:
-        embed = discord.Embed(title=f"Welcome to the {member.guild.name} server.⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀⠀​⠀​⠀", description=f"Welcome to server, {member.mention}⠀⠀​​", color=0x00eeff)
-        embed.set_image(url="https://t4.ftcdn.net/jpg/03/64/94/67/360_F_364946785_HU0G0WLRpd9SjBxecLAy7En93HmdxbL5.jpg")
-        embed.add_field(name="**We have amazing bot**", value=f"To view commands `{prefixs}help`", inline=False)
-        embed.set_thumbnail(url=member.avatar_url)
-        channel = discord.utils.get(member.guild.channels, name = channel)
-        await channel.send(embed=embed)
+    embed_en = discord.Embed(title=f"▬▬▬▬▬[{member.guild.name}]▬▬▬▬▬ \n Welcome to server \n└{member.guild.name}.", description=f":hand_splayed: Hello, {member.mention}⠀\n :fireworks: I hope you like ours server", color=0xffc800)
+    embed_en.set_image(url="https://media1.tenor.com/images/83f1d91029dc0a158e2d27b8535d3b7d/tenor.gif?itemid=21103469")
+    embed_en.add_field(name=f"Information about {member.name}", value=":arrow_forward: " + member.created_at.strftime("%a, %#d %B %Y") + f" \n :id: {member.id}")
+    embed_en.set_thumbnail(url=member.avatar_url)
+    embed_en.set_footer(text=f"new user {member.name}", icon_url=member.avatar_url)
 
     try:
-        autorole = result["autorole"]
-    except KeyError as autorole:
-        print ('I got a KeyError - reason "%s"' % str(autorole))
-    else:
-        sym =len(autorole)
-        last = int(sym) - int(1)
-        von = autorole[3: last]
-        print(von)
+        for resultsss in resultsss:
+            channel = resultsss["channel"]
+            lang = resultsss["name"]
+
+        channel = discord.utils.get(member.guild.channels, name = channel)
+
+        if lang == "ru":
+            await channel.send(embed=embed_ru)
+        else:
+            await channel.send(embed=embed_en)
+
+    except KeyError:
+        print("канал не добавлен")
+    except AttributeError as channel:
+        print("данный канал ненайден")
+
+    print("autorole")
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        autoroles = result["autorole"]
+        print(autoroles)
+
+    sym = len(autoroles)
+    last = int(sym) - int(1)
+    von = autoroles[3: last]
+    print(von)
 
 
-        role = discord.utils.get(member.guild.roles, id=int(von))
-        await member.add_roles(role)
+    role = discord.utils.get(member.guild.roles, id=int(von))
+    await member.add_roles(role)
 
 @Bot.command()
 async def sex(ctx, member: discord.Member):
