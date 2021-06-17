@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.8"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.9"))
 
 
 mongo = os.environ.get('MONGO')
@@ -139,10 +139,27 @@ async def say(ctx, *, msg: str = None):
         await ctx.send(msg)
 
 @Bot.command()
-@commands.has_permissions(administrator = True)
+@commands.has_permissions(manage_channels = True)
 async def mute(ctx, user : discord.Member, duration = 0,*, unit = None):
-    roleobject = discord.utils.get(ctx.message.guild.roles, id=850428222976819210)
-    await ctx.send(f":white_check_mark: Muted {user} for {duration}{unit}")
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        autoroles = result["mute_role"]
+        numin = result["name"]
+
+
+    sym = len(autoroles)
+    last = int(sym) - int(1)
+    von = autoroles[3: last]
+    print(von)
+
+    roleobject = discord.utils.get(ctx.message.guild.roles, id=int(von))
+
+    if numin == "ru":
+        await ctx.send(f":white_check_mark: {user} замучен  {duration}{unit}")
+    else:
+        await ctx.send(f":white_check_mark: {user} Muted {duration}{unit}")
     await user.add_roles(roleobject)
     if unit == "s":
         wait = 1 * duration
@@ -151,8 +168,133 @@ async def mute(ctx, user : discord.Member, duration = 0,*, unit = None):
         wait = 60 * duration
         await asyncio.sleep(wait)
     await user.remove_roles(roleobject)
-    await ctx.send(f":white_check_mark: {user} was unmuted")
-    
+    if numin == "ru":
+        await ctx.send(f":white_check_mark: {user} размучен")
+        embed = discord.Embed(title = "Мут", description = f":warning:  вам был выдан мут на сервере {ctx.guild.name}", color =0xffc800)
+        await user.send(embed = embed)
+    else:
+        await ctx.send(f":white_check_mark: {user} was unmuted")
+        embed = discord.Embed(title = "Mute notification", description = f":warning:  you was muted on {ctx.guild.name} server", color =0xffc800)
+        await user.send(embed = embed)
+        
+        
+@Bot.event
+async def on_voice_state_update(member, before, after):
+    serveride = f"{member.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+    if numin == "ru":
+        channel_lang = "создать голосовой [+]"
+        name = 'Свой голосовой канал'
+    else:
+        channel_lang = "create voice channel [+]"
+        name = "Own voice channel"
+    categorys = discord.utils.get(member.guild.categories, name=name)
+    try:
+        if after.channel.name == channel_lang:
+
+            guild = member.guild
+
+            id_channel = await guild.create_voice_channel(f'{member.name}', category=categorys)
+
+            channel = Bot.get_channel(id_channel.id)
+            everyone = member
+            perm = channel.overwrites_for(everyone)
+            perm.manage_channels = True
+
+            await id_channel.set_permissions(everyone, overwrite=perm)
+
+            existing_channel = discord.utils.get(guild.channels, id=int(id_channel.id))
+            await member.move_to(channel)
+    except AttributeError:
+        pass
+
+    if before.channel is None and after.channel is not None:
+        if after.channel.name == channel_lang:
+
+            guild = member.guild
+
+            id_channel = await guild.create_voice_channel(f'{member.name}', category=categorys)
+
+            channel = Bot.get_channel(id_channel.id)
+
+            existing_channel = discord.utils.get(guild.channels, id=int(id_channel.id))
+            await member.move_to(channel)
+
+
+    if before.channel is not None:
+        try:
+            if before.channel.category.id == categorys.id:
+
+                if len(before.channel.members) == 0:
+
+                    if before.channel.name == channel_lang:
+                        return
+
+                    else:
+                        await before.channel.delete()
+        except AttributeError:
+            return
+
+        
+        
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def own_voice(ctx):
+
+    #land check
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+    guild = ctx.message.guild
+
+    if numin == "ru":
+        name = "Свой голосовой канал"
+
+        await ctx.guild.create_category("Свой голосовой канал")
+        categorys = discord.utils.get(ctx.guild.categories, name=name)
+        await guild.create_voice_channel("создать голосовой [+]", category=categorys)
+        await ctx.send(":ballot_box_with_check: выполнено" )
+    else:
+        name = "Own voice channel"
+
+        await ctx.guild.create_category("Own voice channel")
+        categorys = discord.utils.get(ctx.guild.categories, name=name)
+        await guild.create_voice_channel("create voice channel [+]", category=categorys)
+        await ctx.send(":ballot_box_with_check: complete" )
+        
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def bye_channel(ctx, arg1: str = None):
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+    if arg1 is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, добавьте названия канала например `bye_channel bye`")
+        else:
+            await ctx.send("Please add the channel name eg `bye_channel bye`")
+
+    else:
+        serveride = f"{str(ctx.guild.id)}"
+        result = collection.update_one({"_id": serveride}, {"$set": {"remove": arg1}})
+
+
+        if numin == "ru":
+            await ctx.send(f"Вы добавили прощальное сообщение в {arg1} канал")
+        else:
+            await ctx.send(f"you add bye message to {arg1} channel")
+            
+            
 @Bot.event
 async def on_guild_remove(guild):
     guild_id = str(guild.id)
@@ -319,9 +461,9 @@ async def on_member_join(member):
 
     embed_ru = discord.Embed(title=f"▬▬▬▬▬[{member.guild.name}]▬▬▬▬▬ \nДобро пожаловать на сервер \n└{member.guild.name}.", description=f":hand_splayed: Приветствую тебя, {member.mention}⠀\n :fireworks: Надеюсь тебе понравится у нас​​", color=0xffc800)
     embed_ru.set_image(url="https://media1.tenor.com/images/83f1d91029dc0a158e2d27b8535d3b7d/tenor.gif?itemid=21103469")
-    embed_ru.add_field(name=f"информация о {member.mention}", value=":arrow_forward: " + member.created_at.strftime("%a, %#d %B %Y") + f" \n :id: {member.id}")
+    embed_ru.add_field(name=f"информация о {member.name}", value=":arrow_forward: " + member.created_at.strftime("%a, %#d %B %Y") + f" \n :id: {member.id}")
     embed_ru.set_thumbnail(url=member.avatar_url)
-    embed_ru.set_footer(text=f"новый игрок {member.mention}", icon_url=member.avatar_url)
+    embed_ru.set_footer(text=f"новый игрок {member.name}", icon_url=member.avatar_url)
 
     embed_en = discord.Embed(title=f"▬▬▬▬▬[{member.guild.name}]▬▬▬▬▬ \n Welcome to server \n└{member.guild.name}.", description=f":hand_splayed: Hello, {member.mention}⠀\n :fireworks: I hope you like ours server", color=0xffc800)
     embed_en.set_image(url="https://media1.tenor.com/images/83f1d91029dc0a158e2d27b8535d3b7d/tenor.gif?itemid=21103469")
@@ -420,12 +562,47 @@ async def bot_status(ctx):
     else:
         await ctx.send(f"Server count {servers}, My ping is {ping} ms")
 
+
 @Bot.event
 async def on_member_remove(member):
-    channel = discord.utils.get(member.guild.channels, name = '❗-писать-тут')
-    msg = f"{member.mention} leave discord server "
-    await channel.send(msg)
 
+    serveride = f"{member.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+    base_date = member.joined_at.strftime("%Y-%m-%d")
+
+    today = date.today()
+
+    data = [today.strftime("%Y-%m-%d")]
+
+    format = "%Y-%m-%d"
+
+    base = datetime.strptime(base_date, format)
+    diff = [(datetime.strptime(d, format) - base).days for d in data]
+
+    embed_ru = discord.Embed(title = f"{member.display_name} покинул(а) сервер", description = f":hand_splayed: пока {member.display_name}", color=0xffc800)
+    embed_ru.add_field(name = "Время провождения на сервере", value = f"└{diff[0]} дней")
+    embed_ru.set_image(url="https://media1.tenor.com/images/56976dab54f0f14b5d9b87d100091858/tenor.gif?itemid=17441907")
+    embed_ru.set_thumbnail(url=member.avatar_url)
+
+    embed_en = discord.Embed(title = f"{member.display_name} leave server", description = f":hand_splayed: bye {member.display_name}", color=0xffc800)
+    embed_en.add_field(name = "Time stayed on server", value = f"└{diff[0]} days")
+    embed_en.set_image(url="https://media1.tenor.com/images/56976dab54f0f14b5d9b87d100091858/tenor.gif?itemid=17441907")
+    embed_en.set_thumbnail(url=member.avatar_url)
+
+
+    serveride = f"{member.guild.id}"
+    resultsss = collection.find({"_id": serveride})
+    for resultsss in resultsss:
+        channel = resultsss["remove"]
+
+    channel = discord.utils.get(member.guild.channels, name = channel)
+    if numin == "ru":
+        await channel.send(embed = embed_ru)
+    else:
+        await channel.send(embed = embed_en)
 
 
 @Bot.command()
@@ -1247,6 +1424,13 @@ async def help(ctx):
         embed.add_field(name="Сказать от имени бота", value="`say <текст>`, нужен админ", inline=False)
         embed.add_field(name="Добавить автороль", value="`autorole <@role>`, нужен админ", inline=False)
         embed.add_field(name="Отключить автороль", value="`autoroleoff`, нужен админ", inline=False)
+
+        embed.add_field(name="Отправить варн игроку", value="`warn <@user> <сообщение>`, нужен модер", inline=False)
+        embed.add_field(name="добавить роль замучен", value="`mute_role <@role>`, нужен админ", inline=False)
+        embed.add_field(name="Замутить пользователя", value="`mute <@user> <цифру> <s или m>`, нужен модер", inline=False)
+
+        embed.add_field(name="Создавать свои голосовые каналы", value="`own_voice`, нужен админ", inline=False)
+        embed.add_field(name="Сообщения после покидание сервера", value="`bye_channel <названия канала>`, нужен админ", inline=False)
         embed.add_field(name="Отправить баг", value="`feedback <Описать найденный баг>`", inline=False)
 
         await ctx.send(embed=embed)
@@ -1277,10 +1461,18 @@ async def help(ctx):
         embed.add_field(name="Say message from bot", value="`say <text>`, need administrator", inline=False)
         embed.add_field(name="add Autorole", value="`autorole <@role>`, need administrator", inline=False)
         embed.add_field(name="disable Autorole", value="`autoroleoff`, need administrator", inline=False)
+
+
+        embed.add_field(name="warn a member", value="`warn <@user> <message>`, need Moderator", inline=False)
+        embed.add_field(name="add mute role", value="`mute_role <@role>`, need administrator", inline=False)
+        embed.add_field(name="mute a member", value="`mute <@user> <number> <s or m>`, need Moderator", inline=False)
+
+        embed.add_field(name="create own voice channel", value="`own_voice`, need administrator", inline=False)
+        embed.add_field(name="message if member leave server", value="`bye_channel <channel name>`, need administrator", inline=False)
         embed.add_field(name="send a bug", value="`feedback <Problem Text>`", inline=False)
 
-
         await ctx.send(embed=embed)
+
 
 
 
@@ -1317,6 +1509,53 @@ async def music(ctx):
 
         await ctx.send(embed=embed)
 
+        
+@Bot.command()
+@commands.has_permissions(manage_channels = True)
+async def warn(ctx, member: discord.Member, *, msg):
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+    if numin == "ru":
+        embed = discord.Embed(title = "Warn внимания", description = f":warning:  вам был выдан варн на сервере {ctx.guild.name}", color =0xffc800)
+        embed.add_field(name = "причина", value =f":page_facing_up: {msg}" )
+        await member.send(embed = embed)
+        await ctx.send(f"вы отправели варн {member}")
+    else:
+        embed = discord.Embed(title = "Warn notification", description = f":warning:  you was warn on  {ctx.guild.name} server", color =0xffc800)
+        embed.add_field(name = "cause", value =f":page_facing_up: {msg}" )
+        await member.send(embed = embed)
+        await ctx.send(f"you warn {member}")
+        
+@Bot.command()
+@commands.has_permissions(administrator = True)
+async def mute_role(ctx, arg1: str = None):
+
+    serveride = f"{ctx.guild.id}"
+    result = collection.find({"_id": serveride})
+
+    for result in result:
+        numin = result["name"]
+
+
+    if arg1 is None:
+        if numin == "ru":
+            await ctx.send("Пожалуйста, допишите роль `@role`")
+        else:
+            await ctx.send("Please add Mute role `@role`")
+    else:
+        serveride = f"{str(ctx.guild.id)}"
+        result = collection.update_one({"_id": serveride}, {"$set": {"mute_role": arg1}})
+
+
+
+        if numin == "ru":
+            await ctx.send(f" Роль {arg1} добавлена в мьют роль")
+        else:
+            await ctx.send(f"Role {arg1} add to mute role")
+       
 @Bot.command()
 async def avatar(ctx, member: discord.Member):
     #check language
