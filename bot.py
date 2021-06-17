@@ -26,7 +26,7 @@ import fake_useragent
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
-
+from datetime import datetime
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.9"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.10"))
 
 
 mongo = os.environ.get('MONGO')
