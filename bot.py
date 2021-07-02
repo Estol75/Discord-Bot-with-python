@@ -63,7 +63,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.11"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.12"))
 
 
 mongo = os.environ.get('MONGO')
@@ -113,7 +113,7 @@ async def prefix(ctx, arg1: str = None):
 
 
     else:
-        serveride = f"{serverid}"
+        serveride = f"{serveride}"
         resultssss = collections.update_one({"_id": serveride}, {"$set": {serveride: arg1}})
 
         if numin == "ru":
