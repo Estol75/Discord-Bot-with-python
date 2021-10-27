@@ -39,17 +39,7 @@ import urllib.request
 import requests
 
 import os
-from pyffmpeg import FFmpeg
-from PIL import Image, ImageChops
-from moviepy.editor import *
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from instabot import Bot
 
-from random import randint
-import time
-import requests
-import webbrowser
 
 
 user = fake_useragent.UserAgent().random
