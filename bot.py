@@ -137,6 +137,57 @@ async def say(ctx, *, msg: str = None):
     else:
         await ctx.channel.purge(limit = 1)
         await ctx.send(msg)
+        
+        
+        
+        
+@Bot.event
+async def on_message(msg):
+    await Bot.process_commands(msg)
+    print(msg.content[12:24])
+    if msg.content[12:24] == 'tiktok.com/@':
+        if int(45) < len(msg.content):
+            messages_id = msg.id
+            channel = msg.channel
+
+            #подключения драйвера
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--no-sandbox")
+            driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+            
+            #удалить сылку на тикток
+            await channel.delete_messages([discord.Object(id=messages_id)])
+
+            #склейка сылки на тикток и сайта
+            driver.get(f'https://ttsave.app/#{msg.content}')
+
+            #пойск сыллки на скачивания тикток
+            num = 0
+            elems = driver.find_elements_by_xpath("//a[@href]")
+            for elem in elems:
+                ekfar = elem.get_attribute("href")
+
+
+                if num <= 0:
+                    if ekfar[0:9] == f'https://v':
+                        num = num + 1
+                        found_video_url = elem.get_attribute("href")
+                        print(found_video_url)
+
+                        #рандомную цифру для разнах названий
+                        n = random.randint(0,999)
+
+
+                        #скачать видео тикток
+                        urllib.request.urlretrieve(found_video_url, f'Estol{n}.mp4')
+
+
+                        #отправка видео
+                        await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
+                        os.remove(f"Estol{n}.mp4")
 
 @Bot.command()
 @commands.has_permissions(manage_channels = True)
