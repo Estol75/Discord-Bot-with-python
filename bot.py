@@ -28,6 +28,30 @@ import pymongo
 from pymongo import MongoClient
 from datetime import datetime
 
+from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import fake_useragent
+from time import sleep
+import urllib.request
+import requests
+import pyautogui as pp
+import os
+from pyffmpeg import FFmpeg
+from PIL import Image, ImageChops
+from moviepy.editor import *
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+from instabot import Bot
+
+from random import randint
+import time
+import requests
+import webbrowser
+
+
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
 
