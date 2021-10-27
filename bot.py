@@ -37,7 +37,7 @@ import fake_useragent
 from time import sleep
 import urllib.request
 import requests
-import pyautogui as pp
+
 import os
 from pyffmpeg import FFmpeg
 from PIL import Image, ImageChops
