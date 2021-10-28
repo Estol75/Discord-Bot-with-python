@@ -174,10 +174,11 @@ async def on_message(msg):
             
             #удалить сылку на тикток
             await channel.delete_messages([discord.Object(id=messages_id)])
-
+    
             #склейка сылки на тикток и сайта
             driver.get(f'https://ttsave.app/#{msg.content}')
-
+            
+            embe = discord.Embed()
             #пойск сыллки на скачивания тикток
             num = 0
             elems = driver.find_elements_by_xpath("//a[@href]")
