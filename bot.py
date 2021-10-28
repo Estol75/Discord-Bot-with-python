@@ -217,18 +217,18 @@ async def on_message(msg):
                         
                        
 
-                Plays = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[1]')[0].text
-                Likes = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[2]')[0].text
-                comments = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[3]')[0].text
+            Plays = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[1]')[0].text
+            Likes = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[2]')[0].text
+            comments = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[3]')[0].text
 
-                embe.set_footer(text=f"запрос сделан {msg.author}", icon_url=msg.author.avatar_url)
+            embe.set_footer(text=f"запрос сделан {msg.author}", icon_url=msg.author.avatar_url)
 
 
-                embe.add_field(name="Plays :arrow_forward:", value=Plays)
-                embe.add_field(name="Likes :heart:", value=Likes)
-                embe.add_field(name="comments :incoming_envelope:", value=comments)
+            embe.add_field(name="Plays :arrow_forward:", value=Plays)
+            embe.add_field(name="Likes :heart:", value=Likes)
+            embe.add_field(name="comments :incoming_envelope:", value=comments)
 
-                await msg.channel.send(embed=embe)
+            await msg.channel.send(embed=embe)
 
                         
 
