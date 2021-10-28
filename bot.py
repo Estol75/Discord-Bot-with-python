@@ -77,7 +77,7 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.12"))
+    await Bot.change_presence(activity=discord.Game(name="q.help v1.0.13"))
 
 
 mongo = os.environ.get('MONGO')
@@ -198,10 +198,38 @@ async def on_message(msg):
                         #скачать видео тикток
                         urllib.request.urlretrieve(found_video_url, f'Estol{n}.mp4')
 
-
+                        
                         #отправка видео
                         await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
                         os.remove(f"Estol{n}.mp4")
+
+                    if ekfar[0:24] == f'https://www.tiktok.com/@':
+                        nickname = elem.get_attribute("href")
+                        num = len(nickname)
+                        print(nickname[23:num-1])
+
+                        embe.set_author(name=f"ТиТок - {nickname[23:num-1]}", icon_url=author_url)
+
+                    if ekfar[0:9] == f'https://p':
+                        author_url = elem.get_attribute("href")
+                        print(author_url)
+                        
+                       
+
+                Plays = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[1]')[0].text
+                Likes = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[2]')[0].text
+                comments = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[3]')[0].text
+
+                embe.set_footer(text=f"запрос сделан {msg.author}", icon_url=msg.author.avatar_url)
+
+
+                embe.add_field(name="Plays :arrow_forward:", value=Plays)
+                embe.add_field(name="Likes :heart:", value=Likes)
+                embe.add_field(name="comments :incoming_envelope:", value=comments)
+
+                await msg.channel.send(embed=embe)
+
+                        
 
 @Bot.command()
 @commands.has_permissions(manage_channels = True)
