@@ -304,8 +304,36 @@ async def on_voice_state_update(member, before, after):
         except AttributeError:
             return
 
-        
-        
+token = os.environ.get('TOKEN')        
+@Bot.command()
+async def youtube(ctx):
+    data =  {
+        "max_age": 86400,
+        "max_uses": 0,
+        "target_application_id": 755600276941176913,
+        "target_type": 2,
+        "temporary": False,
+        "validate": None
+    }
+    headers = {
+        "Authorization": f"Bot {token}",
+        "Content-Type": "application/Json"
+    }
+
+    if ctx.author.voice is not None:
+        if ctx.author.voice.channel is not None:
+            channel = ctx.author.voice.channel.id
+        else:
+            await ctx.send("Зайдите в канал")
+    else:
+        await ctx.send("Зайдите в канал")
+
+    response = requests.post(f"https://discord.com/api/v8/channels/{channel}/invites", data = json.dumps(data), headers = headers)
+    link = json.loads(response.content)
+
+    await ctx.send(f"https://discord.com/invite/{link['code']}")      
+    
+    
 @Bot.command()
 @commands.has_permissions(administrator = True)
 async def own_voice(ctx):
