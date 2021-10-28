@@ -195,14 +195,14 @@ async def on_message(msg):
                         #рандомную цифру для разнах названий
                         n = random.randint(0,999)
 
-
+                        
                         #скачать видео тикток
                         urllib.request.urlretrieve(found_video_url, f'Estol{n}.mp4')
 
                         
                         #отправка видео
                         await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
-                        os.remove(f"Estol{n}.mp4")
+#                         os.remove(f"Estol{n}.mp4")
 
                     if ekfar[0:24] == f'https://www.tiktok.com/@':
                         nickname = elem.get_attribute("href")
@@ -229,7 +229,7 @@ async def on_message(msg):
             embe.add_field(name="comments :incoming_envelope:", value=comments)
 
             await msg.channel.send(embed=embe)
-
+            
                         
 
 @Bot.command()
