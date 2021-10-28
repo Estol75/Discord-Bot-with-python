@@ -182,6 +182,7 @@ async def on_message(msg):
             #пойск сыллки на скачивания тикток
             num = 0
             elems = driver.find_elements_by_xpath("//a[@href]")
+            n = random.randint(0,999)
             for elem in elems:
                 ekfar = elem.get_attribute("href")
 
@@ -193,7 +194,7 @@ async def on_message(msg):
                         print(found_video_url)
 
                         #рандомную цифру для разнах названий
-                        n = random.randint(0,999)
+                        
 
                         
                         #скачать видео тикток
@@ -201,8 +202,8 @@ async def on_message(msg):
 
                         
                         #отправка видео
-                        await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
-#                         os.remove(f"Estol{n}.mp4")
+                        
+                         
 
                     if ekfar[0:24] == f'https://www.tiktok.com/@':
                         nickname = elem.get_attribute("href")
@@ -227,9 +228,10 @@ async def on_message(msg):
             embe.add_field(name="Plays :arrow_forward:", value=Plays)
             embe.add_field(name="Likes :heart:", value=Likes)
             embe.add_field(name="comments :incoming_envelope:", value=comments)
-
-            await msg.channel.send(embed=embe)
             
+            await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
+            await msg.channel.send(embed=embe)
+            os.remove(f"Estol{n}.mp4")
                         
 
 @Bot.command()
