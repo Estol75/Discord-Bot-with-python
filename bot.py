@@ -198,8 +198,9 @@ async def on_message(msg):
 
                         
                         #скачать видео тикток
+                        print("качается")
                         urllib.request.urlretrieve(found_video_url, f'Estol{n}.mp4')
-
+                        print("скачался")
                         
                         #отправка видео
                         
@@ -228,7 +229,7 @@ async def on_message(msg):
             embe.add_field(name="Plays :arrow_forward:", value=Plays)
             embe.add_field(name="Likes :heart:", value=Likes)
             embe.add_field(name="comments :incoming_envelope:", value=comments)
-            
+
             await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
             await msg.channel.send(embed=embe)
             os.remove(f"Estol{n}.mp4")
