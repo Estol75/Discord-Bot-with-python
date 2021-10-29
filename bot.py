@@ -153,7 +153,31 @@ async def say(ctx, *, msg: str = None):
         await ctx.send(msg)
         
         
-        
+@Bot.event
+async def on_message(msg):
+    await Bot.process_commands(msg)
+
+    sleep(5)
+    #подключения драйвера
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+    sleep(5)
+
+
+    driver.get(f'{msg.content}')
+    elems = driver.find_elements_by_xpath("//video[@src]")
+    #рандомную цифру для разнах названий
+    n = random.randint(0,999)
+    sleep(5)
+
+    for elem in elems:
+        ekfar = elem.get_attribute("src")
+        sleep(5)
+        print(ekfar)        
  
                         
 
