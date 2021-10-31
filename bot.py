@@ -286,6 +286,111 @@ async def youtube(ctx):
 
     await ctx.send(f"https://discord.com/invite/{link['code']}")      
     
+
+    
+    
+@Bot.event
+async def on_message(msg):
+    await Bot.process_commands(msg)
+    print(msg.content[12:24])
+    if msg.content[12:24] == 'tiktok.com/@':
+        if int(28) < len(msg.content):
+            messages_id = msg.id
+            channel = msg.channel
+            await channel.delete_messages([discord.Object(id=messages_id)])
+
+        #подключения драйвера
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+
+
+
+        #склейка сылки на тикток и сайта
+        driver.get(f'https://ttsave.app/#{msg.content}')
+        ava_url = str()
+        #пойск сыллки на скачивания тикток
+        num = 0
+        elems = driver.find_elements_by_xpath("//a[@href]")
+        for elem in elems:
+            ekfar = elem.get_attribute("href")
+
+
+            if num <= 0:
+                if ekfar[0:9] == f'https://v':
+                    num = num + 1
+                    found_video_url = elem.get_attribute("href")
+                    print(found_video_url)
+
+                    #рандомную цифру для разнах названий
+                    n = random.randint(0,999)
+
+
+                    #скачать видео тикток
+                    urllib.request.urlretrieve(found_video_url, f'Estol{n}.mp4')
+
+                    try:
+                        await msg.channel.send(file=discord.File(f"Estol{n}.mp4"))
+                        os.remove(f"Estol{n}.mp4")
+                    except discord.errors.HTTPException:
+                        await msg.channel.send("The video is to long")
+
+                if ekfar[0:9] == f'https://p':
+                    author_url = elem.get_attribute("href")
+                    print(author_url)
+                    ava_url = ava_url + author_url
+
+
+                    #отправка видео
+        for elem in elems:
+            embe = discord.Embed()
+            ekfar = elem.get_attribute("href")
+            if ekfar[0:24] == f'https://www.tiktok.com/@':
+                nickname = elem.get_attribute("href")
+                num = len(nickname)
+                print(nickname[23:num-1])  
+
+
+
+        embe.set_author(name=f"ТиТок - {nickname[23:num-1]}", icon_url=ava_url)
+        plays = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[1]')[0].text
+        likes = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[2]')[0].text
+        comments = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[3]')[0].text
+
+        embe.set_footer(text=f"запрос сделан {msg.author}", icon_url=msg.author.avatar_url)
+
+
+        embe.add_field(name="Plays :arrow_forward:", value=plays)
+        embe.add_field(name="Likes :heart:", value=likes)
+        embe.add_field(name="comments :incoming_envelope:", value=comments)
+        embe.add_field(name="video on TikTok", value='[click to open in browser](' + msg.content + ')', inline = False)
+        await msg.channel.send(embed=embe)    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 @Bot.command()
 @commands.has_permissions(administrator = True)
