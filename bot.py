@@ -798,6 +798,7 @@ async def aktie(ctx, arg1):
  
     
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
+    print(len_link)
     driver.get(len_link)
     sleep(2)
 #     driver.find_element_by_id('L2AGLb').click()
@@ -820,22 +821,27 @@ async def aktie(ctx, arg1):
 
     textil = elems.text
     print(textil)
-    lents = len(elems.text)
-    bin = int(lents) - int(5)
-    rel = textil[0:bin]
-    print(textil[0:1])
+    
+#     lents = len(elems.text)
+#     bin = int(lents) - int(5)
+#     rel = textil[0:bin]
+#     print(textil[0:1])
 
-    if str(textil[0:1]) == str("+"):
-        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0x3cd126)
-    else:
-        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
+#     if str(textil[0:1]) == str("+"):
+#         embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0x3cd126)
+#     else:
+#         embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
 
 
 
-    file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
-    embed_en.set_image(url="attachment://guido_pillow_crop.png")
+#     file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
+#     embed_en.set_image(url="attachment://guido_pillow_crop.png")
 
-    await ctx.send(file=file, embed=embed_en)
+#     await ctx.send(file=file, embed=embed_en)
+
+
+
+
     #.find('li', class_ = "pager__item pager__item_last-page")
 
 @Bot.command()
