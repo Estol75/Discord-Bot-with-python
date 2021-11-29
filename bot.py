@@ -812,12 +812,14 @@ async def aktie(ctx, arg1):
 
     im_crop.save(r'guido_pillow_crop.png', quality=95)
     sleep(1)
-
-
-    elem= driver.find_element_by_css_selector(".NprOob")
-    elems= driver.find_element_by_css_selector(".WlRRw")
+    
+    elem = driver.find_element(By.CSS_SELECTOR, ".NprOob")
+    #     elem= driver.find_element_by_css_selector(".NprOob")
+    elems = driver.find_element(By.CSS_SELECTOR, ".WlRRw")
+#     elems= driver.find_element_by_css_selector(".WlRRw")
 
     textil = elems.text
+    print(textil)
     lents = len(elems.text)
     bin = int(lents) - int(5)
     rel = textil[0:bin]
