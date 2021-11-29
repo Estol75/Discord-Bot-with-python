@@ -37,7 +37,7 @@ import fake_useragent
 from time import sleep
 import urllib.request
 import requests
-
+from PIL import Image
 import os
 
 
