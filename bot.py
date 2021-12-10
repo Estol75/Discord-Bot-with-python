@@ -39,8 +39,8 @@ import urllib.request
 import requests
 from PIL import Image
 import os
-
-
+from PIL import Image
+from pymongo import MongoClient
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
@@ -795,14 +795,11 @@ async def aktie(ctx, arg1):
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     
- 
-    
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
-    print(len_link)
-    driver.get(len_link)
+    driver.get(f"https://www.google.com/search?q={arg1}+aktie")
     sleep(2)
-#     driver.find_element_by_id('L2AGLb').click()
-    driver.find_element(By.ID, "L2AGLb").click()
+    driver.find_element_by_id('L2AGLb').click()
+
     screenshot = driver.save_screenshot(r'my_screenshot.png')
     sleep(2)
 
@@ -813,36 +810,32 @@ async def aktie(ctx, arg1):
 
     im_crop.save(r'guido_pillow_crop.png', quality=95)
     sleep(1)
-    
-    elem = driver.find_element(By.CSS_SELECTOR, ".NprOob")
-    #     elem= driver.find_element_by_css_selector(".NprOob")
-    elems = driver.find_element(By.CSS_SELECTOR, ".WlRRw")
-#     elems= driver.find_element_by_css_selector(".WlRRw")
+
+
+    elem= driver.find_element_by_css_selector(".NprOob")
+    elems= driver.find_element_by_css_selector(".WlRRw")
 
     textil = elems.text
-    print(textil)
-    
-#     lents = len(elems.text)
-#     bin = int(lents) - int(5)
-#     rel = textil[0:bin]
-#     print(textil[0:1])
+    lents = len(elems.text)
+    bin = int(lents) - int(5)
+    rel = textil[0:bin]
+    print(textil[0:1])
 
-#     if str(textil[0:1]) == str("+"):
-#         embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0x3cd126)
-#     else:
-#         embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
+    if str(textil[0:1]) == str("+"):
+        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0x3cd126)
+    else:
+        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
 
 
 
-#     file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
-#     embed_en.set_image(url="attachment://guido_pillow_crop.png")
+    file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
+    embed_en.set_image(url="attachment://guido_pillow_crop.png")
 
-#     await ctx.send(file=file, embed=embed_en)
+    await ctx.send(file=file, embed=embed_en)
+    os.remove(r"my_screenshot.png")
+    os.remove(r"guido_pillow_crop.png")
 
-
-
-
-    #.find('li', class_ = "pager__item pager__item_last-page")
+#     .find('li', class_ = "pager__item pager__item_last-page")
 
 @Bot.command()
 async def profile(ctx, *, message:str=None):
