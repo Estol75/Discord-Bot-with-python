@@ -793,15 +793,15 @@ async def invite(ctx):
 @Bot.command()
 async def aktie(ctx, arg1):
 
-#     driver = webdriver.Chrome(service=s)
-#     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-#     chrome_options = webdriver.ChromeOptions()
-#     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-#     chrome_options.add_argument("--headless")
-#     chrome_options.add_argument("--disable-dev-shm-usage")
-#     chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(service=os.environ.get("CHROMEDRIVER_PATH"))
-    
+    #подключения драйвера
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+
+
     
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
