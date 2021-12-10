@@ -83,7 +83,7 @@ Bot.remove_command('help')
 @Bot.event
 async def on_ready():
     await Bot.change_presence(activity=discord.Game(name="q.help v1.0.13"))
-
+    s=Service(ChromeDriverManager().install())
 
 mongo = os.environ.get('MONGO')
 cluster = MongoClient(mongo)
@@ -799,8 +799,10 @@ async def aktie(ctx, arg1):
 #     chrome_options.add_argument("--disable-dev-shm-usage")
 #     chrome_options.add_argument("--no-sandbox")
 #     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-    s=Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=s)
+    
+#     driver = webdriver.Chrome(service=s)
+    driver = webdriver.Chrome(service = "/app/.wdm/drivers/chromedriver/linux64/96.0.4664.45/chromedriver")
+    
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
     sleep(2)
