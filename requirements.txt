@@ -25,4 +25,4 @@ selenium==4.0.0
 webdriver_manager==3.5.1
 selenium-stealth
 Pillow
-webdriver-manager
+webdriver-manager==3.5.1
