@@ -41,6 +41,11 @@ from PIL import Image
 import os
 from PIL import Image
 from pymongo import MongoClient
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
@@ -788,13 +793,14 @@ async def invite(ctx):
 
 @Bot.command()
 async def aktie(ctx, arg1):
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-    
+#     chrome_options = webdriver.ChromeOptions()
+#     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+#     chrome_options.add_argument("--headless")
+#     chrome_options.add_argument("--disable-dev-shm-usage")
+#     chrome_options.add_argument("--no-sandbox")
+#     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+    s=Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=s)
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
     sleep(2)
