@@ -42,10 +42,9 @@ import os
 from PIL import Image
 from pymongo import MongoClient
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-
 
 user = fake_useragent.UserAgent().random
 header = {'user-agent': user}
@@ -801,7 +800,7 @@ async def aktie(ctx, arg1):
 #     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     
 #     driver = webdriver.Chrome(service=s)
-    driver = webdriver.Chrome(service = "/app/.wdm/drivers/chromedriver/linux64/96.0.4664.45/chromedriver")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
