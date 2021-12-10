@@ -798,7 +798,7 @@ async def aktie(ctx, arg1):
     len_link = f"https://www.google.com/search?q={arg1}+aktie"
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
     sleep(2)
-    driver.find_element_by_id('L2AGLb').click()
+    driver.find_element(By.ID, "L2AGLb").click()
 
     screenshot = driver.save_screenshot(r'my_screenshot.png')
     sleep(2)
