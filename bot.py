@@ -870,11 +870,14 @@ async def aktie(ctx, arg1):
     sleep(1)
     
     elem= driver.find_element_by_css_selector(".NprOob")
+    elems= driver.find_element_by_css_selector(".WlRRw")
     print(elem.text)
     
     screenshot = driver.save_screenshot('my_screenshot.png')
     await ctx.send(file=discord.File("my_screenshot.png"))
     
+
+
     im = Image.open('my_screenshot.png')
     sleep(1)
     im_crop = im.crop((10, 345, 690, 805))
@@ -883,9 +886,19 @@ async def aktie(ctx, arg1):
     
     await ctx.send(file=discord.File("guido_pillow_crop.png"))
 
-    
+    textil = elems.text
+    lents = len(elems.text)
+    bin = int(lents) - int(5)
+    rel = textil[0:bin]
+    print(textil[0:1])
+
+    if str(textil[0:1]) == str("+"):
+        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0x3cd126)
+    else:
+        embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
+        
     await ctx.send(elem.text)
-    embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:**fds", color=0xea4335)
+#     embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:**fds", color=0xea4335)
 
 
 
