@@ -882,11 +882,10 @@ async def aktie(ctx, arg1):
     im_crop.save('guido_pillow_crop.png', quality=95)
     
     await ctx.send(file=discord.File("guido_pillow_crop.png"))
-    os.remove("my_screenshot.png")
-    os.remove("guido_pillow_crop.png")
+
     
     await ctx.send(elem.text)
-    embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
+    embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:**fds", color=0xea4335)
 
 
 
@@ -896,7 +895,8 @@ async def aktie(ctx, arg1):
     
     await ctx.send(file=file, embed=embed_en)
     
-
+    os.remove("my_screenshot.png")
+    os.remove("guido_pillow_crop.png")
 
 
 
