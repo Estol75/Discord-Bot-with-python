@@ -359,7 +359,8 @@ async def on_message(msg):
 
 
 
-        embe.set_author(name=f"ТиТок - {nickname[23:num-1]}", icon_url=ava_url)
+#         embe.set_author(name=f"ТиТок - {nickname[23:num-1]}", icon_url=ava_url)
+        embe.set_author(name=f"ТиТок", icon_url=ava_url)
         plays = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[1]')[0].text
         likes = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[2]')[0].text
         comments = driver.find_elements_by_xpath('(.//span[@class = "text-gray-500"])[3]')[0].text
