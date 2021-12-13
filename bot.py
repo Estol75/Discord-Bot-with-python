@@ -838,7 +838,8 @@ async def aktie(ctx, arg1):
 
 
 
-    file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
+#     file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
+    await ctx.send(file=discord.File("guido_pillow_crop.png"))
 #     embed_en.set_image(url="attachment://guido_pillow_crop.png")
     embed_en.set_image(url=discord.File("guido_pillow_crop.png"))
     
