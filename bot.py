@@ -877,7 +877,7 @@ async def aktie(ctx, arg1):
     
     im = Image.open('my_screenshot.png')
     sleep(1)
-    im_crop = im.crop((172, 345, 844, 805))
+    im_crop = im.crop((10, 345, 690, 805))
     sleep(1)
     im_crop.save('guido_pillow_crop.png', quality=95)
     
