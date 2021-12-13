@@ -886,6 +886,15 @@ async def aktie(ctx, arg1):
     os.remove("guido_pillow_crop.png")
     
     await ctx.send(elem.text)
+    embed_en = discord.Embed(title=f"▬▬▬▬▬▬▬▬[Акции {arg1}]▬▬▬▬▬▬▬▬", description=f"**Стоимость:** {elem.text} │ **просадок:** {rel}", color=0xea4335)
+
+
+
+    file = discord.File(r"guido_pillow_crop.png", filename="guido_pillow_crop.png")
+    embed_en.set_image(url="attachment://guido_pillow_crop.png")
+
+    
+    await ctx.send(file=file, embed=embed_en)
     
 
 
