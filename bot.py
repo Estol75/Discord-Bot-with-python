@@ -869,6 +869,7 @@ async def aktie(ctx, arg1):
     print(elem.text)
     
     screenshot = driver.save_screenshot('my_screenshot.png')
+    await ctx.send(file=discord.File("my_screenshot.png"))
     
     im = Image.open('my_screenshot.png')
     sleep(1)
