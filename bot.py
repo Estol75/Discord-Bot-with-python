@@ -864,10 +864,12 @@ async def aktie(ctx, arg1):
     
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
     driver.maximize_window()
+    
     sleep(1)
+    
     elem= driver.find_element_by_css_selector(".NprOob")
     print(elem.text)
-    
+    driver.execute_script("window.scrollTo(20, Y)")
     screenshot = driver.save_screenshot('my_screenshot.png')
     await ctx.send(file=discord.File("my_screenshot.png"))
     
