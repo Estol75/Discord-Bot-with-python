@@ -859,6 +859,8 @@ async def aktie(ctx, arg1):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument('window-size=1920,1080')
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     
     
@@ -869,7 +871,7 @@ async def aktie(ctx, arg1):
     
     elem= driver.find_element_by_css_selector(".NprOob")
     print(elem.text)
-    driver.execute_script("window.scrollTo(20, Y)")
+    
     screenshot = driver.save_screenshot('my_screenshot.png')
     await ctx.send(file=discord.File("my_screenshot.png"))
     
