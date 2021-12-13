@@ -861,11 +861,15 @@ async def aktie(ctx, arg1):
     
     driver.get(f"https://www.google.com/search?q={arg1}+aktie")
 
-    sleep(2)
+    sleep(1)
     elem= driver.find_element_by_css_selector(".NprOob")
     print(elem.text)
+    
+    screenshot = driver.save_screenshot('my_screenshot.png')
+    await ctx.send(file=discord.File("my_screenshot.png"))
+    os.remove("my_screenshot.png")
     await ctx.send(elem.text)
-
+    
 
 
 
