@@ -883,7 +883,7 @@ async def aktie(ctx, arg1):
     
     await ctx.send(file=discord.File("guido_pillow_crop.png"))
     os.remove("my_screenshot.png")
-   
+    os.remove("guido_pillow_crop.png")
     
     await ctx.send(elem.text)
     
