@@ -866,8 +866,17 @@ async def aktie(ctx, arg1):
     print(elem.text)
     
     screenshot = driver.save_screenshot('my_screenshot.png')
-    await ctx.send(file=discord.File("my_screenshot.png"))
+    
+    im = Image.open('my_screenshot.png')
+    sleep(1)
+    im_crop = im.crop((20, 365, 700, 550))
+    sleep(1)
+    im_crop.save('guido_pillow_crop.png', quality=95)
+    
+    await ctx.send(file=discord.File("guido_pillow_crop.png"))
     os.remove("my_screenshot.png")
+   
+    
     await ctx.send(elem.text)
     
 
